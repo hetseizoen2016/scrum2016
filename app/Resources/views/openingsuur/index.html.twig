@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Openingsuur list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dag</th>
+                <th>Van</th>
+                <th>Tot</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for openingsuur in openingsuurs %}
+            <tr>
+                <td><a href="{{ path('uren_show', { 'id': openingsuur.id }) }}">{{ openingsuur.id }}</a></td>
+                <td>{{ openingsuur.dag }}</td>
+                <td>{% if openingsuur.van %}{{ openingsuur.van|date('H:i:s') }}{% endif %}</td>
+                <td>{% if openingsuur.tot %}{{ openingsuur.tot|date('H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('uren_show', { 'id': openingsuur.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('uren_edit', { 'id': openingsuur.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('uren_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
