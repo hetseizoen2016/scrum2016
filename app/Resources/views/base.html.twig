@@ -7,14 +7,73 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <!-- Compiled and minified CSS for Materialize -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        
+    </head>
+    <body>
+        <!-- Header op elke pagina -->
+        
+        <nav class='yellow lighten-4'>
+        <div class='white container'>
+        <a href='index.php' class='brand-logo'><img src='images/vdab.png'></a>
+        <ul class='right hide-on-med-and-down'>
+                <li><a class=" black-text" href='index.php'>Home</a></li>
+                <li><a class=" black-text" href='menu.php'>Menu kaart</a></li>
+                <li><a class=" black-text" href='nieuws.php'>Nieuws</a></li>
+                <li><a class=" black-text" href='opleidingen.php'>Opleidingen</a></li>
+                <li><a class=" black-text" href='contact.php'>Contact</a></li>
+                <li><a class=" black-text" href='reserveer.php'>Reserveer</a></li>
+        </ul>  </div>  
+        </nav>
+        {% block body %}{% endblock %}
+        
+        
+        <!-- Footer op elke pagina -->
+        
+        <footer class="yellow lighten-4">
+            <div class="white container">
+            <div class="yellow lighten-4 row">
+              <div class="col 12 s3">
+                <ul>
+                  <li><a class="black-text" href="index.php">Home</a></li>
+                  <li><a class="black-text" href="menu.php">Menu kaart</a></li>
+                  <li><a class="black-text" href="nieuws.php">Nieuws</a></li>
+                  <li><a class="black-text" href="opleidingen.php">Opleidingen</a></li>
+                  <li><a class="black-text" href="contact.php">Contact</a></li>
+                  <li><a class="black-text" href="reserveer.php">Reserveer</a></li>
+                </ul>
+              </div>
+              <div class="col 12 s6">
+                  <ul>
+                      <li class="black-text" >Maandag Gesloten</li>
+                      <li class="black-text">Dinsdag open van 12u00 tot 14u30</li>
+                      <li class="black-text">Woensdag open van 12u00 tot 14u30</li>
+                      <li class="black-text">Donderdag open van 12u00 tot 14u30</li>
+                      <li class="black-text">Vrijdag open van 12u00 tot 14u30 </li>
+                      <li class="black-text">Zaterdag Gesloten</li>
+                      <li class="black-text">Zondag Gesloten</li>
+                      <li class="black-text">Feestdag Gesloten</li> 
+                  </ul>
+              </div>
+              <div class="col 12 s3">
+                  <a href='index.php' class='brand-logo'><img src='images/vdab.png'></a>
+              </div>
+            </div>
+            </div>
+          <div class="yellow lighten-4 footer-copyright">
+            <div class="yellow lighten-4 container center-align">
+            © 2016 Copyright Vdab Php-developers
+            
+            </div>
+          </div>
+        </footer>
+            
+        
+        
+        {% block javascripts %}{% endblock %}
+        
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
         <!-- Compiled and minified JavaScript for Materialize -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        <!-- testing -->
     </body>
 </html>
