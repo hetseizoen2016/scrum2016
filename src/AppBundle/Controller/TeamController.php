@@ -17,6 +17,12 @@ class TeamController extends Controller{
 	*/
 	public function menuAction(){
 
-		return $this->render('team/team.html.twig', array());
+		/* Openingsuren */
+		$em = $this->getDoctrine()->getManager();
+		$openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+		
+		return $this->render('team/team.html.twig', array(
+			'openingsuren' => $openingsuren,	
+		));
 	}
 }

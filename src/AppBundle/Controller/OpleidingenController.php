@@ -20,6 +20,12 @@ class OpleidingenController extends Controller
      */
     public function homeAction(){
 
-        return $this->render('opleidingen/index.html.twig', array());
+        /* Openingsuren */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+        
+        return $this->render('opleidingen/index.html.twig', array(
+            'openingsuren' => $openingsuren,
+        ));
     }
 }
