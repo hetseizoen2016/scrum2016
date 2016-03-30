@@ -7,11 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class HomeController extends Controller{
+class HomeController extends Controller
+{
 
 
 	/**
-	* @Route("/" name="home")
+	* @Route("/", name="home")
 	*/	
 	public function homeAction(){
 
