@@ -10,3 +10,7 @@
 /vendor/
 /bin/
 /composer.phar
+/.idea/
+
+/nbproject/private/
+/nbproject/
