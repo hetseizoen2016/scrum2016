@@ -15,6 +15,14 @@
                     <code>{{ base_dir }}/</code>
                 </p>
             </div>
+            <h3>Openingsuren</h3>
+            {% for openingsuur in openingsuurs %}
+                <p>
+                    {{ openingsuur.dag }}
+                    {% if openingsuur.van %} van {{ openingsuur.van|date('H:i') }}{% endif %}
+                    {% if openingsuur.tot %} tot {{ openingsuur.tot|date('H:i') }}{% endif %}
+                </p>
+            {% endfor %}
 
             <div id="next">
                 <h2>What's next?</h2>

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Openingsuur</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ openingsuur.id }}</td>
+            </tr>
+            <tr>
+                <th>Dag</th>
+                <td>{{ openingsuur.dag }}</td>
+            </tr>
+            <tr>
+                <th>Van</th>
+                <td>{% if openingsuur.van %}{{ openingsuur.van|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Tot</th>
+                <td>{% if openingsuur.tot %}{{ openingsuur.tot|date('H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('uren_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('uren_edit', { 'id': openingsuur.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
