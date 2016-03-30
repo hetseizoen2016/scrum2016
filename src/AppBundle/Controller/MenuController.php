@@ -8,15 +8,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
-* @Route("/")
+* @Route("/menu")
 */
-class HomeController extends Controller{
+class MenuController extends Controller{
 
 	/**
-	* @Route("/", name="index")
+	* @Route("/", name="menu")
 	*/
-	public function homeAction(){
+	public function menuAction(){
 
-		return $this->render('homepage/index.html.twig', array());
+		return $this->render('menu/menu.html.twig', array());
 	}
 }
