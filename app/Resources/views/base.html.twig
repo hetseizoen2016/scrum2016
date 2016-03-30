@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!-- Compiled and minified CSS for Materialize -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        
+    </head>
+    <body>
+        <!-- Header op elke pagina -->
+        
+        <nav class='yellow lighten-4'>
+        <div class='white container'>
+        <a href='index.php' class='brand-logo'><img src='images/vdab.png'></a>
+        <ul class='right hide-on-med-and-down'>
+                <li><a class=" black-text" href='{{ path('index') }}'>Home</a></li>
+                <li><a class=" black-text" href='{{ path('menu') }}'>Menu</a></li>
+                <li><a class=" black-text" href='nieuws.php'>Nieuws</a></li>
+                <li><a class=" black-text" href={{ path('opleidingen') }}>Opleidingen</a></li>
+                <li><a class=" black-text" href='{{ path('team') }}'>Team</a></li>
+                <li><a class=" black-text" href='contact.php'>Contact</a></li>
+                <li><a class=" black-text" href='reserveer.php'>Reserveer</a></li>
+        </ul>  </div>  
+        </nav>
+        {% block body %}{% endblock %}
+        
+        
+        <!-- Footer op elke pagina -->
+        
+        <footer class="yellow lighten-4">
+            <div class="white container">
+            <div class="yellow lighten-4 row">
+              <div class="col 12 s3">
+                <ul>
+                  <li><a class="black-text" href="index.php">Home</a></li>
+                  <li><a class="black-text" href="menu.php">Menu kaart</a></li>
+                  <li><a class="black-text" href="nieuws.php">Nieuws</a></li>
+                  <li><a class="black-text" href="opleidingen.php">Opleidingen</a></li>
+                  <li><a class="black-text" href="contact.php">Contact</a></li>
+                  <li><a class="black-text" href="reserveer.php">Reserveer</a></li>
+                </ul>
+              </div>
+              <div class="col 12 s6">
+                  <ul>
+                      {% for openingsuur in openingsuren %}
+                          <li  class="black-text">
+                              {{ openingsuur.dag }}
+                              {% if openingsuur.van %}
+                                  open van {{ openingsuur.van|date('H:i') }} tot {{ openingsuur.tot|date('H:i') }}.
+                              {% else %}
+                                  gesloten.
+                              {% endif %}
+                      {% endfor %}
+
+
+                      <li class="black-text">Ook op feestdagen gesloten.</li>
+                  </ul>
+              </div>
+              <div class="col 12 s3">
+                  <a href='index.php' class='brand-logo'><img src='images/vdab.png'></a>
+              </div>
+            </div>
+            </div>
+          <div class="yellow lighten-4 footer-copyright">
+            <div class="yellow lighten-4 container center-align">
+            © 2016 Copyright VDAB Php-developers
+            
+            </div>
+          </div>
+        </footer>
+            
+        
+        
+        {% block javascripts %}{% endblock %}
+        
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+        <!-- Compiled and minified JavaScript for Materialize -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    </body>
+</html>

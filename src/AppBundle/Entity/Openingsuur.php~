@@ -1,0 +1,41 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Geert
+ * Date: 29/03/2016
+ * Time: 18:56
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Openingsuur
+ * @package AppBundle\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\OpeningsuurRepository")
+ * @ORM\Table(name="openingsuren")
+ */
+
+class Openingsuur
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $dag;
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    protected $van;
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    protected $tot;
+
+}
