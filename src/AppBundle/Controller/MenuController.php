@@ -17,6 +17,12 @@ class MenuController extends Controller{
 	*/
 	public function menuAction(){
 
-		return $this->render('menu/menu.html.twig', array());
+		/* Openingsuren */
+		$em = $this->getDoctrine()->getManager();
+		$openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+		
+		return $this->render('menu/menu.html.twig', array(
+			'openingsuren' => $openingsuren,
+		));
 	}
 }

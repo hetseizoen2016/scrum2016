@@ -19,7 +19,7 @@
                 <li><a class=" black-text" href='{{ path('index') }}'>Home</a></li>
                 <li><a class=" black-text" href='{{ path('menu') }}'>Menu</a></li>
                 <li><a class=" black-text" href='nieuws.php'>Nieuws</a></li>
-                <li><a class=" black-text" href='opleidingen.php'>Opleidingen</a></li>
+                <li><a class=" black-text" href={{ path('opleidingen') }}>Opleidingen</a></li>
                 <li><a class=" black-text" href='{{ path('team') }}'>Team</a></li>
                 <li><a class=" black-text" href='contact.php'>Contact</a></li>
                 <li><a class=" black-text" href='reserveer.php'>Reserveer</a></li>
@@ -45,14 +45,18 @@
               </div>
               <div class="col 12 s6">
                   <ul>
-                      <li class="black-text" >Maandag Gesloten</li>
-                      <li class="black-text">Dinsdag open van 12u00 tot 14u30</li>
-                      <li class="black-text">Woensdag open van 12u00 tot 14u30</li>
-                      <li class="black-text">Donderdag open van 12u00 tot 14u30</li>
-                      <li class="black-text">Vrijdag open van 12u00 tot 14u30 </li>
-                      <li class="black-text">Zaterdag Gesloten</li>
-                      <li class="black-text">Zondag Gesloten</li>
-                      <li class="black-text">Feestdag Gesloten</li> 
+                      {% for openingsuur in openingsuren %}
+                          <li  class="black-text">
+                              {{ openingsuur.dag }}
+                              {% if openingsuur.van %}
+                                  open van {{ openingsuur.van|date('H:i') }} tot {{ openingsuur.tot|date('H:i') }}.
+                              {% else %}
+                                  gesloten.
+                              {% endif %}
+                      {% endfor %}
+
+
+                      <li class="black-text">Ook op feestdagen gesloten.</li>
                   </ul>
               </div>
               <div class="col 12 s3">
@@ -62,7 +66,7 @@
             </div>
           <div class="yellow lighten-4 footer-copyright">
             <div class="yellow lighten-4 container center-align">
-            © 2016 Copyright Vdab Php-developers
+            © 2016 Copyright VDAB Php-developers
             
             </div>
           </div>
