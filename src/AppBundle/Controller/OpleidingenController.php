@@ -24,7 +24,7 @@ class OpleidingenController extends Controller
         $em = $this->getDoctrine()->getManager();
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
         
-        return $this->render('opleidingen/opleidingen.html.twig', array(
+        return $this->render('opleidingen/index.html.twig', array(
             'openingsuren' => $openingsuren,
         ));
     }
