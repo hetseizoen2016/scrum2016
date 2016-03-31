@@ -14,6 +14,10 @@ class SecurityController extends Controller
      */
     public function loginAction(Request $request)
     {
+        /* Openingsuren */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
         $authenticationUtils = $this->get('security.authentication_utils');
 
         // get the login error if there is one
@@ -27,6 +31,7 @@ class SecurityController extends Controller
                     // last username entered by the user
                     'last_username' => $lastUsername,
                     'error' => $error,
+                    'openingsuren' => $openingsuren
                         )
         );
     }
