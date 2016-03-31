@@ -1,0 +1,43 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Geert
+ * Date: 31/03/2016
+ * Time: 11:10
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class MenuFormules
+ * @package AppBundle\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\MenuFormulesRepository")
+ * @ORM\Table(name="menuformules")
+ */
+class MenuFormules
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="string", length=64, nullable=false, name="name")
+     */
+    protected $name;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false, name="info")
+     */
+    protected $info;
+    /**
+     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=false, name="price" )
+     */
+    protected $price;
+    /**
+     * @ORM\Column(type="decimal", precision=3, scale=0, nullable=true, name="min_persons")
+     */
+    protected $minPersons;
+}

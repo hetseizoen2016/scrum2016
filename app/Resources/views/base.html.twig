@@ -47,8 +47,8 @@
                   <ul>
                       {% for openingsuur in openingsuren %}
                           <li  class="black-text">
-                              {{ openingsuur.dag }}
-                              {% if openingsuur.van %}
+                              {{ openingsuur.dag  }}
+                              {% if openingsuur.van and openingsuur.van|date('H:i') > '00:00'|date('H:i') %}
                                   open van {{ openingsuur.van|date('H:i') }} tot {{ openingsuur.tot|date('H:i') }}.
                               {% else %}
                                   gesloten.

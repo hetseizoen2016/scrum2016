@@ -1,7 +1,7 @@
-
+{% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Openingsuur edit</h1>
+    <h1>MenuFormules edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -10,14 +10,12 @@
 
     <ul>
         <li>
-            <a href="{{ path('uren_index') }}">Back to the list</a>
+            <a href="{{ path('formules_index') }}">Back to the list</a>
         </li>
-        {#
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-        #}
     </ul>
 {% endblock %}

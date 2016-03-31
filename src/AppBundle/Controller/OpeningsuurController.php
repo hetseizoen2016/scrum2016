@@ -12,31 +12,31 @@ use AppBundle\Form\OpeningsuurType;
 /**
  * Openingsuur controller.
  *
- * @Route("/uren")
+ *
  */
 class OpeningsuurController extends Controller
 {
     /**
      * Lists all Openingsuur entities.
      *
-     * @Route("/", name="uren_index")
+     * @Route("/uren/", name="uren_index")
      * @Method("GET")
      */
     public function indexAction()
     {
+        /* Openingsuren in footer */
         $em = $this->getDoctrine()->getManager();
-
-        $openingsuurs = $em->getRepository('AppBundle:Openingsuur')->findAll();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         return $this->render('openingsuur/index.html.twig', array(
-            'openingsuurs' => $openingsuurs,
+            'openingsuren' => $openingsuren,
         ));
     }
 
     /**
      * Creates a new Openingsuur entity.
      *
-     * @Route("/new", name="uren_new")
+     * @Route("/uren/new", name="uren_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -53,8 +53,13 @@ class OpeningsuurController extends Controller
             return $this->redirectToRoute('uren_show', array('id' => $openingsuur->getId()));
         }
 
+        /* Openingsuren in footer */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
+
         return $this->render('openingsuur/new.html.twig', array(
-            'openingsuur' => $openingsuur,
+            'openingsuren' => $openingsuren,
             'form' => $form->createView(),
         ));
     }
@@ -62,14 +67,19 @@ class OpeningsuurController extends Controller
     /**
      * Finds and displays a Openingsuur entity.
      *
-     * @Route("/{id}", name="uren_show")
+     * @Route("/uren/{id}", name="uren_show")
      * @Method("GET")
      */
     public function showAction(Openingsuur $openingsuur)
     {
         $deleteForm = $this->createDeleteForm($openingsuur);
 
+        /* Openingsuren in footer */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
         return $this->render('openingsuur/show.html.twig', array(
+            'openingsuren' => $openingsuren,
             'openingsuur' => $openingsuur,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -78,7 +88,7 @@ class OpeningsuurController extends Controller
     /**
      * Displays a form to edit an existing Openingsuur entity.
      *
-     * @Route("/{id}/edit", name="uren_edit")
+     * @Route("/uren/{id}/edit", name="uren_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Openingsuur $openingsuur)
@@ -95,8 +105,12 @@ class OpeningsuurController extends Controller
             return $this->redirectToRoute('uren_edit', array('id' => $openingsuur->getId()));
         }
 
+        /* Openingsuren in footer */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
         return $this->render('openingsuur/edit.html.twig', array(
-            'openingsuur' => $openingsuur,
+            'openingsuren' => $openingsuren,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -105,7 +119,7 @@ class OpeningsuurController extends Controller
     /**
      * Deletes a Openingsuur entity.
      *
-     * @Route("/{id}", name="uren_delete")
+     * @Route("/uren/{id}", name="uren_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Openingsuur $openingsuur)
