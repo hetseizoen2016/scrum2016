@@ -12,7 +12,7 @@ use AppBundle\Form\OpeningsuurType;
 /**
  * Openingsuur controller.
  *
- * @Route("/uren")
+ * @Route("/admin/uren")
  */
 class OpeningsuurController extends Controller
 {
@@ -28,8 +28,13 @@ class OpeningsuurController extends Controller
 
         $openingsuurs = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
+        /* Openingsuren */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+        
         return $this->render('openingsuur/index.html.twig', array(
             'openingsuurs' => $openingsuurs,
+            'openingsuren' => $openingsuren
         ));
     }
 
@@ -52,10 +57,15 @@ class OpeningsuurController extends Controller
 
             return $this->redirectToRoute('uren_show', array('id' => $openingsuur->getId()));
         }
-
+        
+        /* Openingsuren */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+        
         return $this->render('openingsuur/new.html.twig', array(
             'openingsuur' => $openingsuur,
             'form' => $form->createView(),
+            'openingsuren' => $openingsuren
         ));
     }
 
@@ -69,9 +79,14 @@ class OpeningsuurController extends Controller
     {
         $deleteForm = $this->createDeleteForm($openingsuur);
 
+        /* Openingsuren */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+        
         return $this->render('openingsuur/show.html.twig', array(
             'openingsuur' => $openingsuur,
             'delete_form' => $deleteForm->createView(),
+            'openingsuren' => $openingsuren
         ));
     }
 
@@ -94,11 +109,16 @@ class OpeningsuurController extends Controller
 
             return $this->redirectToRoute('uren_edit', array('id' => $openingsuur->getId()));
         }
-
+        
+        /* Openingsuren */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+        
         return $this->render('openingsuur/edit.html.twig', array(
             'openingsuur' => $openingsuur,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'openingsuren' => $openingsuren
         ));
     }
 
