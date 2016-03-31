@@ -2,14 +2,16 @@
 # http://symfony.com/doc/current/book/security.html
 security:
 
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    admin:
-                        password: admin
-                        roles: 'ROLE_ADMIN'
+        db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -23,7 +25,9 @@ security:
 
             # http_basic: ~
             # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
+            
+            pattern: ^/
+            provider: db_provider
             form_login:
                 login_path: login
                 check_path: login
@@ -32,6 +36,6 @@ security:
             logout:
                 path: /logout
                 target: /
-    
-    encoders:
-         Symfony\Component\Security\Core\User\User: plaintext
+         
+    access_control:
+        - {path: ^/admin, roles: ROLE_ADMIN}
