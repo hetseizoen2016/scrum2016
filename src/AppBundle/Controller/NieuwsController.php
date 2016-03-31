@@ -7,13 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-/**
-* @Route("/nieuws")
-*/
+
 class NieuwsController extends Controller{
 
 	/**
-	* @Route("/", name="nieuws")
+	* @Route("/nieuws", name="nieuws")
 	*/
 	public function nieuwsAction(){
 

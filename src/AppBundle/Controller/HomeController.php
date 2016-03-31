@@ -12,7 +12,7 @@ class HomeController extends Controller
 
 
 	/**
-	* @Route("/", name="index")
+	* @Route("/index", name="index")
 	*/	
 	public function homeAction(){
 

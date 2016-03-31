@@ -14,9 +14,12 @@
         <!-- Header op elke pagina -->
         
         <header>
-          <nav>
+          <div id="headertop" class="container clearfix">
+            <p class="right"><img src="images/header/vdab_logo_klein.png"></p>            
+          </div>
+          <nav class="z-depth-0">
             <div class="nav-wrapper container">
-              <a href='index.php' class='brand-logo'><img src='../../images/vdab.png'></a>
+              <a href='{{ path('index') }}' class='brand-logo'><img src='images/header/seizoen_temp_logo.png'></a>
               <ul class='right hide-on-med-and-down'>
                 <li><a class=" black-text" href='{{ path('index') }}'>Home</a></li>
                 <li><a class=" black-text" href='{{ path('menu') }}'>Menu</a></li>
@@ -24,7 +27,7 @@
                 <li><a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a></li>
                 <li><a class=" black-text" href='{{ path('team') }}'>Team</a></li>
                 <li><a class=" black-text" href='{{ path('contact') }}'>Contact</a></li>
-                <li><a class=" black-text reserveerknop waves-effect waves-light btn" href='#'>Reserveer</a></li>
+                <li class=""><a class=" reserveerknop" href='#'>Reserveer</a></li>
               </ul>
               <ul class="side-nav">
                 <li><a class=" black-text" href='{{ path('index') }}'>Home</a></li>
@@ -59,7 +62,7 @@
                 </div>
                 
                 <div class="col s12 m4 l6 center-align" id="second">
-                    <ul>
+                    <ul id="uren-list">
                         {% for openingsuur in openingsuren %}
                             <li  class="black-text">
                                 {{ openingsuur.dag }}

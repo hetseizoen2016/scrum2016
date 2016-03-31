@@ -1,36 +1,125 @@
 /********************
         GENERAL
 ********************/
-.blue{
-    background-color: blue;
+html{
+    font-weight: 300;
 }
 .beige{
-    background-color: #a3b7b9;
+    background-color: #d0caaa;
+}
+
+@font-face{
+    font-family: SSP;
+    src: url(fonts/SourceSansPro-Regular.ttf);
+}
+*{
+    font-size: 16px;
+}
+
+h2{
+    font-size: 2em;
+    margin-left: 0.4em;    
+    font-weight: 300;
+}
+h3{
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
 }
 
 /*********************
         HEADER
 *********************/
+#headertop{
+    margin-bottom: -3em;   
+}
+
+.brand-logo{
+    margin-top: -1em;
+}
+
 header nav{
-    min-height: 10em;
+    min-height: 6em;
     background-color: white;
+    border-bottom: 1px solid #ccc;    
 }
 
 header nav .nav-wrapper{
-    padding-top: 4em;
+   margin-top: 3em;
+}
+
+header nav a{
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 200;
+}
+
+nav ul li:hover:after{
+    background-color: white;
 }
 
 .reserveerknop{
-    margin-left: 5em;
+    margin-left: 4em;
+    background-color: #e0caaa;
+    font-weight: 400;
+}
+.reserveerknop{
+    background-color: #e0cbbb;
+}
+.reserveerknop:hover{
+    background-color: #e0cbad;
+}
+
+/*********************
+      OPLEIDINGEN
+*********************/
+
+.collection{
+    border: none;
+}
+
+.collection .collection-item{
+    border-bottom: none;
+}
+
+.card .card-content{
+    padding: 0;
+}
+.card .card-action{
+    padding: 0;
+    margin-top: 0.6em;
+    border: none;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating){
+    color: #26a69a;
+}
+
+.video-container{
+    max-width: 300px;
+    max-height: 200px;
 }
 
 /*********************
         FOOTER
 *********************/
+footer{
+    margin-top: 3em;
+}
 
 footer .col{
-    min-height: 13.5em;
-    background-color: #e0ce9f; 
+    min-height: 18em;
+    background-color: #e0cbad;
+    border-right: 1px solid #999;
 }
 
 
@@ -47,7 +136,17 @@ footer #top #second {
 /*footer #top #third {
     background-color: #0D8FD0;
     min-height: 202px;*/
-   
+footer ul li{
+    margin-bottom: 0.5em;
+}
+
+#uren-list{
+    /*margin-top: 4em;*/
+}
+
+footer a .brand-logo{
+    margin-top: 4em;
+}
 
 .footer_logo {
     width:150px;
@@ -61,4 +160,15 @@ footer #top {
 
 .footer-copyright p{
     margin: 0;
+}
+
+
+/*********************
+     MEDIAQUERIES
+*********************/
+
+@media screen and (max-width: 860px){
+    #uren-list li{
+        font-size: 0.7em;
+    }
 }
