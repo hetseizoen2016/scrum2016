@@ -8,7 +8,7 @@ security:
             memory:
                 users:
                     admin:
-                        password: admin
+                        password: $2a$04$Z2nA2fUwWQxLIEStsWfV6O3Wy8Q20.FQBnM2gwBS/pU4J3N8EDhB6
                         roles: 'ROLE_ADMIN'
 
     firewalls:
@@ -34,4 +34,7 @@ security:
                 target: /
     
     encoders:
-         Symfony\Component\Security\Core\User\User: plaintext
+         Symfony\Component\Security\Core\User\User: bcrypt
+         
+    access_control:
+        - {path: ^/admin, roles: ROLE_ADMIN}
