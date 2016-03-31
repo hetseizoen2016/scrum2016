@@ -1,28 +1,64 @@
-.first{
-    background-color: white; 
+/********************
+        GENERAL
+********************/
+.blue{
+    background-color: blue;
 }
-.second {
-    background-color: #E7E5D4;
+.beige{
+    background-color: #a3b7b9;
+}
+
+/*********************
+        HEADER
+*********************/
+header nav{
+    min-height: 10em;
+    background-color: white;
+}
+
+header nav .nav-wrapper{
+    padding-top: 4em;
+}
+
+.reserveerknop{
+    margin-left: 5em;
+}
+
+/*********************
+        FOOTER
+*********************/
+
+footer .col{
+    min-height: 13.5em;
+    background-color: #e0ce9f; 
+}
+
+
+/*footer #top #first{
+    background-color: #a3b7b9; 
+}
+footer #top #second {
+    background-color: #a3b7b9;
     
-}
-.second ul {
+}*/
+/*.second ul {
     padding-left:25px;
-}
-.third {
+}*/
+/*footer #top #third {
     background-color: #0D8FD0;
-    min-height: 202px;
+    min-height: 202px;*/
    
-}
+
 .footer_logo {
     width:150px;
     height:150px;
     margin-top: 25px;
     margin-left: 25px;
 }
-.row {
+footer #top {
     margin-bottom:0;   
 }
-.navfooter {
 
-       
+.footer-copyright p{
+    margin: 0;
 }
