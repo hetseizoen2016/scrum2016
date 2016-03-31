@@ -17,7 +17,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
         
-        return $this->render('homepage/index.html.twig', array(
+        return $this->render('admin/admin.html.twig', array(
                     'openingsuren' => $openingsuren,
         ));
     }
