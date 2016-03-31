@@ -19,7 +19,7 @@ class OpeningsuurController extends Controller
     /**
      * Lists all Openingsuur entities.
      *
-     * @Route("/uren/", name="uren_index")
+     * @Route("/admin/uren/", name="uren_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -36,7 +36,7 @@ class OpeningsuurController extends Controller
     /**
      * Creates a new Openingsuur entity.
      *
-     * @Route("/uren/new", name="uren_new")
+     * @Route("/admin/uren/new", name="uren_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -67,7 +67,7 @@ class OpeningsuurController extends Controller
     /**
      * Finds and displays a Openingsuur entity.
      *
-     * @Route("/uren/{id}", name="uren_show")
+     * @Route("/admin/uren/{id}", name="uren_show")
      * @Method("GET")
      */
     public function showAction(Openingsuur $openingsuur)
@@ -88,7 +88,7 @@ class OpeningsuurController extends Controller
     /**
      * Displays a form to edit an existing Openingsuur entity.
      *
-     * @Route("/uren/{id}/edit", name="uren_edit")
+     * @Route("admin/uren/{id}/edit", name="uren_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Openingsuur $openingsuur)
@@ -119,7 +119,7 @@ class OpeningsuurController extends Controller
     /**
      * Deletes a Openingsuur entity.
      *
-     * @Route("/uren/{id}", name="uren_delete")
+     * @Route("/admin/uren/{id}", name="uren_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Openingsuur $openingsuur)

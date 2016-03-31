@@ -24,7 +24,7 @@ class MenuFormulesController extends Controller
     /**
      * Lists all MenuFormules entities.
      *
-     * @Route("/formules", name="formules_index")
+     * @Route("/admin/formules", name="formules_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -46,7 +46,7 @@ class MenuFormulesController extends Controller
     /**
      * Creates a new MenuFormules entity.
      *
-     * @Route("/formules/new", name="formules_new")
+     * @Route("/admin/formules/new", name="formules_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -77,7 +77,7 @@ class MenuFormulesController extends Controller
     /**
      * Finds and displays a MenuFormules entity.
      *
-     * @Route("/formules/{id}", name="formules_show")
+     * @Route("/admin/formules/{id}", name="formules_show")
      * @Method("GET")
      */
     public function showAction(MenuFormules $menuFormule)
@@ -98,7 +98,7 @@ class MenuFormulesController extends Controller
     /**
      * Displays a form to edit an existing MenuFormules entity.
      *
-     * @Route("/formules/{id}/edit", name="formules_edit")
+     * @Route("/admin/formules/{id}/edit", name="formules_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, MenuFormules $menuFormule)
@@ -130,7 +130,7 @@ class MenuFormulesController extends Controller
     /**
      * Deletes a MenuFormules entity.
      *
-     * @Route("/{id}", name="formules_delete")
+     * @Route("/admin/{id}", name="formules_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, MenuFormules $menuFormule)
