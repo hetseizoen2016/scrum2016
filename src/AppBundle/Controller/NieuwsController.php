@@ -7,20 +7,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class HomeController extends Controller
-{
 
+class NieuwsController extends Controller{
 
 	/**
-	* @Route("/index", name="index")
-	*/	
-	public function homeAction(){
+	* @Route("/nieuws", name="nieuws")
+	*/
+	public function nieuwsAction(){
 
-        /* Openingsuren */
+		/* Openingsuren */
         $em = $this->getDoctrine()->getManager();
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
-
-		return $this->render('homepage/index.html.twig', array(
+        
+        return $this->render('nieuws/nieuws.html.twig', array(
             'openingsuren' => $openingsuren,
         ));
 	}

@@ -7,13 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-/**
-* @Route("/menu")
-*/
+
 class MenuController extends Controller{
 
 	/**
-	* @Route("/", name="menu")
+	* @Route("/menu", name="menu")
 	*/
 	public function menuAction(){
 

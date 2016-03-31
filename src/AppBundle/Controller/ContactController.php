@@ -7,20 +7,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class HomeController extends Controller
-{
 
+class ContactController extends Controller{
 
 	/**
-	* @Route("/index", name="index")
-	*/	
-	public function homeAction(){
+	* @Route("/contact", name="contact")
+	*/
+	public function contactAction(){
 
-        /* Openingsuren */
+		/* Openingsuren */
         $em = $this->getDoctrine()->getManager();
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
-
-		return $this->render('homepage/index.html.twig', array(
+        
+        return $this->render('contact/contact.html.twig', array(
             'openingsuren' => $openingsuren,
         ));
 	}
