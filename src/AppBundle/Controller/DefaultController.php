@@ -9,11 +9,11 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/default", name="homepage")
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        
         $em = $this->getDoctrine()->getManager();
 
         $openingsuurs = $em->getRepository('AppBundle:Openingsuur')->findAll();
