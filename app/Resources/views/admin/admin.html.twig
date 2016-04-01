@@ -1,6 +1,20 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <a href="{{ path('logout') }}">Logout</a>
-    <a href="{{ path('password') }}">Verander password</a>
+    <ul>
+        <li>
+            <a href="{{ path('logout') }}">Logout</a>
+        </li>
+        <li>
+            <a href="{{ path('password') }}">Verander password</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="{{ path('formules_index') }}">Formules</a>
+        </li>
+        <li>
+            <a href="{{ path('uren_index') }}">Openingsuren</a>
+        </li>
+    </ul>
 {% endblock %}
