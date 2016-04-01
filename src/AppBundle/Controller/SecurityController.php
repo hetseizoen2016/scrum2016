@@ -55,16 +55,25 @@ class SecurityController extends Controller
      * @Route("/admin/password", name="password")
      */
     public function changePasswordAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->getUser();
+
         $changePasswordModel = new ChangePassword();
         $form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $passwordSubmit = $form->getData();
+            $encodedPassword = password_hash($passwordSubmit->getNewPassword(), PASSWORD_BCRYPT);
+            $user->setPassword($encodedPassword);
+            $em->persist($user);
+            $em->flush();
         }
 
         /* Openingsuren */
-        $em = $this->getDoctrine()->getManager();
+        
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         return $this->render('authenticatie/password.html.twig', array(
