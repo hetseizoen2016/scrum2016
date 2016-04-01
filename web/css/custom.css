@@ -81,6 +81,14 @@ nav ul li:hover:after{
 }
 
 /*********************
+        ADMIN
+*********************/
+
+.nav-admin{
+    background-color: #e0cbad;
+}
+
+/*********************
       OPLEIDINGEN
 *********************/
 
