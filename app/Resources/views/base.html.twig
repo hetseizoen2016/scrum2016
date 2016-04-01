@@ -1,127 +1,149 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <!-- Compiled and minified CSS for Materialize -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-        <link rel="stylesheet" href="{{asset('css/custom.css')}}" />
-        
-    </head>
-    <body>
-        <!-- Header op elke pagina -->
-        
-        <header>
-          <div id="headertop" class="container clearfix">
-            <p class="right"><img src="{{asset('images/header/vdab_logo_klein.png')}}"></p>            
-          </div>
-          <nav class="z-depth-0">
-            <div class="nav-wrapper container">
-              <a href='{{ path('index') }}' class='brand-logo'><img src="{{asset('images/header/seizoen_temp_logo.png')}}"></a>
-              <ul class='right hide-on-med-and-down'>
-                <li><a class=" black-text" href='{{ path('index') }}'>Home</a></li>
-                <li><a class=" black-text" href='{{ path('menu') }}'>Menu</a></li>
-                <li><a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a></li>
-                <li><a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a></li>
-                <li><a class=" black-text" href='{{ path('team') }}'>Team</a></li>
-                <li><a class=" black-text" href='{{ path('contact') }}'>Contact</a></li>
-                <li class=""><a class=" reserveerknop" href='#'>Reserveer</a></li>
-              </ul>
-              <ul class="side-nav">
-                <li><a class=" black-text" href='{{ path('index') }}'>Home</a></li>
-                <li><a class=" black-text" href='{{ path('menu') }}'>Menu</a></li>
-                <li><a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a></li>
-                <li><a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a></li>
-                <li><a class=" black-text" href='{{ path('team') }}'>Team</a></li>
-                <li><a class=" black-text" href='{{ path('contact') }}'>Contact</a></li>
-                <li><a class=" black-text reserveerknop" href='#'>Reserveer</a></li>
-              </ul>
-            </div>  
-          </nav>
-        </header>
-        {% block body %}{% endblock %}
-        
-        
-        <!-- Footer op elke pagina -->
-        
-        <footer>
-<<<<<<< HEAD
-            <div>
-            <div class="row">
-              <div class="first center-align col 12 s3">
-                <ul class="center hide-on-med-and-down">
-                  <li><a class="black-text" href="index.php">Home</a></li>
-                  <li><a class="black-text" href="menu.php">Menu kaart</a></li>
-                  <li><a class="black-text" href="nieuws.php">Nieuws</a></li>
-                  <li><a class="black-text" href="opleidingen.php">Opleidingen</a></li>
-                  <li><a class="black-text" href="contact.php">Contact</a></li>
-                  <li><a class="black-text" href="reserveer.php">Reserveer</a></li>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <!-- Compiled and minified CSS for Materialize -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
+
+</head>
+<body>
+<!-- Header op elke pagina -->
+
+<header>
+    <div id="headertop" class="container clearfix">
+        <p class="right">
+            <img src="{{ asset('images/header/vdab_logo_klein.png') }}">
+        </p>
+    </div>
+    <nav class="z-depth-0">
+        <div class="nav-wrapper container">
+            <a href='{{ path('index') }}' class='brand-logo'>
+                <img src="{{ asset('images/header/seizoen_temp_logo.png') }}">
+            </a>
+            <ul class='right hide-on-med-and-down'>
+                <li>
+                    <a class=" black-text" href='{{ path('index') }}'>Home</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('menu') }}'>Menu</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('team') }}'>Team</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('contact') }}'>Contact</a>
+                </li>
+                <li class="">
+                    <a class=" reserveerknop" href='#'>Reserveer</a>
+                </li>
+            </ul>
+            <ul class="side-nav">
+                <li>
+                    <a class=" black-text" href='{{ path('index') }}'>Home</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('menu') }}'>Menu</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('team') }}'>Team</a>
+                </li>
+                <li>
+                    <a class=" black-text" href='{{ path('contact') }}'>Contact</a>
+                </li>
+                <li>
+                    <a class=" black-text reserveerknop" href='#'>Reserveer</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+{% block body %}{% endblock %}
+
+
+<!-- Footer op elke pagina -->
+
+<footer>
+
+    <div>
+
+        <div class="row" id="top">
+            <div class="col s12 m4 l3 center-align" id="first">
+                <ul>
+                    <li>
+                        <a class=" black-text" href='{{ path('index') }}'>Home</a>
+                    </li>
+                    <li>
+                        <a class=" black-text" href='{{ path('menu') }}'>Menu</a>
+                    </li>
+                    <li>
+                        <a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a>
+                    </li>
+                    <li>
+                        <a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a>
+                    </li>
+                    <li>
+                        <a class=" black-text" href='{{ path('team') }}'>Team</a>
+                    </li>
+                    <li>
+                        <a class=" black-text" href='{{ path('contact') }}'>Contact</a>
+                    </li>
+                    <li>
+                        <a class=" black-text" href='#'>Reserveer</a>
+                    </li>
                 </ul>
-              </div>
-              <div class="second col 12 s6">
-                  <ul>
-                      {% for openingsuur in openingsuren %}
-                          <li  class="black-text">
-                              {{ openingsuur.dag  }}
-                              {% if openingsuur.van and openingsuur.van|date('H:i') > '00:00'|date('H:i') %}
-                                  open van {{ openingsuur.van|date('H:i') }} tot {{ openingsuur.tot|date('H:i') }}.
-                              {% else %}
-                                  gesloten.
-                              {% endif %}
-                      {% endfor %}
-=======
-            
-              <div class="row" id="top">                
-                <div class="col s12 m4 l3 center-align" id="first">
-                    <ul>
-                      <li><a class=" black-text" href='{{ path('index') }}'>Home</a></li>
-                      <li><a class=" black-text" href='{{ path('menu') }}'>Menu</a></li>
-                      <li><a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a></li>
-                      <li><a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a></li>
-                      <li><a class=" black-text" href='{{ path('team') }}'>Team</a></li>
-                      <li><a class=" black-text" href='{{ path('contact') }}'>Contact</a></li>
-                      <li><a class=" black-text" href='#'>Reserveer</a></li>
-                    </ul>                  
-                </div>
-                
-                <div class="col s12 m4 l6 center-align" id="second">
-                    <ul id="uren-list">
-                        {% for openingsuur in openingsuren %}
-                            <li  class="black-text">
-                                {{ openingsuur.dag }}
-                                {% if openingsuur.van %}
-                                    open van {{ openingsuur.van|date('H:i') }} tot {{ openingsuur.tot|date('H:i') }}.
-                                {% else %}
-                                    gesloten.
-                                {% endif %}
-                        {% endfor %}
->>>>>>> upstream/master
-
-
-                        <li class="black-text">Ook op feestdagen gesloten.</li>
-                    </ul>
-                </div>
-                <div class="col s12 m4 l3 center-align" id="third">
-                    <a href='index.php' class='brand-logo'><img src='../../images/vdab.png' class="footer_logo"></a>
-                </div>
-              </div>
-            
-          <div class="beige footer-copyright">
-            <div class="container center-align">
-                <p>© 2016 Copyright VDAB Php-developers</p>            
             </div>
-          </div>
-        </footer>
-            
-        
-        
-        {% block javascripts %}{% endblock %}
-        
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
-        <!-- Compiled and minified JavaScript for Materialize -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    </body>
+
+            <div class="col s12 m4 l6 center-align" id="second">
+                <ul id="uren-list">
+                    {% for openingsuur in openingsuren %}
+                    <li class="black-text">
+                        {{ openingsuur.dag }}
+                            {% if openingsuur.van and openingsuur.van|date('H:i') > '00:00'|date('H:i') %}
+                                open van {{ openingsuur.van|date('H:i') }} tot {{ openingsuur.tot|date('H:i') }}.
+                            {% else %}
+                                gesloten.
+                            {% endif %}
+                        {% endfor %}
+                    <li class="black-text">Ook op feestdagen gesloten.</li>
+                </ul>
+            </div>
+            <div class="col s12 m4 l3 center-align" id="third">
+                <a href='index.php' class='brand-logo'><img
+                            src='../../images/vdab.png' class="footer_logo"></a>
+            </div>
+        </div>
+
+        <div class="beige footer-copyright">
+            <div class="container center-align">
+                <p>© 2016 Copyright VDAB PHP-developers</p>
+            </div>
+        </div>
+</footer>
+
+
+{% block javascripts %}{% endblock %}
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript"
+        src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<!-- Compiled and minified JavaScript for Materialize -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+</body>
 </html>
