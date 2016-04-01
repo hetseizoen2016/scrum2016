@@ -114,6 +114,7 @@ class OpeningsuurController extends Controller
             'openingsuren' => $openingsuren,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'openingsuur' => $openingsuur,
         ));
     }
 

@@ -1,44 +1,48 @@
 {% extends 'admin/admin.html.twig' %}
 
 {% block body %}
-    <h1>Openingsuur list</h1>
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s8 offset-s2">
+                    <h2 class="center-align">Lijst Openingsuren</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            {#<th>Id</th>#}
+                            <th>Dag</th>
+                            <th>Van</th>
+                            <th>Tot</th>
+                            <th class="center-align">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for openingsuur in openingsuren %}
+                            <tr>
+                                {#<td><a href="{{ path('uren_show', { 'id': openingsuur.id }) }}">{{ openingsuur.id }}</a></td>#}
+                                <td>{{ openingsuur.dag }}</td>
+                                <td>{% if openingsuur.van %}{{ openingsuur.van|date('H:i:s') }}{% endif %}</td>
+                                <td>{% if openingsuur.tot %}{{ openingsuur.tot|date('H:i:s') }}{% endif %}</td>
+                                <td class="center-align">
+                                    <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                                       href="{{ path('uren_show', { 'id': openingsuur.id }) }}">Toon</a>
+                                    <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                                       href="{{ path('uren_edit', { 'id': openingsuur.id }) }}">Wijzig</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Dag</th>
-                <th>Van</th>
-                <th>Tot</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for openingsuur in openingsuren %}
-            <tr>
-                <td><a href="{{ path('uren_show', { 'id': openingsuur.id }) }}">{{ openingsuur.id }}</a></td>
-                <td>{{ openingsuur.dag }}</td>
-                <td>{% if openingsuur.van %}{{ openingsuur.van|date('H:i:s') }}{% endif %}</td>
-                <td>{% if openingsuur.tot %}{{ openingsuur.tot|date('H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('uren_show', { 'id': openingsuur.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('uren_edit', { 'id': openingsuur.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{#
-    <ul>
-        <li>
-            <a href="{{ path('uren_new') }}">Create a new entry</a>
-        </li>
-    </ul>
-#}
+                </div>
+            </div>
+        </div>
+    </div>
+    {#
+        <ul>
+            <li>
+                <a href="{{ path('uren_new') }}">Create a new entry</a>
+            </li>
+        </ul>
+    #}
 {% endblock %}

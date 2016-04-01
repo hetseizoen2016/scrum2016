@@ -1,44 +1,54 @@
 {% extends 'admin/admin.html.twig' %}
 
 {% block body %}
-    <h1>MenuFormules</h1>
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12">
+                    <h2 class="center-align">De menuformules</h2>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ menuFormule.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ menuFormule.name }}</td>
-            </tr>
-            <tr>
-                <th>Info</th>
-                <td>{{ menuFormule.info }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ menuFormule.price }}</td>
-            </tr>
-            <tr>
-                <th>Minpersons</th>
-                <td>{{ menuFormule.minPersons }}</td>
-            </tr>
-        </tbody>
-    </table>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th data-field="name">Formule</th>
+                            <th data-field="info">Info</th>
+                            <th data-field="van">Prijs</th>
+                            <th data-field="tot">Min aantal personen</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ menuFormule.name }}</td>
+                            <td>{{ menuFormule.info }}</td>
+                            <td>{{ menuFormule.price }}</td>
+                            <td>{{ menuFormule.minPersons }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-    <ul>
-        <li>
-            <a class="waves-effect waves-light btn" href="{{ path('formules_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('formules_edit', { 'id': menuFormule.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                    <div class="center-align">
+                        <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                           href="{{ path('formules_index') }}">Terug</a>
+                        <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                           href="{{ path('formules_edit', { 'id': menuFormule.id }) }}">Wijzig</a>
+                    </div>
+
+                    {#
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="center-align">
+                                {{ form_start(delete_form) }}
+                                <input class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                                       type="submit" value="Vewijder">
+                                {{ form_end(delete_form) }}
+                            </div>
+                        </div>
+                    </div>
+                    #}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
