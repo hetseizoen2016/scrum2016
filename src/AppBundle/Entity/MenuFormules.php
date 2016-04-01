@@ -29,7 +29,7 @@ class MenuFormules
      */
     protected $name;
     /**
-     * @ORM\Column(type="string", length=255, nullable=false, name="info")
+     * @ORM\Column(type="string", length=255, nullable=true, name="info")
      */
     protected $info;
     /**

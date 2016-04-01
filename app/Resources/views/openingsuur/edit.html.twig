@@ -1,35 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Openingsuur edit</h1>
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                    <h2 class="center-align">Openingsuren wijzigen</h2>
+                <div class="col s4 offset-s4">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                    {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('uren_index') }}">Back to the list</a>
-        </li>
-        {#
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-        #}
-    </ul>
-    test
-    <div class="input-field col s12">
-        <select>
-            <option value="" disabled selected>Choose your option</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-        </select>
-        <label>Materialize Select</label>
+                    <a class="waves-effect waves-light blue-grey darken-3 white-text btn" href="{{ path('uren_index') }}">Terug</a>
+                    <input class="waves-effect waves-light blue-grey darken-3 white-text btn" type="submit" value="Wijzig"/>
+
+                    {{ form_end(edit_form) }}
+
+                    <ul>
+                        <li>
+
+                        </li>
+                        {#
+
+                        {{ form_widget(edit_form) }}
+                    {% openingsuur.dag %}
+
+ <table>
+                        <thead>
+                        <tr>
+
+                        <th>Dag</th>
+                        <th>Van</th>
+                        <th>Tot</th>
+                        <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <td>{{ form_row(edit_form.dag) }}</td>
+                        <td>
+                            <input type="text" id="vanuur" value="{{ form_row(edit_form.van) }}">
+                            <label class="active" for="vanuur">van</label>
+                        </td>
+                        <td>{% if form_row(edit_form.tot) %}{{ form_row(edit_form.tot)|date('H:i') }}{% endif %}</td>
+                        </tbody>
+                        </table>
+
+                        <li>
+                            {{ form_start(delete_form) }}
+                                <input type="submit" value="Delete">
+                            {{ form_end(delete_form) }}
+                        </li>
+                        #}
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
-{% block javascripts %} <script src="{{ asset('js/script.js') }}"></script> {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}
