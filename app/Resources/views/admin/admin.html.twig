@@ -1,1 +1,46 @@
 {% extends "base.html.twig" %}
+{% block body %}
+    <div class="container admin-container">
+        <div class="row">
+            <div id="formules" class="col s12 m4">
+                <a href="{{ path('formules_index') }}">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Menu</span>
+                            <p>Hier kan u menuformules aanmaken en aanpassen.</p>
+                        </div>
+                        <div class="card-action">
+                            Menu aanpassen
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div id="uren" class="col s12 m4">
+                <a href="{{ path('uren_index') }}">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Openingsuren</span>
+                            <p>Hier kan u nieuwsitems toevoegen en aanpassen.</p>
+                        </div>
+                        <div class="card-action">
+                            Openingsuren aanpassen
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div id="nieuws" class="col s12 m4">
+                <a href="#">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Nieuws</span>
+                            <p>Hier kan u nieuwsitems aanmaken en aanpassen.</p>
+                        </div>
+                        <div class="card-action">
+                            Nieuws aanpassen
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

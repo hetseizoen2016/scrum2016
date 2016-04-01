@@ -104,6 +104,29 @@ nav ul li:hover:after{
     margin-right: 0; 
 }
 
+.admin-container{
+    margin-top: 2em;
+}
+
+.admin-container .card{
+    padding: 0.5em;
+}
+
+.admin-container .card-content{
+    color: black;
+}
+
+.admin-container .card-action{
+    color: #26a69a;
+    text-transform: uppercase;
+}
+
+.admin-container .card-action:hover{
+    color: #ffab40;
+    transition: color .3s ease;
+}
+
+
 /*********************
       OPLEIDINGEN
 *********************/
