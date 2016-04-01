@@ -16,14 +16,22 @@ html{
     font-size: 16px;
 }
 
+h1,h2,h3,h4,h5,h6{
+    font-weight: 300;
+}
+
 h2{
     font-size: 2em;
-    margin-left: 0.4em;    
-    font-weight: 300;
 }
 h3{
     font-size: 1.5em;
-    font-weight: 300;
+}
+h4{
+    font-size: 1.4em;
+}
+
+.link a{
+    color: #0D8FD0;
 }
 
 
@@ -51,7 +59,7 @@ h3{
 header nav{
     min-height: 6em;
     background-color: white;
-    border-bottom: 1px solid #ccc; 
+    border-bottom: 1px solid #eee; 
      
 }
 
@@ -80,6 +88,17 @@ nav ul li:hover:after{
 }
 .reserveerknop:hover{
     background-color: #e0cbad;
+}
+
+/*********************
+        HOME
+*********************/
+#nieuws{
+    margin-top: 5em;
+}
+
+.card-content{
+    margin-top: 1em;
 }
 
 /*********************
@@ -112,10 +131,20 @@ nav ul li:hover:after{
 }
 
 /*********************
+        CONTACT
+*********************/
+#map{
+    width: 300px;
+    height: 200px;
+    background-color: #CCC;
+    margin-top: 1em;
+}
+
+/*********************
         FOOTER
 *********************/
 footer{
-    margin-top: 3em;
+    margin-top: 6em;
 }
 
 footer .col{

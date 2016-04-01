@@ -1,7 +1,93 @@
 {% extends "base.html.twig" %}
 
+{% block stylesheets %}
+	<link href="{{ asset('js/bxslider/jquery.bxslider.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block body %}
 
+	<div class="container">
+		<div class="row">
+			<!--<div class="col s12 m8 offset-m2 l8 offset-l2">-->
+			<div class="col s12 m12 l12">
+				<ul class="bxslider">		
+					<li><img src="{{ asset('images/slider/test1.jpeg') }}"></li>
+					<li><img src="{{ asset('images/slider/test2.jpeg') }}"></li>
+					<li><img src="{{ asset('images/slider/test3.jpeg') }}"></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="wie-we-zijn">
+			<h2>Wie we zijn</h2>
+			<div class="row">
+				<div class="col s12 m12 l12">				
+					<p>Welkom op de pagina van het didactisch restaurant 't Seizoen.</p>
+					<p>op deze website vindt u allerhande informatie over het horeca-opleidingscentrum en kan u online reservaties maken om te komen eten in het restuarant.</p>
+					<p>We geven u alvast graag dat we leke reservatie afzonderlijk moeten bekijken. Het is namelijk zo dat het aantal gasten en de beschikbare menuformules afhankelijk zijn van de bezettingsgraad en het niveau van de cursisten. omdat we een didactisch restaurant zijn, heeft het opleidingsaspect voorrang op de bezetting van het restaurant door gasten.</p>
+					<p>U zal merken dat we zeer voordelige formules kunnen aanbieden. U kan er van op aan dat u lekker kan eten in een aangename sfeer.</p>
+					<p>Onze gasten zijn personeelsleden van VDAB of worden uitgenodigd door personeelsleden van VDAB.</p>
+					<p>het restaurant is toegankelijk van dinsdag tot vrijdag vanaf 12u00.</p>
+					<p>om praktische redenen vragen wij u ten laatste aanwezig te zijn om 12u30. Het restaurant sluit om 14u30.</p>
+					<p>Hopelijk tot binnenkort!</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="nieuws">
+			<h2>Nieuws en evenementen</h2>
+			<div class="row">		
+				<div class="col s12 m4 l4">
+	                <div class="card z-depth-0">	                	
+	                    <div class="card-image">
+	                        <img src="{{ asset('images/nieuws/nieuws1.jpg') }}">
+	                    </div>
+	                    <div class="card-content">
+	                    	<h4>Nieuwe website!</h4>
+	                        <p>Lorem ipsum dolor sit amet, civibus mediocrem te mel, eam ei corpora senserit.</p>
+	                    </div>
+	                    <div class="card-action">
+	                        <a href="#">Verder lezen</a>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col s12 m4 l4">
+	                <div class="card z-depth-0">
+	                    <div class="card-image">
+	                        <img src="{{ asset('images/nieuws/nieuws2.jpg') }}">
+	                    </div>
+	                    <div class="card-content">
+	                    	<h4>Nieuwe website!</h4>
+	                        <p>Lorem ipsum dolor sit amet, civibus mediocrem te mel, eam ei corpora senserit.</p>
+	                    </div>
+	                    <div class="card-action">
+	                        <a href="#">Verder lezen</a>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col s12 m4 l4">
+	                <div class="card z-depth-0">
+	                    <div class="card-image">
+	                        <img src="{{ asset('images/nieuws/nieuws3.jpg') }}">
+	                    </div>
+	                    <div class="card-content">
+	                    	<h4>Nieuwe website!</h4>
+	                        <p>Lorem ipsum dolor sit amet, civibus mediocrem te mel, eam ei corpora senserit.</p>
+	                    </div>
+	                    <div class="card-action link">
+	                        <a href="#">Verder lezen</a>
+	                    </div>
+	                </div>
+	            </div>
+			</div>
+		</div>
+	</div>
 
 
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="{{ asset('js/bxslider/jquery.bxslider.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bxslider/plugins/jquery.easing.1.3.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 {% endblock %}
