@@ -30,6 +30,7 @@ class OpeningsuurController extends Controller
 
         return $this->render('openingsuur/index.html.twig', array(
             'openingsuren' => $openingsuren,
+            'user' => $this->getUser()
         ));
     }
 

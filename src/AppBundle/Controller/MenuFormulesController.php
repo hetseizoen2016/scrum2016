@@ -40,6 +40,7 @@ class MenuFormulesController extends Controller
         return $this->render('menuformules/index.html.twig', array(
             'menuFormules' => $menuFormules,
             'openingsuren' => $openingsuren,
+            'user' => $this->getUser()
         ));
     }
 

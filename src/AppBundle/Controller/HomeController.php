@@ -22,6 +22,7 @@ class HomeController extends Controller
 
 		return $this->render('homepage/index.html.twig', array(
             'openingsuren' => $openingsuren,
+                    'user' => $this->getUser()
         ));
 	}
 }

@@ -21,6 +21,7 @@ class NieuwsController extends Controller{
         
         return $this->render('nieuws/nieuws.html.twig', array(
             'openingsuren' => $openingsuren,
+            'user' => $this->getUser()
         ));
 	}
 }

@@ -26,6 +26,7 @@ class MenuController extends Controller{
 		return $this->render('menu/menu.html.twig', array(
 			'openingsuren' => $openingsuren,
 			'menuformules' => $menuFormules,
+                        'user' => $this->getUser()
 		));
 	}
 }

@@ -19,6 +19,7 @@ class AdminController extends Controller
         
         return $this->render('admin/admin.html.twig', array(
                     'openingsuren' => $openingsuren,
+                    'user' => $this->getUser()
         ));
     }
 

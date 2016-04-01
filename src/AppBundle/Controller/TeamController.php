@@ -20,7 +20,8 @@ class TeamController extends Controller{
 		$openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 		
 		return $this->render('team/team.html.twig', array(
-			'openingsuren' => $openingsuren,	
+			'openingsuren' => $openingsuren,
+                        'user' => $this->getUser()
 		));
 	}
 }
