@@ -51,8 +51,10 @@ h3{
 header nav{
     min-height: 6em;
     background-color: white;
-    border-bottom: 1px solid #ccc;    
+    border-bottom: 1px solid #ccc; 
+     
 }
+
 
 header nav .nav-wrapper{
    margin-top: 3em;

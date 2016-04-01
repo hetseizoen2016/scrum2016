@@ -7,7 +7,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <!-- Compiled and minified CSS for Materialize -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-        <link rel="stylesheet" href="css/custom.css" />
+        <link rel="stylesheet" href="{{asset('css/custom.css')}}" />
         
     </head>
     <body>
@@ -15,11 +15,11 @@
         
         <header>
           <div id="headertop" class="container clearfix">
-            <p class="right"><a href="https://vdab.be"><img src="images/header/vdab_logo_klein.png"></a></p>            
+            <p class="right"><a href="https://vdab.be"><img src="{{asset('images/header/vdab_logo_klein.png')}}"></a></p>            
           </div>
           <nav class="z-depth-0">
             <div class="nav-wrapper container">
-              <a href='{{ path('index') }}' class='brand-logo'><img src='images/header/seizoen_temp_logo.png'></a>
+              <a href='{{ path('index') }}' class='brand-logo'><img src="{{asset('images/header/seizoen_temp_logo.png')}}"></a>
               <ul class='right hide-on-med-and-down'>
                 <li><a class=" black-text" href='{{ path('index') }}'>Home</a></li>
                 <li><a class=" black-text" href='{{ path('menu') }}'>Menu</a></li>
@@ -29,6 +29,7 @@
                 <li><a class=" black-text" href='{{ path('contact') }}'>Contact</a></li>
                 <li class=""><a class=" reserveerknop" href='#'>Reserveer</a></li>
               </ul>
+              
               <ul class="side-nav">
                 <li><a class=" black-text" href='{{ path('index') }}'>Home</a></li>
                 <li><a class=" black-text" href='{{ path('menu') }}'>Menu</a></li>
@@ -93,11 +94,13 @@
             
         
         
-        {% block javascripts %}{% endblock %}
+        
         
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
         <!-- Compiled and minified JavaScript for Materialize -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
