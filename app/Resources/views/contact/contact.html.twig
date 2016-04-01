@@ -1,4 +1,44 @@
 {% extends "base.html.twig" %}
 
+{% block title %}Contact{% endblock %}
+
 {% block body %}
+
+	<div class="content container">
+		<div class="row">
+			<div class="col s12 m6 l6">
+				<h3>Openingsuren</h3>
+				<ul id="uren-list">
+                    {% for openingsuur in openingsuren %}
+                    <li class="black-text">
+                        {{ openingsuur.dag }}
+                            {% if openingsuur.van and openingsuur.van|date('H:i') > '00:00'|date('H:i') %}
+                                open van {{ openingsuur.van|date('H:i') }} tot {{ openingsuur.tot|date('H:i') }}.
+                            {% else %}
+                                gesloten.
+                            {% endif %}
+                        {% endfor %}
+                    <li class="black-text">Ook op feestdagen gesloten.</li>
+                </ul>
+			</div>
+
+			<div class="col s12 m6 l6">
+				<div id="adres" class="right">
+					<h3>Adres</h3>
+					<p>Competentiecentrum Horeca, ICT en Retail</p>
+					<p>Somerstraat 22</p>
+					<p>2018 Antwerpen</p>
+				</div>
+
+				<div id="map" class="right"></div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+	
 {% endblock %}
