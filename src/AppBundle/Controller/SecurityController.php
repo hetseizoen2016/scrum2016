@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use AppBundle\Form\ChangePasswordType;
+use AppBundle\Form\Model\ChangePassword;
 
 class SecurityController extends Controller
 {
@@ -47,6 +49,28 @@ class SecurityController extends Controller
      */
     public function logoutAction() {
         
+    }
+
+    /**
+     * @Route("/admin/password", name="password")
+     */
+    public function changePasswordAction(Request $request) {
+        $changePasswordModel = new ChangePassword();
+        $form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        }
+
+        /* Openingsuren */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
+        return $this->render('authenticatie/password.html.twig', array(
+                    'openingsuren' => $openingsuren,
+                    'form' => $form->createView()
+        ));
     }
 
 }
