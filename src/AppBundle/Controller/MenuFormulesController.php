@@ -72,6 +72,7 @@ class MenuFormulesController extends Controller
             'menuFormule' => $menuFormule,
             'form' => $form->createView(),
             'openingsuren' => $openingsuren,
+            'user' => $this->getUser()
         ));
     }
 
