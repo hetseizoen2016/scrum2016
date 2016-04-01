@@ -1,42 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Openingsuur</h1>
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s6 offset-s3">
+                    <h3>Openingsuur met Id {{ openingsuur.id }}</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th data-field="id">Id</th>
+                            <th data-field="dag">Dag</th>
+                            <th data-field="van">Van</th>
+                            <th data-field="tot">Tot</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ openingsuur.id }}</td>
+                            <td>{{ openingsuur.dag }}</td>
+                            <td>{% if openingsuur.van %}{{ openingsuur.van|date('H:i') }}{% endif %}</td>
+                            <td>{% if openingsuur.tot %}{{ openingsuur.tot|date('H:i') }}{% endif %}</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ openingsuur.id }}</td>
-            </tr>
-            <tr>
-                <th>Dag</th>
-                <td>{{ openingsuur.dag }}</td>
-            </tr>
-            <tr>
-                <th>Van</th>
-                <td>{% if openingsuur.van %}{{ openingsuur.van|date('H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Tot</th>
-                <td>{% if openingsuur.tot %}{{ openingsuur.tot|date('H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+                    <ul>
+                        <li>
+                            <a class="waves-effect waves-light blue-grey darken-3 white-text btn" href="{{ path('uren_index') }}">Back to the
+                                list</a>
 
-    <ul>
-        <li>
-            <a href="{{ path('uren_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('uren_edit', { 'id': openingsuur.id }) }}">Edit</a>
-        </li>
-        {#
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-        #}
-    </ul>
+                            <a class="waves-effect waves-light blue-grey darken-3 white-text btn" href="{{ path('uren_edit', { 'id': openingsuur.id }) }}">Edit</a>
+                        </li>
+                        {#
+                        <li>
+                            {{ form_start(delete_form) }}
+                                <input type="submit" value="Delete">
+                            {{ form_end(delete_form) }}
+                        </li>
+                        #}
+                    </ul>
+
+                    <div class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>Materialize Select</label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
 {% endblock %}
