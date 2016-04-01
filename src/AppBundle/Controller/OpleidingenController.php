@@ -26,6 +26,7 @@ class OpleidingenController extends Controller
         
         return $this->render('opleidingen/index.html.twig', array(
             'openingsuren' => $openingsuren,
+            'user' => $this->getUser()
         ));
     }
 }

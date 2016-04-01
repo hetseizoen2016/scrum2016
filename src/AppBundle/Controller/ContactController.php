@@ -21,6 +21,7 @@ class ContactController extends Controller{
         
         return $this->render('contact/contact.html.twig', array(
             'openingsuren' => $openingsuren,
+            'user' => $this->getUser()
         ));
 	}
 }

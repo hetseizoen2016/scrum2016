@@ -1,24 +1,46 @@
 {% extends "base.html.twig" %}
-
-{% block adminnav %}
-    <nav class="nav-admin">
-        <div class="nav-wrapper container">
-            <ul class="right">
-                <li>
-                    <a class="black-text" href="{{ path('logout') }}">Logout</a>
-                </li>
-                <li>
-                    <a class="black-text" href="{{ path('password') }}">Verander password</a>
-                </li>
-            </ul>
-            <ul class="">
-                <li>
-                    <a class="black-text" href="{{ path('formules_index') }}">Formules</a>
-                </li>
-                <li>
-                    <a class="black-text" href="{{ path('uren_index') }}">Openingsuren</a>
-                </li>
-            </ul>
+{% block body %}
+    <div class="container admin-container">
+        <div class="row">
+            <div id="formulesadmin" class="col s12 m4">
+                <a href="{{ path('formules_index') }}">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Menu</span>
+                            <p>Hier kan u menuformules aanmaken en aanpassen.</p>
+                        </div>
+                        <div class="card-action">
+                            Menu aanpassen
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div id="urenadmin" class="col s12 m4">
+                <a href="{{ path('uren_index') }}">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Openingsuren</span>
+                            <p>Hier kan u nieuwsitems toevoegen en aanpassen.</p>
+                        </div>
+                        <div class="card-action">
+                            Openingsuren aanpassen
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div id="nieuwsadmin" class="col s12 m4">
+                <a href="#">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Nieuws</span>
+                            <p>Hier kan u nieuwsitems aanmaken en aanpassen.</p>
+                        </div>
+                        <div class="card-action">
+                            Nieuws aanpassen
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
-    </nav>
+    </div>
 {% endblock %}

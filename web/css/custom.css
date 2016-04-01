@@ -68,7 +68,7 @@ header nav{
 
 
 header nav .nav-wrapper{
-   margin-top: 3em;
+    margin-top: 3em;
 }
 
 header nav a{
@@ -105,9 +105,48 @@ nav ul li:hover:after{
         ADMIN
 *********************/
 
-.nav-admin{
-    background-color: #e0cbad;
+.nav-admin ul{
+    margin: 0.5em 0;
 }
+
+.nav-admin ul li{
+    display: inline-block;
+}
+
+.nav-admin ul li a:hover{
+    color: #e0cbad !important;
+}
+
+.nav-admin ul li{
+    margin-right: 1em; 
+}
+
+.nav-admin ul li:last-child{
+    margin-right: 0; 
+}
+
+.admin-container{
+    margin-top: 2em;
+}
+
+.admin-container .card{
+    padding: 0.5em;
+}
+
+.admin-container .card-content{
+    color: black;
+}
+
+.admin-container .card-action{
+    color: #26a69a;
+    text-transform: uppercase;
+}
+
+.admin-container .card-action:hover{
+    color: #ffab40;
+    transition: color .3s ease;
+}
+
 
 /*********************
       OPLEIDINGEN
