@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MenuFormules list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Info</th>
+                <th>Price</th>
+                <th>Minpersons</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for menuFormule in menuFormules %}
+            <tr>
+                <td><a href="{{ path('formules_show', { 'id': menuFormule.id }) }}">{{ menuFormule.id }}</a></td>
+                <td>{{ menuFormule.name }}</td>
+                <td>{{ menuFormule.info }}</td>
+                <td>{{ menuFormule.price }}</td>
+                <td>{{ menuFormule.minPersons }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('formules_show', { 'id': menuFormule.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('formules_edit', { 'id': menuFormule.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('formules_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

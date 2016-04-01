@@ -18,9 +18,14 @@ class MenuController extends Controller{
 		/* Openingsuren */
 		$em = $this->getDoctrine()->getManager();
 		$openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
+		/* MenuFormules */
+		$em = $this->getDoctrine()->getManager();
+		$menuFormules = $em->getRepository('AppBundle:MenuFormules')->findAll();
 		
 		return $this->render('menu/menu.html.twig', array(
 			'openingsuren' => $openingsuren,
+			'menuformules' => $menuFormules,
 		));
 	}
 }

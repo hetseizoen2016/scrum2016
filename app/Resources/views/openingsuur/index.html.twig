@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for openingsuur in openingsuurs %}
+        {% for openingsuur in openingsuren %}
             <tr>
                 <td><a href="{{ path('uren_show', { 'id': openingsuur.id }) }}">{{ openingsuur.id }}</a></td>
                 <td>{{ openingsuur.dag }}</td>
@@ -34,10 +34,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+{#
     <ul>
         <li>
             <a href="{{ path('uren_new') }}">Create a new entry</a>
         </li>
     </ul>
+#}
 {% endblock %}
