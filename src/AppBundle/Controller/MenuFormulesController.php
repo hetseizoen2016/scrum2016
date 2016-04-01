@@ -94,6 +94,7 @@ class MenuFormulesController extends Controller
             'menuFormule' => $menuFormule,
             'delete_form' => $deleteForm->createView(),
             'openingsuren' => $openingsuren,
+            'user' => $this->getUser()
         ));
     }
 
@@ -126,6 +127,7 @@ class MenuFormulesController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'openingsuren' => $openingsuren,
+            'user' => $this->getUser()
         ));
     }
 
