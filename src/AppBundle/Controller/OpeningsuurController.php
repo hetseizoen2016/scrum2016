@@ -19,7 +19,7 @@ class OpeningsuurController extends Controller
     /**
      * Lists all Openingsuur entities.
      *
-     * @Route("/admin/uren/", name="uren_index")
+     * @Route("/admin/uren", name="uren_index")
      * @Method("GET")
      */
     public function indexAction()
