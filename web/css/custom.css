@@ -53,9 +53,16 @@ h4{
 
 .hamburger{
     color: #aaa;
+    width: 100px;
+    height:100px;
 }
 
+.material-icons{
+    width: 150px;
+    height: 150px;
+    font-size: 10em;
 
+}
 .clearfix:before,
 .clearfix:after {
     content: " ";
@@ -295,7 +302,10 @@ footer #top {
 .footer-copyright p{
     margin: 0;
 }
-
+.material-icons{
+    color: black;
+    height:;
+}
 
 /*********************
      MEDIAQUERIES
@@ -313,6 +323,7 @@ footer #top {
         margin-left: -0.4em;
     }
 
+
     /*footer*/ 
     #uren-list li{
         font-size: 0.7em;
@@ -325,4 +336,18 @@ footer #top {
     footer #second{
         margin-bottom: -4em;
     }
+}
+@media screen and (max-height: -width: 360px) {
+    #nav-mobile{
+        padding:0 0.5px;
+    }
+    .reserveerknop{
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 1050px) {
+    .reserveerknop{
+        margin-left: 1em;
+    }
+
 }
