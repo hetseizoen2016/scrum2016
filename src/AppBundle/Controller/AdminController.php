@@ -22,5 +22,4 @@ class AdminController extends Controller
                     'user' => $this->getUser()
         ));
     }
-
 }
