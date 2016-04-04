@@ -26,7 +26,7 @@
             speed: 1000,
             auto: true,
             controls: false,
-            easing: 'swing'            
+                        
         });
 
 

@@ -10,7 +10,7 @@ class ChangePassword
 
     /**
      * @SecurityAssert\UserPassword(
-     *     message = "Wrong value for your current password"
+     *     message = "Uw huidig wachtwoord is niet correct"
      * )
      */
     protected $oldPassword;
@@ -18,7 +18,7 @@ class ChangePassword
     /**
      * @Assert\Length(
      *     min = 6,
-     *     minMessage = "Password should be at least 6 chars long"
+     *     minMessage = "Wachtwoord moet minstens 6 karakters lang zijn"
      * )
      */
     protected $newPassword;

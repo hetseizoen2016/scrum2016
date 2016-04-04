@@ -19,7 +19,7 @@ class OpeningsuurController extends Controller
     /**
      * Lists all Openingsuur entities.
      *
-     * @Route("/admin/uren/", name="uren_index")
+     * @Route("/admin/uren", name="uren_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -62,6 +62,7 @@ class OpeningsuurController extends Controller
         return $this->render('openingsuur/new.html.twig', array(
             'openingsuren' => $openingsuren,
             'form' => $form->createView(),
+            'user' => $this->getUser()
         ));
     }
 
@@ -83,6 +84,7 @@ class OpeningsuurController extends Controller
             'openingsuren' => $openingsuren,
             'openingsuur' => $openingsuur,
             'delete_form' => $deleteForm->createView(),
+            'user' => $this->getUser()
         ));
     }
 
@@ -115,6 +117,7 @@ class OpeningsuurController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'openingsuur' => $openingsuur,
+            'user' => $this->getUser()
         ));
     }
 

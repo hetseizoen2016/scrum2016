@@ -4,8 +4,25 @@
 html{
     font-weight: 300;
 }
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main{
+    flex: 1 0 auto;
+}
+.container{
+    width: 80%;
+}
 .beige{
-    background-color: #aaa;
+    background-color: #bbb;
+}
+.licht-blauw{
+    background-color: #0D8FD0;
+}
+.donker-blauw{
+    background-color: #0B437A;
 }
 
 @font-face{
@@ -35,7 +52,7 @@ h4{
 }
 
 .hamburger{
-    color: blue;
+    color: #aaa;
 }
 
 
@@ -82,13 +99,12 @@ nav ul li:hover:after{
 }
 
 .reserveerknop{
-    margin-left: 4em;
-    background-color: #0D8FD0;
+    margin-left: 4em;    
     font-weight: 400;
     opacity: 0.8;
 }
 .reserveerknop:hover{
-    background-color: #e0cbad;
+    background-color: #0B437A;
 }
 
 /*********************
@@ -101,6 +117,23 @@ nav ul li:hover:after{
 .card-content{
     margin-top: 1em;
 }
+
+.card .card-action a{
+    color: black;
+}
+
+.bxslider{
+    margin-left: 1em;
+}
+
+/*********************
+        MENU
+*********************/
+
+.menu-row .col:nth-child(2n+1){
+    clear: left;
+}
+
 /*********************
         ADMIN
 *********************/
@@ -114,7 +147,7 @@ nav ul li:hover:after{
 }
 
 .nav-admin ul li a:hover{
-    color: #e0cbad !important;
+    color: #0D8FD0 !important;    
 }
 
 .nav-admin ul li{
@@ -122,7 +155,7 @@ nav ul li:hover:after{
 }
 
 .nav-admin ul li:last-child{
-    margin-right: 0; 
+    margin-right: 0;
 }
 
 .admin-container{
@@ -133,6 +166,12 @@ nav ul li:hover:after{
     padding: 0.5em;
 }
 
+.admin-container .card:hover .card-action{
+    color: #ffab40;
+    transition: color .3s ease;
+
+}
+
 .admin-container .card-content{
     color: black;
 }
@@ -140,11 +179,6 @@ nav ul li:hover:after{
 .admin-container .card-action{
     color: #26a69a;
     text-transform: uppercase;
-}
-
-.admin-container .card-action:hover{
-    color: #ffab40;
-    transition: color .3s ease;
 }
 
 
@@ -172,9 +206,16 @@ nav ul li:hover:after{
     color: #26a69a;
 }
 
-.video-container{
-    max-width: 300px;
-    max-height: 200px;
+.video{
+    margin-top: 1em;
+}
+
+/*********************
+         TEAM
+*********************/
+.teamlid_foto{
+    max-width: 100px;
+    max-height: 140px;
 }
 
 /*********************
@@ -192,11 +233,12 @@ nav ul li:hover:after{
 *********************/
 footer{
     margin-top: 6em;
+    
 }
 
 footer .col{
     min-height: 16em;
-    background-color: #0B437A;
+    
 }
 
 
@@ -258,9 +300,29 @@ footer #top {
 /*********************
      MEDIAQUERIES
 *********************/
+@media screen and (min-width: 993px){
+    .hamburger{
+        display: none;
+    }
+}
 
-@media screen and (max-width: 860px){
+@media screen and (max-width: 992px){
+    /*header*/
+    .reserveerknop{
+        text-align: center;
+        margin-left: -0.4em;
+    }
+
+    /*footer*/ 
     #uren-list li{
         font-size: 0.7em;
+    }
+
+    footer .col{
+        margin-bottom: -2em;
+    }
+
+    footer #second{
+        margin-bottom: -4em;
     }
 }
