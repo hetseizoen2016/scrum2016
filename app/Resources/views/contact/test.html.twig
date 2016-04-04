@@ -1,0 +1,51 @@
+{# app/Resources/views/contact/test.html.twig #}
+{% extends "base.html.twig" %}
+
+{% block title %}TEST{% endblock %}
+
+{% block body %}
+    <div class="content container">
+        <div class="row">
+            <div class="col s12 m6 l6">
+
+                <h2>Contact - TEST</h2>
+
+                {% for flash_message in app.session.flashbag.get('notice') %}
+                    <div class="">
+                        {{ flash_message }}
+
+                    </div>
+                {% endfor %}
+
+                {#
+                The first method form_enctype sets the form content type. This must be
+                set when your form deals with file uploads. Our form doesn’t have any
+                use for this method but its always good practice to use this on all
+                forms in the event that you may add file uploads in the future.
+                Debugging a form that handles file uploads that has no content
+                type set can be a real head scratcher!
+                #}
+                <form action="{{ path('test') }}"
+                      method="post" {{ form_enctype(form) }}>
+                    {{ form_errors(form) }}
+
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.subject) }}
+                    {{ form_row(form.body) }}
+
+                    {{ form_rest(form) }}
+
+                    <input type="submit" value="Submit"/>
+                </form>
+
+                {#
+                Its always a safe bet to use the form_rest method at the end of the
+                form to render any fields you may have forgotten, including hidden
+                fields and the Symfony2 Form CSRF token.
+                #}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
