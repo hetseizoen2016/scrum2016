@@ -8,6 +8,8 @@
     <!-- Compiled and minified CSS for Materialize -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+     <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">     
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
 
 </head>
@@ -17,7 +19,8 @@
 <header>
     <div id="headertop" class="container clearfix">
         <p class="right">
-            <img src="{{ asset('images/header/vdab_logo_klein.png') }}">
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons hamburger">menu</i></a>
+            <!--<img src="{{ asset('images/header/vdab_logo_klein.png') }}">-->
         </p>
     </div>
     <nav class="z-depth-0">
@@ -25,7 +28,7 @@
             <a href='{{ path('index') }}' class='brand-logo'>
                 <img src="{{ asset('images/header/seizoen_temp_logo.png') }}">
             </a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            
             <ul class='right hide-on-med-and-down'>
                 <li>
                     <a class=" black-text" href='{{ path('index') }}'>Home</a>
@@ -128,7 +131,7 @@
                 </ul>
             </div>
             <div class="col s12 m4 l3 center-align" id="third">
-                <a href='index.php' class='brand-logo'><img
+                <a href='https://vdab.be' class='brand-logo'><img
                             src='{{ asset('images/footer/vdab_wit.png') }}' class="footer_logo responsive-img"></a>
             </div>
         </div>

@@ -5,7 +5,7 @@ html{
     font-weight: 300;
 }
 .beige{
-    background-color: #aaa;
+    background-color: #bbb;
 }
 
 @font-face{
@@ -35,7 +35,7 @@ h4{
 }
 
 .hamburger{
-    color: blue;
+    color: #aaa;
 }
 
 
@@ -172,9 +172,8 @@ nav ul li:hover:after{
     color: #26a69a;
 }
 
-.video-container{
-    max-width: 300px;
-    max-height: 200px;
+.video{
+    margin-top: 1em;
 }
 
 /*********************
@@ -258,9 +257,16 @@ footer #top {
 /*********************
      MEDIAQUERIES
 *********************/
+@media screen and (min-width: 1000px){
+    .hamburger{
+        display: none;
+    }
+}
 
 @media screen and (max-width: 860px){
     #uren-list li{
         font-size: 0.7em;
     }
+
+    
 }
