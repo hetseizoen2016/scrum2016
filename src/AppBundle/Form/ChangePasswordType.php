@@ -10,13 +10,13 @@ class ChangePasswordType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('oldPassword', 'password')
+        $builder->add('oldPassword', 'password', array('label' => 'Huidig Wachtwoord'))
                 ->add('newPassword', 'repeated', array(
             'type' => 'password',
-            'invalid_message' => 'The password fields must match.',
+            'invalid_message' => 'De wachtwoordvelden komen niet overeen',
             'required' => true,
-            'first_options'  => array('label' => 'Password'),
-            'second_options' => array('label' => 'Repeat Password'),
+            'first_options'  => array('label' => 'Nieuw wachtwoord'),
+            'second_options' => array('label' => 'Herhaal nieuw wachtwoord'),
         ));
     }
 
