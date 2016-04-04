@@ -4,8 +4,25 @@
 html{
     font-weight: 300;
 }
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main{
+    flex: 1 0 auto;
+}
+.container{
+    width: 80%;
+}
 .beige{
     background-color: #bbb;
+}
+.licht-blauw{
+    background-color: #0D8FD0;
+}
+.donker-blauw{
+    background-color: #0B437A;
 }
 
 @font-face{
@@ -82,8 +99,7 @@ nav ul li:hover:after{
 }
 
 .reserveerknop{
-    margin-left: 4em;
-    background-color: #0D8FD0;
+    margin-left: 4em;    
     font-weight: 400;
     opacity: 0.8;
 }
@@ -131,7 +147,7 @@ nav ul li:hover:after{
 }
 
 .nav-admin ul li a:hover{
-    color: #0D8FD0 !important;
+    color: #0D8FD0 !important;    
 }
 
 .nav-admin ul li{
@@ -217,7 +233,7 @@ nav ul li:hover:after{
 *********************/
 footer{
     margin-top: 6em;
-    background-color: #0B437A;
+    
 }
 
 footer .col{
