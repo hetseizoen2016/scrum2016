@@ -14,76 +14,13 @@
 
 </head>
 <body>
-<<<<<<< HEAD
-<!-- Header op elke pagina -->
 
-<header>
-    <div id="headertop" class="container clearfix">
-        <p class="right">
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons hamburger">menu</i></a>
-            <!--<img src="{{ asset('images/header/vdab_logo_klein.png') }}">-->
-        </p>
-    </div>
-    <nav class="z-depth-0">
-        <div class="nav-wrapper container">
-            <a href='{{ path('index') }}' class='brand-logo'>
-                <img src="{{ asset('images/header/seizoen_temp_logo.png') }}">
-            </a>
-            
-            <ul class='right hide-on-med-and-down'>
-                <li>
-                    <a class=" black-text" href='{{ path('index') }}'>Home</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('menu') }}'>Menu</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('team') }}'>Team</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('contact') }}'>Contact</a>
-                </li>
-                <li class="">
-                    <a class=" reserveerknop" href='#'>Reserveer</a>
-                </li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <li>
-                    <a class=" black-text" href='{{ path('index') }}'>Home</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('menu') }}'>Menu</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('team') }}'>Team</a>
-                </li>
-                <li>
-                    <a class=" black-text" href='{{ path('contact') }}'>Contact</a>
-                </li>
-                <li>
-                    <a class=" black-text reserveerknop" href='#'>Reserveer</a>
-                </li>                
-            </ul>
-=======
     <!-- Header op elke pagina -->
->>>>>>> 1a5ecaabe8bd87c880542d09392b9aa5078a808c
 
     <header>
         {% if user %}
             <div class="nav-admin container">
-                <ul class="right">
+                <ul class="right hide-on-med-and-down">
                     <li>
                         <a class="black-text" href="{{ path('logout') }}">Logout</a>
                     </li>
@@ -91,7 +28,7 @@
                         <a class="black-text" href="{{ path('password') }}">Verander password</a>
                     </li>
                 </ul>
-                <ul class="left">
+                <ul class="left hide-on-med-and-down">
                     <li>
                         <a class="black-text" href="{{ path('admin') }}">Admin home</a>
                     </li>
@@ -106,7 +43,8 @@
         {% endif %}
         <div id="headertop" class="container clearfix">
             <p class="right">
-                <img src="{{ asset('images/header/vdab_logo_klein.png') }}">
+                <!--<img src="{{ asset('images/header/vdab_logo_klein.png') }}">-->
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons hamburger">menu</i></a>
             </p>
         </div>
         <nav class="z-depth-0">
@@ -114,7 +52,7 @@
                 <a href='{{ path('index') }}' class='brand-logo'>
                     <img src="{{ asset('images/header/seizoen_temp_logo.png') }}">
                 </a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                
                 <ul class='right hide-on-med-and-down'>
                     <li>
                         <a class=" black-text" href='{{ path('index') }}'>Home</a>
@@ -172,7 +110,7 @@
 
 <footer>
 
-    <div>
+    <div class="container">
 
         <div class="row" id="top">
             <div class="col s12 m4 l3 center-align" id="first">
@@ -220,7 +158,7 @@
                             src='{{ asset('images/footer/vdab_wit.png') }}' class="footer_logo responsive-img"></a>
             </div>
         </div>
-
+    </div>
         <div class="beige footer-copyright">
             <div class="container center-align">
                 <p>© 2016 Copyright VDAB PHP-developers</p>
