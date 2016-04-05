@@ -16,7 +16,7 @@
 <body>
 
     <!-- Header op elke pagina -->
-    <main>
+    <div class="main">
     <header>
         {% if user %}
             <div class="nav-admin container">
@@ -72,6 +72,19 @@
                     </li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
+                    {% if user %}
+                    
+                        <li class="admin-mobile-nav">
+                            <a class="black-text" href="{{ path('admin') }}">Admin home</a>
+                        </li>     
+                        <li class="admin-mobile-nav">
+                            <a class="black-text" href="{{ path('logout') }}">Uitloggen</a>
+                        </li>
+                                                     
+                        
+                    <hr>
+                    {% endif %}
+
                     <li>
                         <a href='{{ path('index') }}'>Home</a>
                     </li>
@@ -91,7 +104,7 @@
                         <a href='{{ path('contact') }}'>Contact</a>
                     </li>
                     <li>
-                        <a class="reserveerknop" href='#'>Reserveer</a>
+                        <a class="licht-blauw white-text reserveerknop" href='#'>Reserveer</a>
                     </li>                
                 </ul>
 
@@ -155,7 +168,7 @@
             </div>
         </div>
 </footer>
-</main>
+</div>
 
 
 
@@ -164,8 +177,8 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-2.2.2.min.js"></script>
 <!-- Compiled and minified JavaScript for Materialize -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 
 {% block javascripts %}{% endblock %}
+<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

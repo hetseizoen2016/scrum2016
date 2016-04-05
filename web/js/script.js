@@ -20,14 +20,7 @@
         );
 
         //BXSLIDER INIT
-        $('.bxslider').bxSlider({
-            mode: 'fade',
-            pause: 8000,
-            speed: 1000,
-            auto: true,
-            controls: false,
-                        
-        });
+        
 
 
 
