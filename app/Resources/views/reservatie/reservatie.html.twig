@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Reservatie{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <form class="reservatie-form" action="#">
+            <h3>Datum + personen</h3>
+            <section>
+                <label for="datum">Datum</label>
+                <input id="datum" name="datum" type="date" class="required">
+                <label for="personen">Aantal Personen</label>
+                <input id="personen" name="personen" type="number" class="required">
+            </section>
+            <h3>Formules</h3>
+            <section>
+                <label for="datum">Datum</label>
+                <input id="datum" name="datum" type="date" class="required">
+                <label for="personen">Aantal Personen</label>
+                <input id="personen" name="personen" type="number" class="required">
+            </section>
+            <h3>Gegevens</h3>
+            <section>
+                <label for="datum">Datum</label>
+                <input id="datum" name="datum" type="date" class="required">
+                <label for="personen">Aantal Personen</label>
+                <input id="personen" name="personen" type="number" class="required">
+            </section>
+        </form>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jQuerySteps/jquery.steps.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+{% endblock %}
