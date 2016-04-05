@@ -135,10 +135,9 @@ nav ul li:hover:after{
     height: 50%;
     width: 100%;
 }
-/*.bxslider li{
-   /* margin-left: 1em;*/
-   /*width: 100%;
-}*/
+.bxslider li{
+    margin-left: 1em;
+}
 
 /*********************
         MENU
