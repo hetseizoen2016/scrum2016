@@ -16,14 +16,16 @@
                             <th data-field="info">Info</th>
                             <th data-field="van">Prijs</th>
                             <th data-field="tot">Min aantal personen</th>
+                            <th data-field="tot">Max aantal personen</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>{{ menuFormule.name }}</td>
-                            <td>{{ menuFormule.info }}</td>
+                            <td style="max-width: 300px">{{ menuFormule.info }}</td>
                             <td>{{ menuFormule.price }}</td>
                             <td>{{ menuFormule.minPersons }}</td>
+                            <td>{{ menuFormule.maxPersons }}</td>
                         </tr>
                         </tbody>
                     </table>

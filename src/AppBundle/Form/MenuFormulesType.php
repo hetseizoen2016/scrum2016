@@ -19,6 +19,7 @@ class MenuFormulesType extends AbstractType
             ->add('info')
             ->add('price')
             ->add('minPersons')
+            ->add('maxPersons')
         ;
     }
     

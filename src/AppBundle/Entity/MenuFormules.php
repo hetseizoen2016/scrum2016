@@ -40,6 +40,10 @@ class MenuFormules
      * @ORM\Column(type="decimal", precision=3, scale=0, nullable=true, name="min_persons")
      */
     protected $minPersons;
+    /**
+     * @ORM\Column(type="decimal", precision=3, scale=0, nullable=true, name="max_persons")
+     */
+    protected $maxPersons;
 
     /**
      * Get id
@@ -141,5 +145,28 @@ class MenuFormules
     public function getMinPersons()
     {
         return $this->minPersons;
+    }
+
+    /**
+     * Set maxPersons
+     *
+     * @param string $maxPersons
+     * @return MenuFormules
+     */
+    public function setMaxPersons($maxPersons)
+    {
+        $this->maxPersons = $maxPersons;
+
+        return $this;
+    }
+
+    /**
+     * Get maxPersons
+     *
+     * @return string 
+     */
+    public function getMaxPersons()
+    {
+        return $this->maxPersons;
     }
 }
