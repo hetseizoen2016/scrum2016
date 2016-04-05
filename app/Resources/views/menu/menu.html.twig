@@ -21,7 +21,7 @@
 	<!-- MENU ITEMS -->
 	<div class="row">
 		{% for menuformule in menuformules %}
-		<div class="col s12 m6 l6">
+		<div class="col s12 m6 l6 offset-l3 offset-m3">
 			<h3 class="center-align">{{ menuformule.name }}</h3>
 			<p class="center-align">{{ menuformule.info }} {% if menuformule.minPersons %} - Vanaf minimum {{ menuformule.minPersons }} personen.{% endif %}</p>
 			<p class="prijs center-align">&euro; {{ menuformule.price }} per persoon.</p>
