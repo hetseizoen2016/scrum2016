@@ -1,5 +1,7 @@
 {% extends 'admin/admin.html.twig' %}
 
+{% block title %}Alle Menuformules{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="section">
@@ -8,29 +10,30 @@
                     <h2 class="center-align">Alle menuformules</h2>
                     <div class="center-align">
                         <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
-                           href="{{ path('formules_new') }}">Maak een nieuwe
-                            menuformule aan</a>
+                           href="{{ path('formules_new') }}">Maak een nieuwe menuformule aan</a>
                     </div>
+
                     <table>
+
                         <thead>
                         <tr>
-
                             <th>Formule</th>
                             <th>Info</th>
                             <th>Prijs</th>
                             <th>Minimum aantal</th>
+                            <th>Maximum aantal</th>
                             <th class="center-align">Wijzig</th>
                         </tr>
                         </thead>
+
                         <tbody>
                         {% for menuFormule in menuFormules %}
                             <tr>
-
                                 <td>{{ menuFormule.name }}</td>
-                                <td>{{ menuFormule.info }}</td>
-                                <td>{{ menuFormule.price }}</td>
-                                <td>{{ menuFormule.minPersons }}</td>
-
+                                <td style="max-width: 300px">{{ menuFormule.info }}</td>
+                                <td>{% if menuFormule.price %}&euro; {{ menuFormule.price }}{% endif %}</td>
+                                <td>{% if menuFormule.minPersons %}{{ menuFormule.minPersons }} pers.{% endif %}</td>
+                                <td>{% if menuFormule.maxPersons %}{{ menuFormule.maxPersons }} pers.{% endif %}</td>
                                 <td class="center-align">
                                     <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
                                        href="{{ path('formules_edit', { 'id': menuFormule.id }) }}">Wijzig</a>
@@ -38,8 +41,8 @@
                             </tr>
                         {% endfor %}
                         </tbody>
-                    </table>
 
+                    </table>
 
                 </div>
             </div>

@@ -44,7 +44,7 @@
         <div id="headertop" class="container clearfix">
             <p class="right">
                 <!--<img src="{{ asset('images/header/vdab_logo_klein.png') }}">-->
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons hamburger">menu</i></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons hamburger right">menu</i></a>
             </p>
         </div>
         <nav class="z-depth-0">
@@ -58,17 +58,12 @@
                         <a class=" black-text" href='{{ path('index') }}'>Home</a>
                     </li>
                     <li>
-                        <a class=" black-text" href='{{ path('menu') }}'>Menu</a>
-                    </li>
-                    <li>
-                        <a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a>
+                        <a class=" black-text" href='{{ path('menu') }}'>Menukaart</a>
                     </li>
                     <li>
                         <a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a>
                     </li>
-                    <li>
-                        <a class=" black-text" href='{{ path('team') }}'>Team</a>
-                    </li>
+                    
                     <li>
                         <a class=" black-text" href='{{ path('contact') }}'>Contact</a>
                     </li>
@@ -120,15 +115,9 @@
                     </li>
                     <li>
                         <a class=" white-text" href='{{ path('menu') }}'>Menu</a>
-                    </li>
-                    <li>
-                        <a class=" white-text" href='{{ path('nieuws') }}'>Nieuws</a>
-                    </li>
+                    </li>                    
                     <li>
                         <a class=" white-text" href='{{ path('opleidingen') }}'>Opleidingen</a>
-                    </li>
-                    <li>
-                        <a class=" white-text" href='{{ path('team') }}'>Team</a>
                     </li>
                     <li>
                         <a class=" white-text" href='{{ path('contact') }}'>Contact</a>
@@ -151,7 +140,7 @@
                                 gesloten.
                             {% endif %}
                         {% endfor %}
-                    <li class="white-text">Ook op feestdagen gesloten.</li>
+                    <li class="white-text">Op zon- en feestdagen gesloten.</li>
                 </ul>
             </div>
             <div class="col s12 m4 l3 center-align" id="third">
@@ -172,7 +161,7 @@
 
 
 <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-2.2.2.min.js"></script>
 <!-- Compiled and minified JavaScript for Materialize -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
