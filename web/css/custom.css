@@ -128,10 +128,17 @@ nav ul li:hover:after{
 .card .card-action a{
     color: black;
 }
-
-.bxslider{
-    margin-left: 1em;
+#responsive{
+    height:50%;
 }
+#responsive img{
+    height: 50%;
+    width: 100%;
+}
+/*.bxslider li{
+   /* margin-left: 1em;*/
+   /*width: 100%;
+}*/
 
 /*********************
         MENU

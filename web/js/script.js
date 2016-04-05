@@ -20,16 +20,34 @@
         );
 
         //BXSLIDER INIT
-        $('.bxslider').bxSlider({
+       /* $('.bxslider').bxSlider({
             mode: 'fade',
             pause: 8000,
             speed: 1000,
             auto: true,
-            controls: false,
-                        
+            controls: false
+        });*/
+        //FlexSlider
+        /*$('.flexslider').flexslider({
+           animation:"fade",
+           animationSpeed:1500,
+           animationLoop: true,
+           slideshowSpeed:10000,
+           smoothHeight:true,
+           directionNav:false,
+           controlNav:false,
+        });*/
+        $('#lightSlider').lightSlider({
+            auto:true,
+
+            loop:true,
+            mode:'fade',
+            
+            speed:10000,
+            controls:false,
+            pager:false,
+            
         });
-
-
 
     }); // end of document ready
 })(jQuery); // end of jQuery name space
