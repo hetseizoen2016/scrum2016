@@ -54,6 +54,7 @@ class MenuFormulesController extends Controller
     {
         $menuFormule = new MenuFormules();
         $form = $this->createForm('AppBundle\Form\MenuFormulesType', $menuFormule);
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

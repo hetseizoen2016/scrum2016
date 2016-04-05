@@ -1,11 +1,13 @@
 {% extends 'admin/admin.html.twig' %}
 
+{% block title %}Menuformule {{ menuFormule.name }}{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="section">
             <div class="row">
                 <div class="col s12">
-                    <h2 class="center-align">De menuformules</h2>
+                    <h2 class="center-align">De menuformule {{ menuFormule.name }}</h2>
 
                     <table>
                         <thead>
@@ -14,14 +16,16 @@
                             <th data-field="info">Info</th>
                             <th data-field="van">Prijs</th>
                             <th data-field="tot">Min aantal personen</th>
+                            <th data-field="tot">Max aantal personen</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>{{ menuFormule.name }}</td>
-                            <td>{{ menuFormule.info }}</td>
+                            <td style="max-width: 300px">{{ menuFormule.info }}</td>
                             <td>{{ menuFormule.price }}</td>
                             <td>{{ menuFormule.minPersons }}</td>
+                            <td>{{ menuFormule.maxPersons }}</td>
                         </tr>
                         </tbody>
                     </table>

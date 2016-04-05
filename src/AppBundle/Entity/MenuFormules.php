@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class MenuFormules
@@ -26,6 +27,7 @@ class MenuFormules
     protected $id;
     /**
      * @ORM\Column(type="string", length=64, nullable=false, name="name")
+     * @Assert\NotBlank()
      */
     protected $name;
     /**
@@ -34,12 +36,18 @@ class MenuFormules
     protected $info;
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2, nullable=false, name="price" )
+     * @Assert\NotBlank()
+     * @Assert\GreaterThanOrEqual(value=0)
      */
     protected $price;
     /**
      * @ORM\Column(type="decimal", precision=3, scale=0, nullable=true, name="min_persons")
      */
     protected $minPersons;
+    /**
+     * @ORM\Column(type="decimal", precision=3, scale=0, nullable=true, name="max_persons")
+     */
+    protected $maxPersons;
 
     /**
      * Get id
@@ -141,5 +149,28 @@ class MenuFormules
     public function getMinPersons()
     {
         return $this->minPersons;
+    }
+
+    /**
+     * Set maxPersons
+     *
+     * @param string $maxPersons
+     * @return MenuFormules
+     */
+    public function setMaxPersons($maxPersons)
+    {
+        $this->maxPersons = $maxPersons;
+
+        return $this;
+    }
+
+    /**
+     * Get maxPersons
+     *
+     * @return string 
+     */
+    public function getMaxPersons()
+    {
+        return $this->maxPersons;
     }
 }
