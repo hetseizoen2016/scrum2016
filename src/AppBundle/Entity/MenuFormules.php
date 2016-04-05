@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class MenuFormules
@@ -26,6 +27,7 @@ class MenuFormules
     protected $id;
     /**
      * @ORM\Column(type="string", length=64, nullable=false, name="name")
+     * @Assert\NotBlank()
      */
     protected $name;
     /**
@@ -34,6 +36,8 @@ class MenuFormules
     protected $info;
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2, nullable=false, name="price" )
+     * @Assert\NotBlank()
+     * @Assert\GreaterThanOrEqual(value=0)
      */
     protected $price;
     /**

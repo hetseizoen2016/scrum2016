@@ -9,7 +9,7 @@ body{
     min-height: 100vh;
     flex-direction: column;
 }
-main{
+main {
     flex: 1 0 auto;
 }
 .container{
@@ -23,6 +23,19 @@ main{
 }
 .donker-blauw{
     background-color: #0B437A;
+}
+
+.fw500{
+    font-weight: 500;
+}
+.fw400{
+    font-weight: 400;
+}
+.fw300{
+    font-weight: 300;
+}
+.fw200{
+    font-weight: 200;
 }
 
 @font-face{
@@ -98,7 +111,8 @@ header nav .nav-wrapper{
 header nav a{
     font-size: 1em;
     text-transform: uppercase;
-    font-weight: 200;
+    font-weight: 300;
+    color: #0e0e0e;
 }
 
 nav ul li:hover:after{
@@ -223,6 +237,88 @@ nav ul li:hover:after{
     margin-top: 1em;
 }
 
+.title-box{
+    transform: skewX(-3deg);
+}
+
+.title-box h2{
+    padding: 0.3em;
+    font-weight: 400;
+    margin-bottom: -1em;
+    text-align: center;
+}
+
+.title-box h3{
+    
+    text-align: center;
+}
+
+.title-box #krijg-de-smaak{
+    color: white;
+    width: 8em;    
+}
+.title-box #te-pakken{
+    color: #0B437A;
+    margin-bottom: 1em;
+    margin-left: -16em;
+}
+
+.title-box #proef{
+    color: #0B437A;
+    font-weight: 500;
+    margin-bottom: -0.8em;
+}
+.title-box #van-een-job{
+    color: #0D8FD0;
+    font-weight: 300;
+}
+
+.title-box #proef-van-een-job{
+    font-weight: 300;
+    margin-bottom: -0.8em;
+}
+.title-box #in-de-keuken{
+    font-weight: 300;
+}
+#inleiding h5{
+    color: #0D8FD0;
+}
+
+#inleiding ul{
+    margin-left: 2em;
+}
+#inleiding ul li{
+    list-style: initial;
+}
+
+#job-zaal{
+    margin-top: 2em;
+}
+#job-zaal ul{
+    margin-left: 2em;
+}
+#job-zaal ul li{
+    list-style: initial;
+}
+
+#job-keuken{
+    margin-top: 5em;
+}
+#job-keuken .title-box{
+    padding: 0.2em 2em 0.2em 2em;
+    color: white;
+}
+#job-keuken ul{
+    margin-left: 2em;
+}
+#job-keuken ul li{
+    list-style: initial;
+}
+#proef-span{
+    font-size: 1em;
+}
+
+
 /*********************
          TEAM
 *********************/
@@ -246,15 +342,17 @@ nav ul li:hover:after{
 *********************/
 footer{
     margin-top: 6em;
-    
+    margin-bottom: -1em;
 }
 
 footer .col{
     min-height: 16em;
-    
+    margin-bottom: -2em;
 }
 
-
+footer #first{
+    margin-top: 2em;
+}
 /*footer #top #first{
     background-color: #a3b7b9; 
 }
@@ -306,7 +404,7 @@ footer #top {
 }
 
 .footer-copyright p{
-    margin: 0;
+    margin-top: 1em;
 }
 .material-icons{
     color: black;

@@ -5,60 +5,128 @@
 {% block body %}
 
     <div class="content container">
-    <h2>Aangeboden Opleidingen</h2>
-        <div class="row">            
-            <div class="col l6 m6 s12 inleiding">
-
-                <p>Lorem ipsum dolor sit amet, civibus mediocrem te mel, eam ei
-                    corpora senserit. An simul option per. Cu ius mollis vocent
-                    verterem, natum atqui constituto ad sit. Quo id quod labores
-                    placerat, per cu persius tibique. Graece quidam copiosae cum
-                    cu,
-                    mei scribentur philosophia ad. Eu minim nemore usu, invenire
-                    dissentias ius cu, quot erat atomorum id pri. Vis te posse
-                    quodsi maiestatis. Eum simul elitr cu. Pro no partem
-                    explicari.</p>
+        <div class="title-box">
+            <h2 class="donker-blauw" id="krijg-de-smaak">Krijg de smaak</h2>
+            <h2 id="te-pakken">te pakken</h2>
+        </div>
+        <div class="row" id="inleiding">            
+            <div class="col l6 m6 s12">
+                <h5>Waarom onze horeca-opleiding werkt</h5>
+                <ul>
+                    <li>We werken in een oefenrestaurant. Je kookt/bedient echte klanten.</li>
+                    <li>Onze instructeurs hebben jaren ervaring en leren je de kneepjes van het vak.</li>
+                    <li>Onze keuken- en zaalinfrastructuur is top.</li>
+                    <li>Werkzekerheid! Er zijn heel wat vacatures en we helpen je een gepaste job zoeken.</li>
+                    <li>Onze opleiding is helemaal gratis. We komen tussen in kinderopvong en verplaatsingskosten.</li>
+                </ul>                
             </div>
-            <div class="col l6 m6 s12 inleiding">
-                <div class="collection right">
-                    <a class="collection-item" href="https://www.vdab.be/mijnvdab/opleidingen/opleidingen.jsp?action=ZOEKOPLEIDINGEN&eventopleidingInhoud=resultatenPage_resultatenLijst_0_naam&sess=21&index=0&id=49512"
-                       target="_blank">Zaalmedewerker</a>
-                    <a class="collection-item" href="https://www.vdab.be/mijnvdab/opleidingen/opleidingen.jsp?action=ZOEKOPLEIDINGEN&eventopleidingInhoud=resultatenPage_resultatenLijst_1_naam&sess=12&index=1&id=12932"
-                       target="_blank">Hulpkelner</a>
-                    <a class="collection-item" href="https://www.vdab.be/mijnvdab/opleidingen/opleidingen.jsp?action=ZOEKOPLEIDINGEN&eventopleidingInhoud=resultatenPage_resultatenLijst_2_naam&sess=12&index=2&id=67121"
-                       target="_blank">Professionele zaaltechnieken</a>
-                    <a class="collection-item" href="https://www.vdab.be/mijnvdab/opleidingen/opleidingen.jsp?action=ZOEKOPLEIDINGEN&eventopleidingInhoud=resultatenPage_resultatenLijst_3_naam&sess=12&index=3&id=31947"
-                       target="_blank">Keukenmedewerker</a>
-                    <a class="collection-item" href="https://www.vdab.be/mijnvdab/opleidingen/opleidingen.jsp?context=MAIL&entryPoint=OpleidingInhoud&opleidingid=12931&doelgroep=2"
-                       target="_blank">Hulpkok</a>
+            
+        </div>
+        
+
+        <div id="job-zaal">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <div class="title-box left">
+                        <h3 id="proef">Proef</h3>
+                        <h3 id="van-een-job">van een job in de zaal!</h3>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <p>
+                        Hou je ervan om mensen zich helemaal thuis te laten voelen op restaurant? Wil je samen met je collega's je klanten een aangename tijd bezorgen? Dan is een zaalopleiding zeker iets voor jou!
+                    </p>
+                    <p>
+                        In deze opleiding leer je op een leuke professionele manier hoe een tafel te dekken voor elke gelegenheid, hoe je gasten moet bedienen, en wat de basis is om in de bediening te werken.
+                    </p>
+                    <p>
+                        De opleiding bestaat uit volgende modules:
+                    </p>
+                    <ul>
+                        <li>zaalvoorbereidingen</li>
+                        <li>onthaal en bediening van klanten</li>
+                        <li>basis drankenkennis en bardienst</li>
+                        <li>hygiënisch onderhoud</li>
+                    </ul>
+                    <p>
+                        We bieden je een voltijdse, korte opleiding met veel praktijk in het VDAB-oefenrestaurant, 4 weken stage en begeleiding naar vast werk. Zo'n kans laat je toch niet liggen!
+                    </p>
+                </div>
+
+                <div class="col l6 m6 s12 inleiding">
+                    <div class="right">
+                        <img class="responsive-img" src="{{ asset('images/slider/vdab_banner/banner_rechts.jpg') }}" />
+                    </div>
+                    <div class="right">
+                        <h6>Opleidingen zaal:</h6>
+                        <ul>
+                            <li><a href="#">Zaalmedewerker</a></li>
+                            <li><a href="#">Hulpkelner</a></li>
+                            <li><a href="#">Professionele zaaltechnieken</a></li>            
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <div id="job-keuken">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div class="title-box right licht-blauw">
+                        <h3 id="proef-van-een-job"><span class="fw500" id="proef-span">Proef</span> van een job</h3>
+                        <h3 id="in-de-keuken">in de keuken!</h3>
+                    </div>
+                </div>
+                
+            </div>
 
+            <div class="row">
+                <div class="col l6 m6 s12 inleiding">
+                    <div class="left col s12 m12 l12">
+                        <img class="responsive-img" src="{{ asset('images/slider/vdab_banner/banner_links.jpg') }}" />
+                    </div>
+                    <div class="left col s12 m12 l12">
+                        <h6>Opleidingen keuken:</h6>
+                        <ul>
+                            <li><a href="#">Keukenmedewerker</a></li>
+                            <li><a href="#">Hulpkok</a></li>           
+                        </ul>
+                    </div>
+                </div>
+                <div class="col s12 m6 l6">
+                    <p>
+                        Is lekker eten klaarmaken jouw passie en wil je anderen laten meegenieten van jouw kookkunsten? Wil je elke dag professioneel met eten bezig zijn? Dan is de opleiding hulpkok zeker iets voor jou!
+                    </p>
+                    <p>
+                        Tijdens deze opleiding zorgen we ervoor dat je je mannetje kan staan in de keuken.
+                    </p>
+                    <ul>
+                        <li>We koken regelmatig een 3-gangen menu voor echte gasten.</li>
+                        <li>We leren je snij- en basistechnieken aan.</li>
+                        <li>We hebben heel wat aandacht voor hygiëne.</li>
+                    </ul>
+                    <p>
+                        We bieden je een voltijdse opleiding van 4 à 6 maanden aan waarin een heel gamma voorgerechten, hoofdgerechten en desserts aan bod komen. Je doorloopt een stage van 4 weken en krijgt een begeleiding naar vast werk.
+                    </p>
+                </div>
 
+                
+            </div>
+        </div>
+
+        
+        
 
 
 
 
 
     <h3>Beroepenfilms horeca</h3>
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="card z-depth-0">
-                    <div class="card-image">
-                        <img src="{{ asset('images/beroepen/hotelreceptionist.jpg') }}">
-                        <span class="card-title">Hotelreceptionist</span>
-                    </div>
-                    <div class="card-content">
-                        <p>Lorem ipsum dolor sit amet, civibus mediocrem te mel, eam ei corpora senserit.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://www.vdab.be/beroepen/hotelreceptionist.shtml"
-                           target="_blank">Hotelreceptionist</a>
-                    </div>
-                </div>
-            </div>
+        <div class="row">            
             <div class="col s12 m4">
                 <div class="card z-depth-0">
                     <div class="card-image">
@@ -73,55 +141,12 @@
                            target="_blank">Hulpkelner Restaurant</a>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m4">
-                <div class="card z-depth-0">
-                    <div class="card-image">
-                        <img src="{{ asset('images/beroepen/kelner.jpg') }}">
-                        <span class="card-title">Kelner brasserie - taverne</span>
-                    </div>
-                    <div class="card-content">
-                        <p>Lorem ipsum dolor sit amet, civibus mediocrem te mel, eam ei corpora senserit.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://www.vdab.be/beroepen/kelner.shtml"
-                           target="_blank">Kelner brasserie - taverne</a>
-                    </div>
-                </div>
-            </div>
+            </div>            
         </div>
 
         <div class="row">
-            <div class="col s12 m4">
-                <div class="card z-depth-0">
-                    <div class="card-image">
-                        <img src="{{ asset('images/beroepen/kok.jpg') }}">
-                        <span class="card-title">Kok</span>
-                    </div>
-                    <div class="card-content">
-                        <p>Lorem ipsum dolor sit amet, civibus mediocrem te mel, eam ei corpora senserit.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://www.vdab.be/beroepen/kok.shtml"
-                           target="_blank">Kok</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4">
-                <div class="card z-depth-0">
-                    <div class="card-image">
-                        <img src="{{ asset('images/beroepen/maitre.jpg') }}">
-                        <span class="card-title">Ma&icirc;tre d'h&ocirc;tel</span>
-                    </div>
-                    <div class="card-content">
-                        <p>Lorem ipsum dolor sit amet, civibus mediocrem te mel, eam ei corpora senserit.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://www.vdab.be/beroepen/maitre.shtml"
-                           target="_blank">Ma&icirc;tre d'h&ocirc;tel</a>
-                    </div>
-                </div>
-            </div>
+            
+            
             <div class="col s12 m4">
                 <div class="card z-depth-0">
                     <div class="card-image">
@@ -139,36 +164,9 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="card z-depth-0">
-                    <div class="card-image">
-                        <img src="{{ asset('images/beroepen/medewerker_snelrestauratie.jpg') }}">
-                        <span class="card-title">Medewerker sneldienst-restauratie-fastfood</span>
-                    </div>
-                    <div class="card-content">
-                        <p>Lorem ipsum dolor sit amet, civibus mediocrem te mel, eam ei corpora senserit.</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://www.vdab.be/beroepen/medewerker_snelrestauratie.shtml"
-                           target="_blank">Medewerker sneldienst-restauratie-fastfood</a>
-                    </div>
-                </div>
-            </div>
+        
 
-
-        </div>
-
-        <div class="row">
-            <h3>Infosessies</h3>
-                Bekijk hier een <a
-                href="https://www.vdab.be/beroepen/medewerker_snelrestauratie.shtml"
-                target="_blank">infosessie Keukenmedewerker</a>
-
-            <div class="col s12 m12 l12 video">
-                <iframe width="500" height="380" class="col s12 m12 l8" src="https://www.youtube.com/embed/J0ZdA3SCIYw" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
+        
         
     </div>
 {% endblock %}
