@@ -18,12 +18,22 @@ $(function () {
     }
     );
 
-    //BXSLIDER INIT
-    $('.bxslider').bxSlider({
-        mode: 'fade',
-        pause: 8000,
-        speed: 1000,
-        auto: true,
-        controls: false
-    });
-}); // end of document ready
+
+        //BXSLIDER INIT
+        $('.bxslider').bxSlider({
+            mode: 'fade',
+            pause: 8000,
+            speed: 1000,
+            auto: true,
+            controls: false
+        });
+
+        $(".reservatie-form").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft"
+            
+        });
+
+    }); // end of document ready
+
