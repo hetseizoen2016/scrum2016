@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class MenuFormulesRepository extends EntityRepository
 {
+    public function findAllOrderedByNameAndByPrice()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM AppBundle:MenuFormules p ORDER BY p.menutypeId ASC, p.price'
+            )
+            ->getResult();
+    }
 }

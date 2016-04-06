@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MenuType list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for menuType in menuTypes %}
+            <tr>
+                <td><a href="{{ path('menutype_show', { 'id': menuType.id }) }}">{{ menuType.id }}</a></td>
+                <td>{{ menuType.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('menutype_show', { 'id': menuType.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('menutype_edit', { 'id': menuType.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('menutype_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
