@@ -18,9 +18,12 @@ class ReservatieController extends Controller
         $em = $this->getDoctrine()->getManager();
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
+        $formules = $em->getRepository('AppBundle:MenuFormules')->findAll();
+        
         return $this->render('reservatie/reservatie.html.twig', array(
                     'openingsuren' => $openingsuren,
-                    'user' => $this->getUser()
+                    'user' => $this->getUser(),
+                    'formules' => $formules
         ));
     }
 

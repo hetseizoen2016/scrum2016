@@ -370,6 +370,10 @@ li.current a{
     color: lightgrey;
 }
 
+.content .title{
+    display: none;
+}
+
 /*********************
         FOOTER
 *********************/
