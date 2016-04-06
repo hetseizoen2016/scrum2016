@@ -26,10 +26,42 @@ $(function () {
         controls: false
     });
 
-    $(".reservatie-form").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft"
-
-    });
+    /*var reservatieForm = $(".reservatie-form");
+     reservatieForm.steps({
+     /* Labels */
+    /*labels: {
+     current: "",
+     finish: "Bevestig",
+     next: "Volgende",
+     previous: "Vorige"
+     },
+     headerTag: "h3",
+     bodyTag: "section",
+     transitionEffect: "slideLeft",
+     onStepChanging: function (event, currentIndex, newIndex)
+     {
+     // Allways allow step back to the previous step even if the current step is not valid!
+     if (currentIndex > newIndex)
+     {
+     return true;
+     }
+     reservatieForm.validate().settings.ignore = ":disabled,:hidden";
+     return reservatieForm.valid();
+     },
+     onFinishing: function (event, currentIndex)
+     {
+     reservatieForm.validate().settings.ignore = ":disabled";
+     return reservatieForm.valid();
+     },
+     onFinished: function (event, currentIndex)
+     {
+     alert("Submitted!");
+     }
+     });
+     
+     reservatieForm.validate({
+     errorPlacement: function errorPlacement(error, element) {
+     element.before(error);
+     }
+     });*/
 }); // end of document ready
