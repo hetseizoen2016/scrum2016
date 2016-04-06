@@ -331,10 +331,19 @@ nav ul li:hover:after{
         CONTACT
 *********************/
 #map{
-    width: 300px;
-    height: 200px;
+    position:relative;
+    padding-top: 60%;
+    height:0;
+    overflow: hidden;
     background-color: #CCC;
-    margin-top: 1em;
+    margin-top: 1.5em;
+}
+#map iframe{
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100% !important;
+    height:100% !important;
 }
 
 /*********************
@@ -418,6 +427,7 @@ footer #top {
     .hamburger{
         display: none;
     }
+
 }
 
 @media screen and (max-width: 992px){
@@ -427,11 +437,8 @@ footer #top {
         margin-left: -0.4em;
     }
 
-
     /*footer*/ 
-    #uren-list li{
-        font-size: 0.7em;
-    }
+    
 
     footer .col{
         margin-bottom: -2em;
@@ -450,8 +457,13 @@ footer #top {
     }
 }
 @media screen and (max-width: 1050px) {
+    /*header*/
     .reserveerknop{
         margin-left: 1em;
     }
-
+}
+@media screen and (max-width: 550px) {
+    #uren-list li{
+        font-size: 0.7em;
+    }
 }
