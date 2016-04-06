@@ -28,9 +28,16 @@
             </section>
         </form>
     </div>
-
 {% endblock %}
 {% block javascripts %}
+
+
     <script type="text/javascript" src="{{ asset('js/jQuerySteps/jquery.steps.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script>
+        $(".reservatie-form").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft"
+        });
+    </script>
 {% endblock %}
