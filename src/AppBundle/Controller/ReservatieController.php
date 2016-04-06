@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,6 +29,25 @@ class ReservatieController extends Controller
     }
 
     /**
+    * @Route("/reservatie/send", name="send_mail")
+    */
+    public function sendAction(){
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('tseizoen@vdab.be')
+            ->setTo('vincentvanlerberghe_73@hotmail.com')
+            ->setBody(
+                $this->renderView(
+                    'email/bevestiging.html.twig',
+                    array('name' => "vincent")
+                ),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
+
+        return $this->redirectToRoute('index', array(), 301);
+    }
+     /**
      * @Route("/reservatieajax", name="reservatieajax")
      */
     public function ajaxAction(Request $request) {

@@ -1,14 +1,18 @@
 {% extends "base.html.twig" %}
 
 {% block title %}Reservatie{% endblock %}
-
+{%block stylesheets%}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.date.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.time.css">
+{%endblock%}
 {% block body %}
     <div class="container">
         <form class="reservatie-form" action="#">
             <h3>Datum + personen</h3>
             <section>
                 <label for="datum">Datum</label>
-                <input id="datum" name="datum" type="date" class="required">
+                <input id="datum" name="datum" type="date" class="datepicker required">
                 <label for="personen">Aantal Personen</label>
                 <input id="personen" name="personen" type="number" class="required">
             </section>
@@ -31,6 +35,10 @@
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('js/jquerysteps/jquery.steps.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jqueryvalidation/dist/jquery.validate.min.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.date.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.time.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/legacy.js"></script>
     <script>
         var reservatieForm = $(".reservatie-form");
         reservatieForm.steps({
@@ -80,7 +88,14 @@
 
             }
         });
-
+        $('.datepicker').pickadate({
+            monthsFull:['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
+            weekdaysFull:['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+            weekdaysShort:['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
+            today: 'vandaag',
+            clear: 'wissen',
+            close: 'sluit',
+        });
         reservatieForm.validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
