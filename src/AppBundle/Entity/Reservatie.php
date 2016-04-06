@@ -1,0 +1,225 @@
+<?php 
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+* @ORM\Entity
+* @ORM\Table(name="reservatie")
+*/
+class Reservatie{
+
+	/**
+	* @ORM\Column(type="integer")
+	* @ORM\Id
+	* @ORM\GeneratedValue(strategy="AUTO")
+	*/
+	protected $id;
+
+	/**
+	* @ORM\Column(type="date")
+	*/
+	protected $datum;
+
+	/**
+	* @ORM\Column(type="string", length=255)
+	*/
+	protected $naam;
+	/**
+	* @ORM\Column(type="string", length=255)
+	*/
+	protected $opdrachtgever;
+	/**
+	* @ORM\Column(type="integer", name="aantal_deelnemers")
+	*/
+	protected $aantalDeelnemers;
+	/**
+	* @ORM\Column(type="time")
+	*/
+	protected $aanvang;
+	/**
+	* @ORM\Column(type="time")
+	*/
+	protected $einde;
+	/**
+     * @ORM\Column(type="decimal", precision=2, scale=0, nullable=true)
+     */
+	protected $totaal;
+	protected $commentaar;
+	protected $afdeling;
+	protected $product;
+	protected $project;
+	protected $rekening;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set datum
+     *
+     * @param \DateTime $datum
+     * @return Reservatie
+     */
+    public function setDatum($datum)
+    {
+        $this->datum = $datum;
+
+        return $this;
+    }
+
+    /**
+     * Get datum
+     *
+     * @return \DateTime 
+     */
+    public function getDatum()
+    {
+        return $this->datum;
+    }
+
+    /**
+     * Set naam
+     *
+     * @param string $naam
+     * @return Reservatie
+     */
+    public function setNaam($naam)
+    {
+        $this->naam = $naam;
+
+        return $this;
+    }
+
+    /**
+     * Get naam
+     *
+     * @return string 
+     */
+    public function getNaam()
+    {
+        return $this->naam;
+    }
+
+    /**
+     * Set opdrachtgever
+     *
+     * @param string $opdrachtgever
+     * @return Reservatie
+     */
+    public function setOpdrachtgever($opdrachtgever)
+    {
+        $this->opdrachtgever = $opdrachtgever;
+
+        return $this;
+    }
+
+    /**
+     * Get opdrachtgever
+     *
+     * @return string 
+     */
+    public function getOpdrachtgever()
+    {
+        return $this->opdrachtgever;
+    }
+
+    /**
+     * Set aantalDeelnemers
+     *
+     * @param integer $aantalDeelnemers
+     * @return Reservatie
+     */
+    public function setAantalDeelnemers($aantalDeelnemers)
+    {
+        $this->aantalDeelnemers = $aantalDeelnemers;
+
+        return $this;
+    }
+
+    /**
+     * Get aantalDeelnemers
+     *
+     * @return integer 
+     */
+    public function getAantalDeelnemers()
+    {
+        return $this->aantalDeelnemers;
+    }
+
+    /**
+     * Set aanvang
+     *
+     * @param \DateTime $aanvang
+     * @return Reservatie
+     */
+    public function setAanvang($aanvang)
+    {
+        $this->aanvang = $aanvang;
+
+        return $this;
+    }
+
+    /**
+     * Get aanvang
+     *
+     * @return \DateTime 
+     */
+    public function getAanvang()
+    {
+        return $this->aanvang;
+    }
+
+    /**
+     * Set einde
+     *
+     * @param \DateTime $einde
+     * @return Reservatie
+     */
+    public function setEinde($einde)
+    {
+        $this->einde = $einde;
+
+        return $this;
+    }
+
+    /**
+     * Get einde
+     *
+     * @return \DateTime 
+     */
+    public function getEinde()
+    {
+        return $this->einde;
+    }
+
+    /**
+     * Set totaal
+     *
+     * @param string $totaal
+     * @return Reservatie
+     */
+    public function setTotaal($totaal)
+    {
+        $this->totaal = $totaal;
+
+        return $this;
+    }
+
+    /**
+     * Get totaal
+     *
+     * @return string 
+     */
+    public function getTotaal()
+    {
+        return $this->totaal;
+    }
+}

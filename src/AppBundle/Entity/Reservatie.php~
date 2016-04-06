@@ -1,0 +1,110 @@
+<?php 
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+* @ORM\Entity
+* @ORM\Table(name="reservatie")
+*/
+class Reservatie{
+
+	/**
+	* @ORM\Column(type="integer")
+	* @ORM\Id
+	* @ORM\GeneratedValue(strategy="AUTO")
+	*/
+	protected $id;
+
+	/**
+	* @ORM\Column(type="date")
+	*/
+	protected $datum;
+
+	/**
+	* @ORM\Column(type="string", length=255)
+	*/
+	protected $naam;
+	/**
+	* @ORM\Column(type="string", length=255)
+	*/
+	protected $opdrachtgever;
+	/**
+	* @ORM\Column(type="integer", name="aantal_deelnemers")
+	*/
+	protected $aantalDeelnemers;
+	/**
+	* @ORM\Column(type="time")
+	*/
+	protected $aanvang;
+	/**
+	* @ORM\Column(type="time")
+	*/
+	protected $einde;
+	/**
+     * @ORM\Column(type="decimal", precision=2, scale=0, nullable=true)
+     */
+	protected $totaal;
+	protected $commentaar;
+	protected $afdeling;
+	protected $product;
+	protected $project;
+	protected $rekening;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set datum
+     *
+     * @param \DateTime $datum
+     * @return Reservatie
+     */
+    public function setDatum($datum)
+    {
+        $this->datum = $datum;
+
+        return $this;
+    }
+
+    /**
+     * Get datum
+     *
+     * @return \DateTime 
+     */
+    public function getDatum()
+    {
+        return $this->datum;
+    }
+
+    /**
+     * Set naam
+     *
+     * @param string $naam
+     * @return Reservatie
+     */
+    public function setNaam($naam)
+    {
+        $this->naam = $naam;
+
+        return $this;
+    }
+
+    /**
+     * Get naam
+     *
+     * @return string 
+     */
+    public function getNaam()
+    {
+        return $this->naam;
+    }
+}
