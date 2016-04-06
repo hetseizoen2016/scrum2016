@@ -347,6 +347,30 @@ nav ul li:hover:after{
 }
 
 /*********************
+        RESERVATIE
+*********************/
+
+label.error{
+    color: red;
+}
+
+li.current{
+    background-color: #039be5;
+}
+
+li.current a{
+    color: white;
+}
+
+.steps ul li, .actions ul li{
+    display: inline;
+    padding: 0.5em;
+}
+.disabled a{
+    color: lightgrey;
+}
+
+/*********************
         FOOTER
 *********************/
 footer{
@@ -417,7 +441,6 @@ footer #top {
 }
 .material-icons{
     color: black;
-    height:;
 }
 
 /*********************
@@ -448,7 +471,7 @@ footer #top {
         margin-bottom: -4em;
     }
 }
-@media screen and (max-height: -width: 360px) {
+@media screen and (max-width: 360px) {
     #nav-mobile{
         padding:0 0.5px;
     }
