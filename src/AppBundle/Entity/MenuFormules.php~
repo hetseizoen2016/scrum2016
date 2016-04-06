@@ -9,6 +9,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\MenuType;
 
 /**
  * Class MenuFormules
@@ -19,13 +21,14 @@ use Doctrine\ORM\Mapping as ORM;
 class MenuFormules
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+ * @ORM\Id
+ * @ORM\Column(type="integer")
+ * @ORM\GeneratedValue(strategy="AUTO")
+ */
     protected $id;
     /**
      * @ORM\Column(type="string", length=64, nullable=false, name="name")
+     * @Assert\NotBlank()
      */
     protected $name;
     /**
@@ -34,6 +37,8 @@ class MenuFormules
     protected $info;
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2, nullable=false, name="price" )
+     * @Assert\NotBlank()
+     * @Assert\GreaterThanOrEqual(value=0)
      */
     protected $price;
     /**
@@ -44,6 +49,11 @@ class MenuFormules
      * @ORM\Column(type="decimal", precision=3, scale=0, nullable=true, name="max_persons")
      */
     protected $maxPersons;
+    /**
+     * @ORM\ManyToOne(targetEntity="MenuType", inversedBy="menuFormule")
+     * @ORM\JoinColumn(name="menutype_id", referencedColumnName="id")
+     */
+    private $menutype;
 
     /**
      * Get id
@@ -145,5 +155,51 @@ class MenuFormules
     public function getMinPersons()
     {
         return $this->minPersons;
+    }
+
+    /**
+     * Set maxPersons
+     *
+     * @param string $maxPersons
+     * @return MenuFormules
+     */
+    public function setMaxPersons($maxPersons)
+    {
+        $this->maxPersons = $maxPersons;
+
+        return $this;
+    }
+
+    /**
+     * Get maxPersons
+     *
+     * @return string 
+     */
+    public function getMaxPersons()
+    {
+        return $this->maxPersons;
+    }
+
+    /**
+     * Set menutype
+     *
+     * @param \AppBundle\Entity\MenuType $menutype
+     * @return MenuFormules
+     */
+    public function setMenutype(MenuType $menutype = null)
+    {
+        $this->menutype = $menutype;
+
+        return $this;
+    }
+
+    /**
+     * Get menutype
+     *
+     * @return \AppBundle\Entity\MenuType 
+     */
+    public function getMenutype()
+    {
+        return $this->menutype;
     }
 }

@@ -18,12 +18,14 @@ $(function () {
     }
     );
 
+
         $(".reservatie-form").steps({
             headerTag: "h3",
             bodyTag: "section",
             transitionEffect: "slideLeft"
             
         });
+
 
     }); // end of document ready
 

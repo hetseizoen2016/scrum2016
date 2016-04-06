@@ -22,12 +22,24 @@
             <div class="nav-admin container">
                 <ul class="right hide-on-med-and-down">
                     <li>
+                        <a class="black-text" href="{{ path('logout') }}">Uitloggen</a>
+                    </li>
+                    <li>
+                        <a class="black-text" href="{{ path('password') }}">Verander wachtwoord</a>
+                    </li>
+                </ul>
+                <ul class="left hide-on-med-and-down">
+                    <li>
                         <a class="black-text" href="{{ path('admin') }}">Admin home</a>
                     </li>
                     <li>
-                        <p>|</p>
+                        <a class="black-text" href="{{ path('formules_index') }}">Formules</a>
                     </li>
                     <li>
+                        <a class="black-text" href="{{ path('menutype_index') }}">Menugangen</a>
+                    </li>
+                    <li>
+                        <a class="black-text" href="{{ path('uren_index') }}">Openingsuren</a>
                         <a class="black-text" href="{{ path('logout') }}">Uitloggen</a>
                     </li>
                 </ul>                
@@ -42,7 +54,7 @@
         <nav class="z-depth-0">
             <div class="nav-wrapper container">
                 <a href='{{ path('index') }}' class='brand-logo'>
-                    <img src="{{ asset('images/header/small_logo_seizoen.png') }}">
+                    <img src="{{ asset('images/header/small_logo_seizoen_boom.png') }}">
                 </a>
                 
                 <ul class='right hide-on-med-and-down'>

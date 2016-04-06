@@ -1,0 +1,36 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Nieuwe menugang{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s6 offset-s3">
+                    <h2 class="center-align">Maak een nieuwe menugang</h2>
+
+
+
+                    {{ form_start(form) }}
+
+                    {{ form_label(form.name, 'Naam') }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+
+                    {{ form_widget(form) }}
+
+                    <div class="center-align">
+                        <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                           href="{{ path('menutype_index') }}">Terug</a>
+                        <input class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                               type="submit" value="Aanmaken"/>
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

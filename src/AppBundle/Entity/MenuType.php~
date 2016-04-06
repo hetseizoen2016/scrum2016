@@ -1,0 +1,111 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Geert
+ * Date: 5/04/2016
+ * Time: 11:56
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+
+
+/**
+ * Class MenuType
+ * @package AppBundle\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\MenuTypeRepository")
+ * @ORM\Table(name="menutypes")
+ */
+class MenuType
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="string", length=64, nullable=false, name="name")
+     * @Assert\NotBlank()
+     */
+    protected $name;
+    /**
+     * @ORM\OneToMany(targetEntity="MenuFormules", mappedBy="menutype")
+     */
+    private $menuFormule;
+
+    public function __construct()
+    {
+        $this->menuFormule = new ArrayCollection();
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return MenuType
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add menuFormule
+     *
+     * @param \AppBundle\Entity\MenuFormules $menuFormule
+     * @return MenuType
+     */
+    public function addMenuFormule(MenuFormules $menuFormule)
+    {
+        $this->menuFormule[] = $menuFormule;
+
+        return $this;
+    }
+
+    /**
+     * Remove menuFormule
+     *
+     * @param \AppBundle\Entity\MenuFormules $menuFormule
+     */
+    public function removeMenuFormule(MenuFormules $menuFormule)
+    {
+        $this->menuFormule->removeElement($menuFormule);
+    }
+
+    /**
+     * Get menuFormule
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMenuFormule()
+    {
+        return $this->menuFormule;
+    }
+}
