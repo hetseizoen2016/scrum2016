@@ -8,15 +8,15 @@
     <!-- Compiled and minified CSS for Materialize -->
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-     <!--Import Google Icon Font-->
-      <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
 
 </head>
 <body>
 
     <!-- Header op elke pagina -->
-
+    <div class="main">
     <header>
         {% if user %}
             <div class="nav-admin container">
@@ -40,61 +40,72 @@
                     </li>
                     <li>
                         <a class="black-text" href="{{ path('uren_index') }}">Openingsuren</a>
+                        <a class="black-text" href="{{ path('logout') }}">Uitloggen</a>
                     </li>
-                </ul>
+                </ul>                
             </div>
         {% endif %}
         <div id="headertop" class="container clearfix">
             <p class="right">
                 <!--<img src="{{ asset('images/header/vdab_logo_klein.png') }}">-->
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons hamburger right">menu</i></a>
+                <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons hamburger right">menu</i></a>
             </p>
         </div>
         <nav class="z-depth-0">
             <div class="nav-wrapper container">
                 <a href='{{ path('index') }}' class='brand-logo'>
-                    <img src="{{ asset('images/header/seizoen_temp_logo.png') }}">
+                    <img src="{{ asset('images/header/small_logo_seizoen_boom.png') }}">
                 </a>
                 
                 <ul class='right hide-on-med-and-down'>
                     <li>
-                        <a class=" black-text" href='{{ path('index') }}'>Home</a>
+                        <a href='{{ path('index') }}'>Home</a>
                     </li>
                     <li>
-                        <a class=" black-text" href='{{ path('menu') }}'>Menukaart</a>
+                        <a href='{{ path('menu') }}'>Menukaart</a>
                     </li>
                     <li>
-                        <a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a>
+                        <a href='{{ path('opleidingen') }}'>Opleidingen</a>
                     </li>
                     
                     <li>
-                        <a class=" black-text" href='{{ path('contact') }}'>Contact</a>
+                        <a href='{{ path('contact') }}'>Contact</a>
                     </li>
                     <li class="">
-                        <a class="licht-blauw reserveerknop" href='#'>Reserveer</a>
+                        <a class="licht-blauw white-text reserveerknop" href='{{ path('reservatie') }}'>Reserveer</a>
                     </li>
                 </ul>
-                <ul class="side-nav" id="mobile-demo">
+                <ul class="side-nav" id="mobile">
+                    {% if user %}                    
+                        <li class="admin-mobile-nav">
+                            <a class="black-text" href="{{ path('admin') }}">Admin home</a>
+                        </li>     
+                        <li class="admin-mobile-nav">
+                            <a class="black-text" href="{{ path('logout') }}">Uitloggen</a>
+                        </li>
+                    <hr>
+                    {% endif %}
+
                     <li>
-                        <a class=" black-text" href='{{ path('index') }}'>Home</a>
+                        <a href='{{ path('index') }}'>Home</a>
                     </li>
                     <li>
-                        <a class=" black-text" href='{{ path('menu') }}'>Menu</a>
+                        <a href='{{ path('menu') }}'>Menu</a>
                     </li>
                     <li>
-                        <a class=" black-text" href='{{ path('nieuws') }}'>Nieuws</a>
+                        <a href='{{ path('nieuws') }}'>Nieuws</a>
                     </li>
                     <li>
-                        <a class=" black-text" href='{{ path('opleidingen') }}'>Opleidingen</a>
+                        <a href='{{ path('opleidingen') }}'>Opleidingen</a>
                     </li>
                     <li>
-                        <a class=" black-text" href='{{ path('team') }}'>Team</a>
+                        <a href='{{ path('team') }}'>Team</a>
                     </li>
                     <li>
-                        <a class=" black-text" href='{{ path('contact') }}'>Contact</a>
+                        <a href='{{ path('contact') }}'>Contact</a>
                     </li>
                     <li>
-                        <a class=" black-text reserveerknop" href='#'>Reserveer</a>
+                        <a class="licht-blauw white-text reserveerknop" href='{{ path('reservatie') }}'>Reserveer</a>
                     </li>                
                 </ul>
 
@@ -126,7 +137,7 @@
                         <a class=" white-text" href='{{ path('contact') }}'>Contact</a>
                     </li>
                     <li>
-                        <a class="white-text" href='#'>Reserveer</a>
+                        <a class="white-text" href='{{ path('reservatie') }}'>Reserveer</a>
                     </li>
                 </ul>
 
@@ -158,7 +169,7 @@
             </div>
         </div>
 </footer>
-
+</div>
 
 
 
@@ -167,8 +178,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-2.2.2.min.js"></script>
 <!-- Compiled and minified JavaScript for Materialize -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-
 {% block javascripts %}{% endblock %}
+<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

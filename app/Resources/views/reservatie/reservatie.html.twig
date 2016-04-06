@@ -1,0 +1,115 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Reservatie{% endblock %}
+{%block stylesheets%}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.date.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.time.css">
+{%endblock%}
+{% block body %}
+    <div class="container">
+        <form class="reservatie-form" action="#">
+            <h3>Datum + personen</h3>
+            <section>
+                <label for="datum">Datum</label>
+                <input id="datum" name="datum" type="date" class="datepicker required">
+                <label for="personen">Aantal Personen</label>
+                <input id="personen" name="personen" type="number" class="required">
+            </section>
+            <h3>Formules</h3>
+            <section>
+                <label for="types">Menu formule</label>
+                <select id="types" name="types" class="required" required>
+                    <option value="">- selecteer een formule -</option>
+                    {%for formule in formules%}
+                        <option value="{{formule.name}}">{{formule.name}} ({{formule.info}})</option>
+                    {%endfor%}
+                </select>
+            </section>
+            <h3>Gegevens</h3>
+            <section>
+            </section>
+        </form>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jquerysteps/jquery.steps.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jqueryvalidation/dist/jquery.validate.min.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.date.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.time.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/legacy.js"></script>
+    <script>
+        var reservatieForm = $(".reservatie-form");
+        reservatieForm.steps({
+            /* Labels */
+            labels: {
+                current: "",
+                finish: "Bevestig",
+                next: "Volgende",
+                previous: "Vorige",
+            },
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+                // Allways allow step back to the previous step even if the current step is not valid!
+                if (currentIndex > newIndex)
+                {
+                    return true;
+                }
+                // Clean up if user went backward before
+                if (currentIndex < newIndex)
+                {
+                    // To remove error styles
+                    $(".body:eq(" + newIndex + ") label.error", reservatieForm).remove();
+                    $(".body:eq(" + newIndex + ") .error", reservatieForm).removeClass("error");
+                }
+                reservatieForm.validate().settings.ignore = ":disabled,:hidden";
+                return reservatieForm.valid();
+            },
+            onFinishing: function (event, currentIndex)
+            {
+                reservatieForm.validate().settings.ignore = ":disabled";
+                return reservatieForm.valid();
+            },
+            onFinished: function (event, currentIndex)
+            {
+                var data = reservatieForm.serializeArray();
+                $.ajax({
+                    url: "{{ path('reservatieajax') }}",
+                    data: data
+                }).done(function (json) {
+                    console.log(json);
+                }).error(function () {
+                    console.log("ajax error");
+                });
+
+            }
+        });
+        $('.datepicker').pickadate({
+            monthsFull:['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
+            weekdaysFull:['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+            weekdaysShort:['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
+            today: 'vandaag',
+            clear: 'wissen',
+            close: 'sluit',
+        });
+        reservatieForm.validate({
+            errorPlacement: function errorPlacement(error, element) {
+                element.before(error);
+            },
+            rules: {
+                "types[]": {
+                    required: true
+                }
+            },
+            messages: {
+                "types[]": {
+                    required: "selecteer een formule"
+                }
+            }
+        });
+    </script>
+{% endblock %}

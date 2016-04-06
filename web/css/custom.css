@@ -9,7 +9,7 @@ body{
     min-height: 100vh;
     flex-direction: column;
 }
-main{
+.main {
     flex: 1 0 auto;
 }
 .container{
@@ -23,6 +23,19 @@ main{
 }
 .donker-blauw{
     background-color: #0B437A;
+}
+
+.fw500{
+    font-weight: 500;
+}
+.fw400{
+    font-weight: 400;
+}
+.fw300{
+    font-weight: 300;
+}
+.fw200{
+    font-weight: 200;
 }
 
 @font-face{
@@ -53,15 +66,7 @@ h4{
 
 .hamburger{
     color: #aaa;
-    width: 100px;
-    height:100px;
-}
-
-.material-icons{
-    width: 150px;
-    height: 150px;
-    font-size: 10em;
-
+    font-size: 2em;    
 }
 .clearfix:before,
 .clearfix:after {
@@ -98,7 +103,8 @@ header nav .nav-wrapper{
 header nav a{
     font-size: 1em;
     text-transform: uppercase;
-    font-weight: 200;
+    font-weight: 300;
+    color: #0e0e0e;
 }
 
 nav ul li:hover:after{
@@ -128,8 +134,14 @@ nav ul li:hover:after{
 .card .card-action a{
     color: black;
 }
-
-.bxslider{
+#responsive{
+    height:50%;
+}
+#responsive img{
+    height: 50%;
+    width: 100%;
+}
+.bxslider li{
     margin-left: 1em;
 }
 
@@ -188,6 +200,10 @@ nav ul li:hover:after{
     text-transform: uppercase;
 }
 
+.side-nav .admin-mobile-nav:last-child{
+    margin-bottom: 3em;
+}
+
 
 /*********************
       OPLEIDINGEN
@@ -217,6 +233,94 @@ nav ul li:hover:after{
     margin-top: 1em;
 }
 
+.title-box{
+    transform: skewX(-3deg);
+}
+
+.title-box h2{
+    padding: 0.3em;
+    font-weight: 400;
+    margin-bottom: -1em;
+    
+}
+
+.title-box h3{    
+    text-align: center;
+}
+
+.title-box #krijg-de-smaak{
+    color: white;
+    width: 8em;
+    padding-left: 0.7em;    
+}
+.title-box #te-pakken{
+    color: #0B437A;
+    margin-bottom: 1em;
+    margin-left: 5em;
+}
+
+.title-box #proef{
+    color: #0B437A;
+    font-weight: 500;
+    margin-bottom: -0.8em;
+}
+.title-box #van-een-job{
+    color: #0D8FD0;
+    font-weight: 300;
+}
+
+.title-box #proef-van-een-job{
+    font-weight: 300;
+    margin-bottom: -0.8em;
+}
+.title-box #in-de-keuken{
+    font-weight: 300;
+}
+#inleiding h5{
+    color: #0D8FD0;
+}
+
+#inleiding ul{
+    margin-left: 2em;
+}
+#inleiding ul li{
+    list-style: initial;
+}
+
+#job-zaal{
+    margin-top: 2em;
+}
+#job-zaal ul{
+    margin-left: 2em;
+}
+#job-zaal ul li{
+    list-style: initial;
+}
+
+#job-keuken{
+    margin-top: 5em;
+}
+#job-keuken .title-box{
+    padding: 0.2em 2em 0.2em 2em;
+    color: white;
+}
+#job-keuken ul{
+    margin-left: 2em;
+}
+#job-keuken ul li{
+    list-style: initial;
+}
+#proef-span{
+    font-size: 1em;
+}
+
+#opleiding-videos{
+    margin-top: 5em;
+}
+#opleiding-videos h6{
+    color: #0D8FD0;
+}
+
 /*********************
          TEAM
 *********************/
@@ -229,10 +333,47 @@ nav ul li:hover:after{
         CONTACT
 *********************/
 #map{
-    width: 300px;
-    height: 200px;
+    position:relative;
+    padding-top: 60%;
+    height:0;
+    overflow: hidden;
     background-color: #CCC;
-    margin-top: 1em;
+    margin-top: 1.5em;
+}
+#map iframe{
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100% !important;
+    height:100% !important;
+}
+
+/*********************
+        RESERVATIE
+*********************/
+
+label.error{
+    color: red;
+}
+
+li.current{
+    background-color: #039be5;
+}
+
+li.current a{
+    color: white;
+}
+
+.steps ul li, .actions ul li{
+    display: inline;
+    padding: 0.5em;
+}
+.disabled a{
+    color: lightgrey;
+}
+
+.content .title{
+    display: none;
 }
 
 /*********************
@@ -240,28 +381,16 @@ nav ul li:hover:after{
 *********************/
 footer{
     margin-top: 6em;
-    
 }
 
 footer .col{
     min-height: 16em;
-    
+    margin-bottom: -4em;
 }
 
-
-/*footer #top #first{
-    background-color: #a3b7b9; 
+footer #first{
+    margin-top: 2em;
 }
-footer #top #second {
-    background-color: #a3b7b9;
-    
-}*/
-/*.second ul {
-    padding-left:25px;
-}*/
-/*footer #top #third {
-    background-color: #0D8FD0;
-    min-height: 202px;*/
 footer ul{
     margin-top: 2em;
 }
@@ -296,15 +425,14 @@ footer #top {
 }
 
 .footer_logo{
-    margin-top: 6em;
+    margin-top: 5em;
+}
+.footer-copyright{
+    
 }
 
 .footer-copyright p{
-    margin: 0;
-}
-.material-icons{
-    color: black;
-    height:;
+    margin-bottom: -2em;
 }
 
 /*********************
@@ -314,6 +442,7 @@ footer #top {
     .hamburger{
         display: none;
     }
+
 }
 
 @media screen and (max-width: 992px){
@@ -323,11 +452,8 @@ footer #top {
         margin-left: -0.4em;
     }
 
-
     /*footer*/ 
-    #uren-list li{
-        font-size: 0.7em;
-    }
+    
 
     footer .col{
         margin-bottom: -2em;
@@ -337,7 +463,15 @@ footer #top {
         margin-bottom: -4em;
     }
 }
-@media screen and (max-height: -width: 360px) {
+
+
+@media screen and (max-width: 600px){
+    .title-box #te-pakken{
+        color: #0B437A;
+        margin-bottom: 1em;
+        margin-left: 2.5em;
+}
+@media screen and (max-width: 360px) {
     #nav-mobile{
         padding:0 0.5px;
     }
@@ -345,9 +479,15 @@ footer #top {
         margin-left: 0;
     }
 }
+
 @media screen and (max-width: 1050px) {
+    /*header*/
     .reserveerknop{
         margin-left: 1em;
     }
-
+}
+@media screen and (max-width: 550px) {
+    #uren-list li{
+        font-size: 0.7em;
+    }
 }
