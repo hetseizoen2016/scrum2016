@@ -1,21 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Menugangen wijzigen{% endblock %}
 
 {% block body %}
-    <h1>MenuType edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('menutype_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s6 offset-s3">
+                    <h2 class="center-align">Wijzig de menugang</h2>
+
+                    {{ form_start(edit_form) }}
+
+                    {{ form_label(edit_form.name, 'Naam') }}
+                    {{ form_errors(edit_form.name) }}
+                    {{ form_widget(edit_form.name) }}
+
+                    <div class="center-align">
+                        <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                           href="{{ path('menutype_index') }}">Terug</a>
+                        <input class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                               type="submit" value="Wijzig"/>
+                    </div>
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s8 offset-s2">
+                    <div class="center-align">
+                        {{ form_start(delete_form) }}
+                        <input class="waves-effect waves-light red darken-2 white-text btn"
+                               type="submit" value="Verwijder">
+                        {{ form_end(delete_form) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

@@ -57,7 +57,7 @@ class MenuTypeController extends Controller
             $em->persist($menuType);
             $em->flush();
 
-            return $this->redirectToRoute('menutype_show', array('id' => $menuType->getId()));
+            return $this->redirectToRoute('menutype_index', array('id' => $menuType->getId()));
         }
 
         /* Openingsuren */
@@ -111,7 +111,7 @@ class MenuTypeController extends Controller
             $em->persist($menuType);
             $em->flush();
 
-            return $this->redirectToRoute('menutype_edit', array('id' => $menuType->getId()));
+            return $this->redirectToRoute('menutype_index', array('id' => $menuType->getId()));
         }
 
         /* Openingsuren */
