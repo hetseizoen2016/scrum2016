@@ -66,15 +66,7 @@ h4{
 
 .hamburger{
     color: #aaa;
-    width: 100px;
-    height:100px;
-}
-
-.material-icons{
-    width: 150px;
-    height: 150px;
-    font-size: 10em;
-
+    font-size: 2em;    
 }
 .clearfix:before,
 .clearfix:after {
@@ -243,22 +235,22 @@ nav ul li:hover:after{
     padding: 0.3em;
     font-weight: 400;
     margin-bottom: -1em;
-    text-align: center;
+    
 }
 
-.title-box h3{
-    
+.title-box h3{    
     text-align: center;
 }
 
 .title-box #krijg-de-smaak{
     color: white;
-    width: 8em;    
+    width: 8em;
+    padding-left: 0.7em;    
 }
 .title-box #te-pakken{
     color: #0B437A;
     margin-bottom: 1em;
-    margin-left: -16em;
+    margin-left: 5em;
 }
 
 .title-box #proef{
@@ -392,13 +384,11 @@ footer #top {
 .footer_logo{
     margin-top: 5em;
 }
-
+.footer-copyright{
+    
+}
 .footer-copyright p{
     margin-bottom: -2em;
-}
-.material-icons{
-    color: black;
-    height:;
 }
 
 /*********************
@@ -431,14 +421,15 @@ footer #top {
         margin-bottom: -4em;
     }
 }
-@media screen and (max-height: -width: 360px) {
-    #nav-mobile{
-        padding:0 0.5px;
-    }
-    .reserveerknop{
-        margin-left: 0;
+
+@media screen and (max-width: 600px){
+    .title-box #te-pakken{
+        color: #0B437A;
+        margin-bottom: 1em;
+        margin-left: 2.5em;
     }
 }
+
 @media screen and (max-width: 1050px) {
     .reserveerknop{
         margin-left: 1em;

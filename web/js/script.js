@@ -1,8 +1,6 @@
 /**
  * Created by Geert on 31/03/2016.
  */
-
-(function ($) {
     $(function () {
 
         $('.button-collapse').sideNav();
@@ -20,9 +18,6 @@
         );
 
         //BXSLIDER INIT
-<<<<<<< HEAD
-        
-=======
         $('.bxslider').bxSlider({
             mode: 'fade',
             pause: 8000,
@@ -30,7 +25,6 @@
             auto: true,
             controls: false
         });
->>>>>>> 62f8fdc70d65350b680c3009a0c2d6a5a20654c8
 
         $(".reservatie-form").steps({
             headerTag: "h3",
@@ -40,4 +34,3 @@
         });
 
     }); // end of document ready
-})(jQuery); // end of jQuery name space
