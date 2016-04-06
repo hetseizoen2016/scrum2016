@@ -14,23 +14,63 @@
             </section>
             <h3>Formules</h3>
             <section>
-                <label for="datum">Datum</label>
-                <input id="datum" name="datum" type="date" class="required">
-                <label for="personen">Aantal Personen</label>
-                <input id="personen" name="personen" type="number" class="required">
             </section>
             <h3>Gegevens</h3>
             <section>
-                <label for="datum">Datum</label>
-                <input id="datum" name="datum" type="date" class="required">
-                <label for="personen">Aantal Personen</label>
-                <input id="personen" name="personen" type="number" class="required">
             </section>
         </form>
     </div>
-
 {% endblock %}
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/jQuerySteps/jquery.steps.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquerysteps/jquery.steps.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jqueryvalidation/dist/jquery.validate.min.js') }}"></script>
+    <script>
+        var reservatieForm = $(".reservatie-form");
+        reservatieForm.steps({
+            /* Labels */
+            labels: {
+                current: "",
+                finish: "Bevestig",
+                next: "Volgende",
+                previous: "Vorige",
+            },
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+                // Allways allow step back to the previous step even if the current step is not valid!
+                if (currentIndex > newIndex)
+                {
+                    return true;
+                }
+                reservatieForm.validate().settings.ignore = ":disabled,:hidden";
+                return reservatieForm.valid();
+            },
+            onFinishing: function (event, currentIndex)
+            {
+                reservatieForm.validate().settings.ignore = ":disabled";
+                return reservatieForm.valid();
+            },
+            onFinished: function (event, currentIndex)
+            {
+                var data = reservatieForm.serializeArray();
+                $.ajax({
+                    url: "{{ path('reservatieajax') }}",
+                    data: data
+                }).done(function(json){
+                    console.log(json);
+                }).error(function(){
+                    console.log("ajax error");
+                });
+                
+            }
+        });
+
+        reservatieForm.validate({
+            errorPlacement: function errorPlacement(error, element) {
+                element.before(error);
+            }
+        });
+    </script>
 {% endblock %}

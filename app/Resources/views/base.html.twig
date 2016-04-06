@@ -8,8 +8,8 @@
     <!-- Compiled and minified CSS for Materialize -->
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-     <!--Import Google Icon Font-->
-      <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
 
 </head>
@@ -60,7 +60,7 @@
                         <a href='{{ path('contact') }}'>Contact</a>
                     </li>
                     <li class="">
-                        <a class="licht-blauw white-text reserveerknop" href='#'>Reserveer</a>
+                        <a class="licht-blauw white-text reserveerknop" href='{{ path('reservatie') }}'>Reserveer</a>
                     </li>
                 </ul>
                 <ul class="side-nav" id="mobile">
@@ -93,7 +93,7 @@
                         <a href='{{ path('contact') }}'>Contact</a>
                     </li>
                     <li>
-                        <a class="licht-blauw white-text reserveerknop" href='#'>Reserveer</a>
+                        <a class="licht-blauw white-text reserveerknop" href='{{ path('reservatie') }}'>Reserveer</a>
                     </li>                
                 </ul>
 
