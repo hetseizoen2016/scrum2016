@@ -9,8 +9,8 @@ body{
     min-height: 100vh;
     flex-direction: column;
 }
-.main {
-    flex: 1 0 auto;
+main {
+    flex: 1 0 auto;    
 }
 .container{
     width: 80%;
@@ -384,8 +384,7 @@ footer{
 }
 
 footer .col{
-    min-height: 16em;
-    margin-bottom: -4em;
+    min-height: 8em;
 }
 
 footer #first{
@@ -421,18 +420,17 @@ footer a .brand-logo{
     margin-left: 25px;
 }*/
 footer #top {
-    margin-bottom:0;   
+      
 }
 
 .footer_logo{
     margin-top: 5em;
 }
 .footer-copyright{
-    
+    margin-bottom: -1em;
 }
 
 .footer-copyright p{
-    margin-bottom: -2em;
 }
 
 /*********************
@@ -470,6 +468,7 @@ footer #top {
         color: #0B437A;
         margin-bottom: 1em;
         margin-left: 2.5em;
+    }
 }
 @media screen and (max-width: 360px) {
     #nav-mobile{
@@ -487,7 +486,7 @@ footer #top {
     }
 }
 @media screen and (max-width: 550px) {
-    #uren-list li{
+    #uren-list li a{
         font-size: 0.7em;
     }
 }

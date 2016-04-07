@@ -16,16 +16,16 @@
 <body>
 
     <!-- Header op elke pagina -->
-    <div class="main">
+    
     <header>
         {% if user %}
             <div class="nav-admin container">
-                <ul class="right hide-on-med-and-down">
+                <ul class="right hide-on-med-and-down">                    
                     <li>
-                        <a class="black-text" href="{{ path('logout') }}">Uitloggen</a>
+                        <a class="black-text" href="{{ path('admin') }}">Admin home</a>
                     </li>
                     <li>
-                        <a class="black-text" href="{{ path('password') }}">Verander wachtwoord</a>
+                        <a class="black-text" href="{{ path('logout') }}">Uitloggen</a>
                     </li>
                 </ul>                
             </div>
@@ -97,7 +97,7 @@
             </div>
         </nav>
     </header>
-{% block body %}{% endblock %}
+<main>{% block body %}{% endblock %}</main>
 
 
 <!-- Footer op elke pagina -->
@@ -154,7 +154,7 @@
             </div>
         </div>
 </footer>
-</div>
+
 
 
 

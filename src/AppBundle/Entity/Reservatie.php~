@@ -27,7 +27,7 @@ class Reservatie{
 	*/
 	protected $naam;
 	/**
-	* @ORM\Column(type="string", length=255)
+	* @ORM\Column(type="string", length=255, nullable=true)
 	*/
 	protected $opdrachtgever;
 	/**
@@ -43,13 +43,28 @@ class Reservatie{
 	*/
 	protected $einde;
 	/**
-     * @ORM\Column(type="decimal", precision=2, scale=0, nullable=true)
+     * @ORM\Column(type="decimal", precision=2, scale=0)
      */
 	protected $totaal;
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
 	protected $commentaar;
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
 	protected $afdeling;
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
 	protected $product;
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
 	protected $project;
+    /**
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
 	protected $rekening;
 
     /**
@@ -106,5 +121,120 @@ class Reservatie{
     public function getNaam()
     {
         return $this->naam;
+    }
+
+    /**
+     * Set opdrachtgever
+     *
+     * @param string $opdrachtgever
+     * @return Reservatie
+     */
+    public function setOpdrachtgever($opdrachtgever)
+    {
+        $this->opdrachtgever = $opdrachtgever;
+
+        return $this;
+    }
+
+    /**
+     * Get opdrachtgever
+     *
+     * @return string 
+     */
+    public function getOpdrachtgever()
+    {
+        return $this->opdrachtgever;
+    }
+
+    /**
+     * Set aantalDeelnemers
+     *
+     * @param integer $aantalDeelnemers
+     * @return Reservatie
+     */
+    public function setAantalDeelnemers($aantalDeelnemers)
+    {
+        $this->aantalDeelnemers = $aantalDeelnemers;
+
+        return $this;
+    }
+
+    /**
+     * Get aantalDeelnemers
+     *
+     * @return integer 
+     */
+    public function getAantalDeelnemers()
+    {
+        return $this->aantalDeelnemers;
+    }
+
+    /**
+     * Set aanvang
+     *
+     * @param \DateTime $aanvang
+     * @return Reservatie
+     */
+    public function setAanvang($aanvang)
+    {
+        $this->aanvang = $aanvang;
+
+        return $this;
+    }
+
+    /**
+     * Get aanvang
+     *
+     * @return \DateTime 
+     */
+    public function getAanvang()
+    {
+        return $this->aanvang;
+    }
+
+    /**
+     * Set einde
+     *
+     * @param \DateTime $einde
+     * @return Reservatie
+     */
+    public function setEinde($einde)
+    {
+        $this->einde = $einde;
+
+        return $this;
+    }
+
+    /**
+     * Get einde
+     *
+     * @return \DateTime 
+     */
+    public function getEinde()
+    {
+        return $this->einde;
+    }
+
+    /**
+     * Set totaal
+     *
+     * @param string $totaal
+     * @return Reservatie
+     */
+    public function setTotaal($totaal)
+    {
+        $this->totaal = $totaal;
+
+        return $this;
+    }
+
+    /**
+     * Get totaal
+     *
+     * @return string 
+     */
+    public function getTotaal()
+    {
+        return $this->totaal;
     }
 }
