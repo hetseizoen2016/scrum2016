@@ -92,7 +92,7 @@ header nav{
     min-height: 6em;
     background-color: white;
     border-bottom: 1px solid #eee; 
-     
+
 }
 
 
@@ -145,7 +145,7 @@ nav ul li:hover:after{
     margin:0 auto;
 }
 .bxslider li{
-   margin-left: 1em;
+    margin-left: 1em;
 }
 
 /*********************
@@ -244,7 +244,7 @@ nav ul li:hover:after{
     padding: 0.3em;
     font-weight: 400;
     margin-bottom: -1em;
-    
+
 }
 
 .title-box h3{    
@@ -431,11 +431,11 @@ footer #top {
     margin-top: 5em;
 }
 .footer-copyright{
-    
+
 }
 
 .footer-copyright p{
-    margin-bottom: -2em;
+    margin-bottom: 0;
 }
 
 /*********************
@@ -456,7 +456,7 @@ footer #top {
     }
 
     /*footer*/ 
-    
+
 
     footer .col{
         margin-bottom: -2em;
@@ -473,6 +473,7 @@ footer #top {
         color: #0B437A;
         margin-bottom: 1em;
         margin-left: 2.5em;
+    }
 }
 @media screen and (max-width: 360px) {
     #nav-mobile{
