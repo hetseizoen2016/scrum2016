@@ -1,11 +1,11 @@
 {% extends "base.html.twig" %}
 
 {% block title %}Reservatie{% endblock %}
-{%block stylesheets%}
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.date.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.time.css">
-{%endblock%}
+{% block stylesheets %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.date.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.time.css">
+{% endblock %}
 {% block body %}
     <div class="container">
         <form class="reservatie-form" action="#">
@@ -19,7 +19,7 @@
             <h3>Formules</h3>
             <section>
                 <label for="types">Menu formule</label>
-                <select id="types" name="types" class="required" required>
+                <select id="types" name="types" class="required">
                     <option value="">- selecteer een formule -</option>
                     {%for formule in formules%}
                         <option value="{{formule.name}}">{{formule.name}} ({{formule.info}})</option>
@@ -28,6 +28,8 @@
             </section>
             <h3>Gegevens</h3>
             <section>
+                <label for="rekening">Rekeningnummer</label>
+                <input id="rekening" name="rekening" class="required">
             </section>
         </form>
     </div>
@@ -87,29 +89,51 @@
                 });
 
             }
-        });
-        $('.datepicker').pickadate({
-            monthsFull:['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
-            weekdaysFull:['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
-            weekdaysShort:['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
-            today: 'vandaag',
-            clear: 'wissen',
-            close: 'sluit',
-        });
-        reservatieForm.validate({
+        }).validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
             },
             rules: {
+                datum: {
+                    required: true,
+                    date: true
+                },
+                personen: {
+                    required: true
+                },
                 "types[]": {
                     required: true
+                },
+                rekening: {
+                    required: true,
+                    number: true
                 }
             },
             messages: {
+                datum: {
+                    required: "Selecteer een datum",
+                    date: "Dit is geen geldige datum"
+                },
+                personen: {
+                    required: "Voer het aantal personen in"
+                },
                 "types[]": {
-                    required: "selecteer een formule"
+                    required: "Selecteer een formule"
+                },
+                rekening: {
+                    required: "Vul een rekeningnummer in",
+                    number: "Geen geldig rekeningnummer"
                 }
             }
+        });
+
+        $('.datepicker').pickadate({
+            monthsFull: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
+            weekdaysFull: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+            weekdaysShort: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
+            today: 'vandaag',
+            clear: 'wissen',
+            close: 'sluit',
         });
     </script>
 {% endblock %}
