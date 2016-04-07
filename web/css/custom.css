@@ -141,8 +141,11 @@ nav ul li:hover:after{
     height: 50%;
     width: 100%;
 }
+.bxslider img{
+    margin:0 auto;
+}
 .bxslider li{
-    margin-left: 1em;
+   margin-left: 1em;
 }
 
 /*********************
