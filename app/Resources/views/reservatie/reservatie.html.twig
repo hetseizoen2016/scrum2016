@@ -19,8 +19,8 @@
             <h3>Formules</h3>
             <section>
                 <label for="types">Menu formule</label>
-                <select id="types" name="types" class="required">
-                    <option value="">- selecteer een formule -</option>
+                <select id="types" name="types" class="required browser-default">
+                    <option value="" disabled selected>- selecteer een formule -</option>
                     {%for formule in formules%}
                         <option value="{{formule.name}}">{{formule.name}} ({{formule.info}})</option>
                     {%endfor%}
@@ -101,7 +101,7 @@
                 personen: {
                     required: true
                 },
-                "types[]": {
+                types: {
                     required: true
                 },
                 rekening: {
@@ -117,7 +117,7 @@
                 personen: {
                     required: "Voer het aantal personen in"
                 },
-                "types[]": {
+                types: {
                     required: "Selecteer een formule"
                 },
                 rekening: {
