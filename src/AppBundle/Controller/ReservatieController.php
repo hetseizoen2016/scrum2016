@@ -53,9 +53,9 @@ class ReservatieController extends Controller
     public function ajaxAction(Request $request) {
         $waarden = $request->query->all();
         
-        $return = array("datum" => $waarden["datum"], "personen" => $waarden["personen"]);
+        //$return = array("datum" => $waarden["datum"], "personen" => $waarden["personen"]);
         
-        return new Response(json_encode($return));
+        return new Response(var_dump($waarden));
     }
 
 }
