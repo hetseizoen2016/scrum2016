@@ -211,6 +211,9 @@ nav ul li:hover:after{
     width:50%;
     float: left;
 }
+#reservatie-info{
+    width:80%;
+}
 
 
 /*********************
