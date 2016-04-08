@@ -14,6 +14,9 @@
 		</tr>
 		<tr>
 			<td>
+				{% for type in types %}
+					{{ type }} </br>
+				{% endfor %}
 				Broodjeslunch à 6 euro p.p. </br>
 				Broodjeslunch à 6 euro p.p. </br>
 				Broodjeslunch à 6 euro p.p. </br>
@@ -30,13 +33,16 @@
 				Broodjeslunch à 6 euro p.p. </br>
 			</td>
 			<td>
-				Datum van uitvoering: 08/04/2016 </br>
-				Gereserveerd door: </br>
-				In opdracht van: </br>
-				Aantal deelnemers: </br>
+				Datum van uitvoering: {{ datum }}</br>
+				Gereserveerd door: {{ naam }}</br>
+				
+				In opdracht van: {{ opdrachtgever }}</br>
+				
+				Aantal deelnemers: {{ aantalDeelnemers }}</br>
 				</br>
-				Aanvangsuur: </br>
+				Aanvangsuur: {{ aanvang }}</br>
 				Einde: </br>
+				</br>				
 			</td>		
 		</tr>
 	</table>
@@ -50,10 +56,16 @@
 	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%" cellpadding="3" cellspacing="3">
 		<tr>
 			<td>
-				Rekening: </br>
-				Afdeling: </br>
-				Product: </br>
-				Project:
+				Rekening: {{ rekening }}</br>
+				Afdeling: {{ afdeling }}</br>
+				Product: {{ product }}</br>
+				Project: {{ project }}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Extra Informatie:</br>
+				{{ commentaar }}
 			</td>
 		</tr>
 	</table>
