@@ -12,10 +12,14 @@
                     {{ form_start(edit_form) }}
                     {{ form_widget(edit_form) }}
                     <div class="center-align">
-                        <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                    <div class= "button">
+                        <a class="waves-effect waves-light blue-grey darken-3 white-text btn" 
                            href="{{ path('formules_index') }}">Terug</a>
-                        <input class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                    </div>
+                    <div class="button">
+                        <input class="waves-effect waves-light blue-grey darken-3 white-text btn" 
                                type="submit" value="Wijzig"/>
+                    </div>
                     </div>
                     {{ form_end(edit_form) }}
                 </div>

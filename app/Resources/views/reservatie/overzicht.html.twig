@@ -14,43 +14,60 @@
         <div class="row">
             <div class="col s12">
                 <div class="collapsible-header">
-                    <div class="col s2">Datum en uur</div>
+                    <div class="col s3">Datum en uur</div>
                     <div class="col s1">personen</div>
-                    <div class="col s7">Menu</div>
-                    <div class="col s1"></div>
+                    <div class="col s6">Naam</div>
+                    <div class="col s2"></div>
                 </div>
 
                 <ul class="collapsible" data-collapsible="expandable">
+                    {% for reservatie in reservaties %}
+                        <li>
+                            <div class="collapsible-header">
+                                <div class="col s3">{{ reservatie.datum|date("d/m/Y") }} {{ reservatie.aanvang|date("H:i") }} - {{ reservatie.einde|date("H:i") }}</div>
+                                <div class="col s1">{{ reservatie.aantalDeelnemers }}</div>
+                                <div class="col s6">{{ reservatie.naam }}</div>
+                                <div class="col s1"><a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}"><i class="material-icons blue-text darken-3">mode_edit</i></a></div>
+                                <div class="col s1"><i class="material-icons red-text darken-4">clear</i></div>
+                            </div>
+                            <div class="collapsible-body">
+                                <ul>
+                                {% for menuFormule in reservatie.reservatieRegels %}
+                                    <li>
+                                        <div class="row">
+                                            <div class="col s2">- {{ menuFormule.name }}</div>
+                                            <div class="col s1">&euro; {{ menuFormule.price }}</div>
+                                            <div class="col s9">{{ menuFormule.info }}</div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                                <div class="row">
+                                    <div class="col s2">Afdeling</div>
+                                    <div class="col s2">Product</div>
+                                    <div class="col s2">Project</div>
+                                    <div class="col s2">Rekening</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s2">{{ reservatie.afdeling }}</div>
+                                    <div class="col s2">{{ reservatie.product }}</div>
+                                    <div class="col s2">{{ reservatie.project }}</div>
+                                    <div class="col s2">{{ reservatie.rekening }}</div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+
+{#
                     <li>
-                        <div class="collapsible-header">
-                            <div class="col s2">12/04/2016 13:00</div>
-                            <div class="col s1">2</div>
-                            <div class="col s7">Lunch</div>
-                            <div class="col s1"><i class="material-icons blue-text darken-3">mode_edit</i></div>
-                            <div class="col s1"><i class="material-icons red-text darken-4">clear</i></div>
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        <a href="{{ path('reservatie_show', { 'id': reservatie.id }) }}">show</a>
                     </li>
                     <li>
-                        <div class="collapsible-header">
-                            <div class="col s2">12/04/2016 12:30</div>
-                            <div class="col s1">6</div>
-                            <div class="col s7">Lunch</div>
-                            <div class="col s1"><i class="material-icons">mode_edit</i></div>
-                            <div class="col s1"><i class="material-icons">clear</i></div>
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        <a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}">edit</a>
                     </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <div class="col s2">13/04/2016 13:00</div>
-                            <div class="col s1">2</div>
-                            <div class="col s7">Lunch</div>
-                            <div class="col s1"><i class="material-icons">mode_edit</i></div>
-                            <div class="col s1"><i class="material-icons">clear</i></div>
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
+#}
+
+
                 </ul>
 
 

@@ -1,12 +1,21 @@
 {% extends "base.html.twig" %}
 
 {% block title %}Reservatie{% endblock %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.date.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.time.css">
-{% endblock %}
+{%block stylesheets%}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.date.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.time.css">
+{%endblock%}
 {% block body %}
+    
+    <div class="section">
+        <div class="row center-align" id="reservatie-info">
+            <div class="col s12 m12 l12">
+            <p>Het restaurant staat open voor alle personeelsleden van de VDAB en voor hun genodigden.</p>
+            <p>Let op! Je reservatie is pas definitief nadat we deze bevestigd hebben. Het is namelijk zo dat de menu’s en boekingen altijd afgestemd zijn op het leerproces en de vorderingen van onze cursisten.</p>
+            </div>
+        </div>
+    </div>
     <div class="container">
         {{ form_start(form) }}
         {#{{ form_widget(form,{'id': 'res-form'}) }}#}
@@ -51,8 +60,8 @@
             <h3>Formules</h3>
             <section>
                 <label for="types">Menu formule</label>
-                <select id="types" name="types" class="required browser-default">
-                    <option value="" disabled selected>- selecteer een formule -</option>
+                <select id="types" name="types" class="required" required>
+                    <option value="">- selecteer een formule -</option>
                     {%for formule in formules%}
                         <option value="{{formule.name}}">{{formule.name}} ({{formule.info}})</option>
                     {%endfor%}
@@ -60,8 +69,6 @@
             </section>
             <h3>Gegevens</h3>
             <section>
-                <label for="rekening">Rekeningnummer</label>
-                <input id="rekening" name="rekening" class="required">
             </section>
         </form>#}
     </div>
@@ -121,7 +128,16 @@
                 });
                 reservatieForm.submit();
             }
-        }).validate({
+        });
+        $('.datepicker').pickadate({
+            monthsFull:['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
+            weekdaysFull:['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+            weekdaysShort:['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
+            today: 'vandaag',
+            clear: 'wissen',
+            close: 'sluit',
+        });
+        reservatieForm.validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
             },

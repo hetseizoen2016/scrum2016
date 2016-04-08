@@ -63,12 +63,22 @@ class Reservatie{
      */
 	protected $totaal;
 
+
     protected $reservatieRegels;
 
     /**
     * @ORM\Column(type="text", nullable=true)
     */
     protected $commentaar;
+
+
+    /**
+    * @ORM\Column(type="text", length=1028, nullable=true)
+    */
+	protected $commentaar;
+
+    protected $reservatieRegels;
+
 
     /**
     * @ORM\Column(type="string", nullable=true)
@@ -382,7 +392,7 @@ class Reservatie{
      * @param array $reservatieRegels
      * @return Reservatie
      */
-    public function setReservatieRegels($reservatieRegels)
+    public function setReservatieRegels($reservatieRegels = null)
     {
         $this->reservatieRegels = $reservatieRegels;
 

@@ -2,7 +2,6 @@
 
 {% block body %}
     <h1>Reservatie list</h1>
-
     <table>
         <thead>
             <tr>
@@ -40,9 +39,11 @@
                 <td>{{ reservatie.rekening }}</td>
                 <td>
                     <ul>
+                        {#
                         <li>
                             <a href="{{ path('reservatie_show', { 'id': reservatie.id }) }}">show</a>
                         </li>
+                        #}
                         <li>
                             <a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}">edit</a>
                         </li>
