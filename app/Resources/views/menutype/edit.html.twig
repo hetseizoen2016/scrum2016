@@ -1,19 +1,25 @@
 {% extends 'admin/admin.html.twig' %}
 
-{% block title %}Menuformules wijzigen{% endblock %}
+{% block title %}Menugangen wijzigen{% endblock %}
 
 {% block body %}
+
+
     <div class="container">
         <div class="section">
             <div class="row">
-                <div class="col s8 offset-s2">
-                    <h2 class="center-align">Wijzig de menuformule</h2>
+                <div class="col s6 offset-s3">
+                    <h2 class="center-align">Wijzig de menugang</h2>
 
                     {{ form_start(edit_form) }}
-                    {{ form_widget(edit_form) }}
+
+                    {{ form_label(edit_form.name, 'Naam') }}
+                    {{ form_errors(edit_form.name) }}
+                    {{ form_widget(edit_form.name) }}
+
                     <div class="center-align">
                         <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
-                           href="{{ path('formules_index') }}">Terug</a>
+                           href="{{ path('menutype_index') }}">Terug</a>
                         <input class="waves-effect waves-light blue-grey darken-3 white-text btn"
                                type="submit" value="Wijzig"/>
                     </div>
@@ -33,8 +39,5 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
 
 {% endblock %}

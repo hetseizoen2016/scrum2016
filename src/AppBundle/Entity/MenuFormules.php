@@ -10,6 +10,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\MenuType;
 
 /**
  * Class MenuFormules
@@ -48,6 +49,12 @@ class MenuFormules
      * @ORM\Column(type="decimal", precision=3, scale=0, nullable=true, name="max_persons")
      */
     protected $maxPersons;
+    /**
+     * @ORM\Column(type="integer", name="menutype_id")
+     */
+    protected $menutypeId;
+
+    protected $menuType;
 
     /**
      * Get id
@@ -172,5 +179,51 @@ class MenuFormules
     public function getMaxPersons()
     {
         return $this->maxPersons;
+    }
+
+    /**
+     * Set menutypeId
+     *
+     * @param integer $menutypeId
+     * @return MenuFormules
+     */
+    public function setMenutypeId($menutypeId)
+    {
+        $this->menutypeId = $menutypeId;
+
+        return $this;
+    }
+
+    /**
+     * Get menutypeId
+     *
+     * @return integer
+     */
+    public function getMenutypeId()
+    {
+        return $this->menutypeId;
+    }
+
+    /**
+     * set menuType
+     *
+     * @param MenuType $menuType
+     * @return MenuFormules
+     */
+    public function setMenuType(MenuType $menuType = null)
+    {
+        $this->menuType = $menuType;
+
+        return $this;
+    }
+
+    /**
+     * get menuType
+     *
+     * @return MenuType
+     */
+    public function getMenuType()
+    {
+        return $this->menuType;
     }
 }

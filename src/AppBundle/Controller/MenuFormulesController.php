@@ -12,7 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\MenuFormules;
+use AppBundle\Entity\MenuType;
 use AppBundle\Form\MenuFormulesType;
+
+
 
 /**
  * MenuFormules controller.
@@ -34,11 +37,24 @@ class MenuFormulesController extends Controller
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         /* MenuFormules */
-        $em = $this->getDoctrine()->getManager();
-        $menuFormules = $em->getRepository('AppBundle:MenuFormules')->findAll();
+        //$em = $this->getDoctrine()->getManager();
+        $menuFormules = $em->getRepository('AppBundle:MenuFormules')->findAllOrderedByNameAndByPrice();
+
+        //$menuType = $em->getRepository('AppBundle:MenuType')->find(1);
+        //echo $menuType->getName();
+
+        $menuFormulesArray = array();
+
+        foreach ($menuFormules as $menuFormule) {
+           //$menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
+            $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
+            array_push($menuFormulesArray, $menuFormule);
+        }
+
+        //var_dump($menuFormulesArray);
 
         return $this->render('menuformules/index.html.twig', array(
-            'menuFormules' => $menuFormules,
+            'menuFormules' => $menuFormulesArray,
             'openingsuren' => $openingsuren,
             'user' => $this->getUser()
         ));
@@ -54,16 +70,25 @@ class MenuFormulesController extends Controller
     {
         $menuFormule = new MenuFormules();
         $form = $this->createForm('AppBundle\Form\MenuFormulesType', $menuFormule);
-        
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $menuFormule->setMenutypeId($menuFormule->getMenuType()->getId());
+
+            //var_dump($menuFormule);
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($menuFormule);
             $em->flush();
 
-            return $this->redirectToRoute('formules_show', array('id' => $menuFormule->getId()));
+            return $this->redirectToRoute('formules_index', array('id' => $menuFormule->getId()));
         }
+
+        $em = $this->getDoctrine()->getManager();
+        $menuType = $em->getRepository('AppBundle:MenuType')->findAll();
 
         /* Openingsuren */
         $em = $this->getDoctrine()->getManager();
@@ -72,8 +97,9 @@ class MenuFormulesController extends Controller
         return $this->render('menuformules/new.html.twig', array(
             'menuFormule' => $menuFormule,
             'form' => $form->createView(),
+            'menutype' => $menuType,
             'openingsuren' => $openingsuren,
-            'user' => $this->getUser()
+            'user' => $this->getUser(),
         ));
     }
 
@@ -86,6 +112,8 @@ class MenuFormulesController extends Controller
     public function showAction(MenuFormules $menuFormule)
     {
         $deleteForm = $this->createDeleteForm($menuFormule);
+        var_dump($menuFormule);
+        //$menuFormule->setMenutypeId($menuFormule->getMenuType()->getId());
 
         /* Openingsuren */
         $em = $this->getDoctrine()->getManager();
@@ -108,15 +136,24 @@ class MenuFormulesController extends Controller
     public function editAction(Request $request, MenuFormules $menuFormule)
     {
         $deleteForm = $this->createDeleteForm($menuFormule);
+
+        $em = $this->getDoctrine()->getManager();
+        $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
+
+        //var_dump($menuFormule);
+
         $editForm = $this->createForm('AppBundle\Form\MenuFormulesType', $menuFormule);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $menuFormule->setMenutypeId($menuFormule->getMenuType()->getId());
+
             $em->persist($menuFormule);
             $em->flush();
 
-            return $this->redirectToRoute('formules_edit', array('id' => $menuFormule->getId()));
+            return $this->redirectToRoute('formules_index', array('id' => $menuFormule->getId()));
         }
 
         /* Openingsuren */
