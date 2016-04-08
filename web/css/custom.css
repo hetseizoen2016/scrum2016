@@ -496,6 +496,9 @@ footer #top {
     .reserveerknop{
         margin-left: 0;
     }
+    #map{
+        padding-top: 60%;
+    }
 }
 
 @media screen and (max-width: 1050px) {
