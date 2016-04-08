@@ -19,22 +19,23 @@ class ReserveringenOverzichtController extends Controller
     /**
      * Lists all Reserveringen.
      *
-     * @Route("/admin/reservatie/overzicht", name="overzicht")
+     * @Route("/admin/reservatie/overzicht", name="reservatie_overzicht")
      * @Method({"GET", "POST"})
      */
     public function indexAction()
     {
-        //$em = $this->getDoctrine()->getManager();
-
-        //$menuTypes = $em->getRepository('AppBundle:MenuType')->findAll();
-
-        /* Openingsuren */
         $em = $this->getDoctrine()->getManager();
+
+        $reservaties = $em->getRepository('AppBundle:Reservatie')->findAll();
+
+        /* Openingsuren in footer */
+        //$em = $this->getDoctrine()->getManager();
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         return $this->render('reservatie/overzicht.html.twig', array(
             'openingsuren' => $openingsuren,
             'user' => $this->getUser(),
+            'reservaties' => $reservaties,
 
         ));
     }
