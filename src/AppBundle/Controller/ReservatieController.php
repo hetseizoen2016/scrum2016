@@ -68,7 +68,7 @@ class ReservatieController extends Controller
     /**
      * Lists all Reservatie entities.
      *
-     * @Route("/index", name="reservatie_index")
+     * @Route("/reservatie/index", name="reservatie_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -85,7 +85,7 @@ class ReservatieController extends Controller
     /**
      * Creates a new Reservatie entity.
      *
-     * @Route("/new", name="reservatie_new")
+     * @Route("/reservatie/new", name="reservatie_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -111,7 +111,7 @@ class ReservatieController extends Controller
     /**
      * Finds and displays a Reservatie entity.
      *
-     * @Route("/{id}", name="reservatie_show")
+     * @Route("/reservatie/{id}", name="reservatie_show")
      * @Method("GET")
      */
     public function showAction(Reservatie $reservatie)
@@ -127,7 +127,7 @@ class ReservatieController extends Controller
     /**
      * Displays a form to edit an existing Reservatie entity.
      *
-     * @Route("/{id}/edit", name="reservatie_edit")
+     * @Route("/reservatie/{id}/edit", name="reservatie_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Reservatie $reservatie)
@@ -154,7 +154,7 @@ class ReservatieController extends Controller
     /**
      * Deletes a Reservatie entity.
      *
-     * @Route("/{id}", name="reservatie_delete")
+     * @Route("reservatie//{id}", name="reservatie_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Reservatie $reservatie)
