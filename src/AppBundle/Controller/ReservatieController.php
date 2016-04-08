@@ -27,10 +27,50 @@ class ReservatieController extends Controller
         
         $reservatie = new Reservatie();
         $form = $this->createForm('AppBundle\Form\ReservatieType', $reservatie);
+
+        $types = $request->request->get('types');
+
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            echo($request);
+
+            $datum = $form["datum"]->getData()->format('Y-m-d');
+            $naam = $form["naam"]->getData(); 
+            $opdrachtgever = $form["opdrachtgever"]->getData();
+            $aantalDeelnemers = $form["aantalDeelnemers"]->getData();
+            $aanvang = $form["aanvang"]->getData()->format('H:i:s');
+            $commentaar = $form["commentaar"]->getData();
+            $afdeling = $form["afdeling"]->getData();
+            $product = $form["product"]->getData(); 
+            $project = $form["project"]->getData(); 
+            $rekening = $form["rekening"]->getData();          
+
+            //$datumtwee = $request->query->get('datum');
+
+            /*$gegevens = array(
+                "datum" => $request->request->get('datum'),
+                "datumtwee" => $datumtwee
+            );*/
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Hello Email')
+                ->setFrom('tseizoen@vdab.be')
+                ->setTo('vincentvanlerberghe_73@hotmail.com')
+                ->setBody(
+                    $this->renderView(
+                        'email/bevestiging.html.twig',
+                        array("datum" => $datum, "naam" => $naam, "opdrachtgever" => $opdrachtgever,
+                            "aantalDeelnemers" => $aantalDeelnemers, "aanvang" => $aanvang,
+                            "commentaar" => $commentaar, "afdeling" => $afdeling, "product" => $product,
+                            "project" => $project, "rekening" => $rekening, "types" => $types)
+                    ),
+                    'text/html'
+                );
+            $this->get('mailer')->send($message);
+
+            return $this->redirectToRoute('index', array(), 301);
+
+            //return $this->redirectToRoute('send_mail', ['request' => $request], 307);
         }
         
         return $this->render('reservatie/reservatie.html.twig', array(
@@ -45,7 +85,12 @@ class ReservatieController extends Controller
     /**
     * @Route("/reservatie/send", name="send_mail")
     */
-    public function sendAction(){
+    public function sendAction(Request $request){
+        //echo($request->query->get('datum'));
+        
+
+
+
         $message = \Swift_Message::newInstance()
             ->setSubject('Hello Email')
             ->setFrom('tseizoen@vdab.be')
@@ -53,13 +98,13 @@ class ReservatieController extends Controller
             ->setBody(
                 $this->renderView(
                     'email/bevestiging.html.twig',
-                    array('name' => "vincent")
+                    array('name' => "vincent", 'gegevens' => $gegevens)
                 ),
                 'text/html'
             );
         $this->get('mailer')->send($message);
 
-        return $this->redirectToRoute('index', array(), 301);
+        //return $this->redirectToRoute('index', array(), 301);
     }
      /**
      * @Route("/reservatieajax", name="reservatieajax")
