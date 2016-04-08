@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-//use AppBundle\Entity\ReservatieType;
+use AppBundle\Entity\ReservatieType;
 
 /**
 * Class Reservatie
@@ -24,52 +24,67 @@ class Reservatie{
 
 	/**
 	* @ORM\Column(type="date")
+    * @Assert\NotBlank()
+    * @Assert\GreaterThan("today")
 	*/
 	protected $datum;
 
 	/**
 	* @ORM\Column(type="string", length=255)
+    * @Assert\NotBlank()
 	*/
 	protected $naam;
+
 	/**
 	* @ORM\Column(type="string", length=255, nullable=true)
 	*/
 	protected $opdrachtgever;
+
 	/**
 	* @ORM\Column(type="integer", name="aantal_deelnemers")
+    * @Assert\NotBlank()
+    * @Assert\GreaterThan(value = 0)
 	*/
 	protected $aantalDeelnemers;
+
 	/**
 	* @ORM\Column(type="time")
+    * @Assert\NotBlank()
 	*/
 	protected $aanvang;
+
 	/**
 	* @ORM\Column(type="time", nullable=true)
 	*/
 	protected $einde;
+
 	/**
      * @ORM\Column(type="decimal", precision=8, scale=2)
      */
 	protected $totaal;
-    /**
-    * @ORM\Column(type="text", length=1028, nullable=true)
-    */
 
     protected $reservatieRegels;
 
-	protected $commentaar;
+    /**
+    * @ORM\Column(type="text", nullable=true)
+    */
+    protected $commentaar;
+
     /**
     * @ORM\Column(type="string", nullable=true)
     */
 	protected $afdeling;
+
     /**
     * @ORM\Column(type="string", length=255, nullable=true)
     */
 	protected $product;
+
     /**
     * @ORM\Column(type="string", length=255, nullable=true)
     */
 	protected $project;
+
     /**
     * @ORM\Column(type="string", length=255, nullable=true)
     */
@@ -367,7 +382,7 @@ class Reservatie{
      * @param array $reservatieRegels
      * @return Reservatie
      */
-    public function setRekening($reservatieRegels)
+    public function setReservatieRegels($reservatieRegels)
     {
         $this->reservatieRegels = $reservatieRegels;
 
