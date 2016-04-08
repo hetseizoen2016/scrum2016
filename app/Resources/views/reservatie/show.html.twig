@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservatie</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservatie.id }}</td>
+            </tr>
+            <tr>
+                <th>Datum</th>
+                <td>{% if reservatie.datum %}{{ reservatie.datum|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ reservatie.naam }}</td>
+            </tr>
+            <tr>
+                <th>Opdrachtgever</th>
+                <td>{{ reservatie.opdrachtgever }}</td>
+            </tr>
+            <tr>
+                <th>Aantaldeelnemers</th>
+                <td>{{ reservatie.aantalDeelnemers }}</td>
+            </tr>
+            <tr>
+                <th>Aanvang</th>
+                <td>{% if reservatie.aanvang %}{{ reservatie.aanvang|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Einde</th>
+                <td>{% if reservatie.einde %}{{ reservatie.einde|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Totaal</th>
+                <td>{{ reservatie.totaal }}</td>
+            </tr>
+            <tr>
+                <th>Commentaar</th>
+                <td>{{ reservatie.commentaar }}</td>
+            </tr>
+            <tr>
+                <th>Afdeling</th>
+                <td>{{ reservatie.afdeling }}</td>
+            </tr>
+            <tr>
+                <th>Product</th>
+                <td>{{ reservatie.product }}</td>
+            </tr>
+            <tr>
+                <th>Project</th>
+                <td>{{ reservatie.project }}</td>
+            </tr>
+            <tr>
+                <th>Rekening</th>
+                <td>{{ reservatie.rekening }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservatie_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
