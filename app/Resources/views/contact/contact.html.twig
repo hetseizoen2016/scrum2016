@@ -10,7 +10,7 @@
 				<h3>Openingsuren</h3>
 				<ul id="uren-list">
                     {% for openingsuur in openingsuren %}
-                    <li class="black-text">
+                    <li class="black-text" id="contact-uren-list">
                         {{ openingsuur.dag }}
                             {% if openingsuur.van and openingsuur.van|date('H:i') > '00:00'|date('H:i') %}
                                 open van {{ openingsuur.van|date('H:i') }} tot {{ openingsuur.tot|date('H:i') }}.

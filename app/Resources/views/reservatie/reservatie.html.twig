@@ -7,10 +7,19 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.time.css">
 {% endblock %}
 {% block body %}
+
+    <div class="section">
+        <div class="row center-align" id="reservatie-info">
+            <div class="col s12 m12 l12">
+                <p>Het restaurant staat open voor alle personeelsleden van de VDAB en voor hun genodigden.</p>
+                <p>Let op! Je reservatie is pas definitief nadat we deze bevestigd hebben. Het is namelijk zo dat de menu’s en boekingen altijd afgestemd zijn op het leerproces en de vorderingen van onze cursisten.</p>
+            </div>
+        </div>
+    </div>
     <div class="container">
         {{ form_start(form) }}
         <h3>Datum + personen</h3>
-        <section>
+        <section id="datum-pers">
             {{ form_row(form.datum) }}
             {{form_row(form.aanvang)}}
             {{form_row(form.aantalDeelnemers)}}
@@ -33,14 +42,16 @@
         <section>
             {{form_row(form.naam)}}
             {{form_row(form.opdrachtgever)}}
-            {{form_row(form.afdeling)}}
-            {{form_row(form.project)}}
             {{form_row(form.commentaar)}}
         </section>
         <h3>Betaling</h3>
         <section>
+            <input name="betalen" id="cash" type="radio" value="cash" checked><label for="cash">Ter plaatse betalen</label>
+            <input name="betalen" id="budget" type="radio" value="budget"><label for="budget">Op budget betalen</label>
             {{form_row(form.rekening)}}
+            {{form_row(form.afdeling)}}
             {{form_row(form.product)}}
+            {{form_row(form.project)}}
         </section>
         {{ form_end (form) }}
     </div>
@@ -54,6 +65,16 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/legacy.js"></script>
     <script>
         var reservatieForm = $("[name*='reservatie']");
+
+        $("input[name=betalen]:radio").change(function () {
+            var betalen = $("input[name=betalen]:checked").val();
+            if (betalen == "cash") {
+                $("#datum-pers").find("div").css("background-color", "red");
+            } else {
+                $("#datum-pers").find("div").css("background-color", "white");
+            }
+        });
+
 
         reservatieForm.steps({
             /* Labels */
@@ -69,29 +90,29 @@
             onStepChanging: function (event, currentIndex, newIndex)
             {
                 /*if (newIndex == 1) {
-                    console.log(newIndex);
-                    aantalDeelnemers = $("#reservatie_aantalDeelnemers").val();
-                    formules = $("option");
-                    formules.each(function (i) {
-                        if (formules[i].dataset.minpers) {
-                            $(formules[i]).css("background-color", "white");
-                            if (formules[i].dataset.minpers > aantalDeelnemers) {
-                                console.log(aantalDeelnemers + " personen is te weinig (min " + formules[i].dataset.minpers + ")");
-                                $(formules[i]).css("background-color", "blue");
-                            }
-                        } else if (formules[i].dataset.maxpers) {
-                            $(formules[i]).css("background-color", "white");
-                            if (formules[i].dataset.maxpers < aantalDeelnemers) {
-                                console.log(aantalDeelnemers + " personen is te veel (max " + formules[i].dataset.maxpers + ")");
-                                $(formules[i]).css("background-color", "red");
-                            }
-                        } else {
-                            console.log("ok");
-                            $(formules[i]).css("background-color", "white");
-                        }
-                    });*/
-
-                }
+                 console.log(newIndex);
+                 aantalDeelnemers = $("#reservatie_aantalDeelnemers").val();
+                 formules = $("option");
+                 formules.each(function (i) {
+                 if (formules[i].dataset.minpers) {
+                 $(formules[i]).css("background-color", "white");
+                 if (formules[i].dataset.minpers > aantalDeelnemers) {
+                 console.log(aantalDeelnemers + " personen is te weinig (min " + formules[i].dataset.minpers + ")");
+                 $(formules[i]).css("background-color", "blue");
+                 }
+                 } else if (formules[i].dataset.maxpers) {
+                 $(formules[i]).css("background-color", "white");
+                 if (formules[i].dataset.maxpers < aantalDeelnemers) {
+                 console.log(aantalDeelnemers + " personen is te veel (max " + formules[i].dataset.maxpers + ")");
+                 $(formules[i]).css("background-color", "red");
+                 }
+                 } else {
+                 console.log("ok");
+                 $(formules[i]).css("background-color", "white");
+                 }
+                 });
+                 
+                 }*/
                 // Allways allow step back to the previous step even if the current step is not valid!
                 if (currentIndex > newIndex)
                 {
@@ -125,7 +146,16 @@
                 });
                 reservatieForm.submit();
             }
-        }).validate({
+        });
+        $('.datepicker').pickadate({
+            monthsFull: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
+            weekdaysFull: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+            weekdaysShort: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
+            today: 'vandaag',
+            clear: 'wissen',
+            close: 'sluit',
+        });
+        reservatieForm.validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
             },

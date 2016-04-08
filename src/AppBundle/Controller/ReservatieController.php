@@ -79,7 +79,7 @@ class ReservatieController extends Controller
     /**
      * Lists all Reservatie entities.
      *
-     * @Route("/reservatie/index", name="reservatie_index")
+     * @Route("/admin/reservatie/index", name="reservatie_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -88,7 +88,12 @@ class ReservatieController extends Controller
 
         $reservaties = $em->getRepository('AppBundle:Reservatie')->findAll();
 
+        /* Openingsuren in footer */
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
         return $this->render('reservatie/index.html.twig', array(
+            'openingsuren' => $openingsuren,
+            'user' => $this->getUser(),
             'reservaties' => $reservaties,
         ));
     }
@@ -96,11 +101,13 @@ class ReservatieController extends Controller
     /**
      * Creates a new Reservatie entity.
      *
-     * @Route("/reservatie/new", name="reservatie_new")
+     * @Route("/admin/reservatie/new", name="reservatie_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $reservatie = new Reservatie();
         $form = $this->createForm('AppBundle\Form\ReservatieType', $reservatie);
         $form->handleRequest($request);
@@ -113,7 +120,12 @@ class ReservatieController extends Controller
             return $this->redirectToRoute('reservatie_show', array('id' => $reservatie->getId()));
         }
 
+        /* Openingsuren in footer */
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
         return $this->render('reservatie/new.html.twig', array(
+            'openingsuren' => $openingsuren,
+            'user' => $this->getUser(),
             'reservatie' => $reservatie,
             'form' => $form->createView(),
         ));
@@ -125,6 +137,7 @@ class ReservatieController extends Controller
      * @Route("/reservatie/{id}", name="reservatie_show")
      * @Method("GET")
      */
+    /* wordt niet gebruikt */
     public function showAction(Reservatie $reservatie)
     {
         $deleteForm = $this->createDeleteForm($reservatie);
@@ -138,7 +151,7 @@ class ReservatieController extends Controller
     /**
      * Displays a form to edit an existing Reservatie entity.
      *
-     * @Route("/reservatie/{id}/edit", name="reservatie_edit")
+     * @Route("/admin/reservatie/{id}/edit", name="reservatie_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Reservatie $reservatie)
@@ -155,10 +168,16 @@ class ReservatieController extends Controller
             return $this->redirectToRoute('reservatie_edit', array('id' => $reservatie->getId()));
         }
 
+        /* Openingsuren in footer */
+        $em = $this->getDoctrine()->getManager();
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
         return $this->render('reservatie/edit.html.twig', array(
             'reservatie' => $reservatie,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'openingsuren' => $openingsuren,
+            'user' => $this->getUser(),
         ));
     }
 

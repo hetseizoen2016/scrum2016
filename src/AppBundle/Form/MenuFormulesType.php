@@ -21,16 +21,24 @@ class MenuFormulesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('info', TextareaType::class)
-            ->add('price', MoneyType::class)
+            ->add('name', TextType::class,
+                array('label' => 'Naam'))
+            ->add('info', TextareaType::class,
+                array(
+                    'attr' => array('class' => 'materialize-textarea'), 
+                    'label' => 'Beschrijving Menu'
+                    ))
+            ->add('price', MoneyType::class,
+                array('label' => 'Prijs in Euro '))
             ->add('minPersons', IntegerType::class,
                 array(
                     'required' => false,
+                    'label' => 'Min aantal personen'
                 ))
             ->add('maxPersons', IntegerType::class,
                 array(
                     'required' => false,
+                    'label' => 'Max aantal personen'
                 ))
             ->add('menutype', EntityType::class,
                 array(

@@ -38,7 +38,7 @@ class MenuFormulesController extends Controller
 
         /* MenuFormules */
         //$em = $this->getDoctrine()->getManager();
-        $menuFormules = $em->getRepository('AppBundle:MenuFormules')->findAllOrderedByNameAndByPrice();
+        $menuFormules = $em->getRepository('AppBundle:MenuFormules')->findAll();
 
         //$menuType = $em->getRepository('AppBundle:MenuType')->find(1);
         //echo $menuType->getName();
@@ -84,7 +84,7 @@ class MenuFormulesController extends Controller
             $em->persist($menuFormule);
             $em->flush();
 
-            return $this->redirectToRoute('formules_index', array('id' => $menuFormule->getId()));
+            return $this->redirectToRoute('formules_show', array('id' => $menuFormule->getId()));
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -109,6 +109,8 @@ class MenuFormulesController extends Controller
      * @Route("/admin/formules/{id}", name="formules_show")
      * @Method("GET")
      */
+    
+    /* wordt niet gebruikt */
     public function showAction(MenuFormules $menuFormule)
     {
         $deleteForm = $this->createDeleteForm($menuFormule);

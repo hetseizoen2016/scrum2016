@@ -24,9 +24,30 @@ class ReserveringenOverzichtController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $reservatiesArray = array();
 
+        $em = $this->getDoctrine()->getManager();
         $reservaties = $em->getRepository('AppBundle:Reservatie')->findAll();
+
+        foreach ($reservaties as $reservatie) {
+
+            $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatie->getId());
+            $menuFormulesArray = array();
+
+            foreach ($reservatieRegels as $reservatieRegel) {
+
+                $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
+                $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
+                array_push($menuFormulesArray, $menuFormule);
+            }
+
+            $reservatie->setReservatieRegels($menuFormulesArray);
+            array_push($reservatiesArray, $reservatie);
+        }
+
+        $reservaties = $reservatiesArray;
+
+        //var_dump($reservaties);
 
         /* Openingsuren in footer */
         //$em = $this->getDoctrine()->getManager();
@@ -36,7 +57,7 @@ class ReserveringenOverzichtController extends Controller
             'openingsuren' => $openingsuren,
             'user' => $this->getUser(),
             'reservaties' => $reservaties,
-
         ));
+
     }
 }
