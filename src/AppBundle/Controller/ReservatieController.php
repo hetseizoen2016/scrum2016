@@ -17,18 +17,29 @@ class ReservatieController extends Controller
     /**
      * @Route("/reservatie", name="reservatie")
      */
-    public function reservatieAction() {
+    public function reservatieAction(Request $request) {
         /* Openingsuren */
         $em = $this->getDoctrine()->getManager();
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         $formules = $em->getRepository('AppBundle:MenuFormules')->findAll();
+        $types = $em->getRepository('AppBundle:MenuType')->findAll();
+        
+        $reservatie = new Reservatie();
+        $form = $this->createForm('AppBundle\Form\ReservatieType', $reservatie);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            echo($request);
+        }
         
         return $this->render('reservatie/reservatie.html.twig', array(
                     'openingsuren' => $openingsuren,
                     'user' => $this->getUser(),
-                    'formules' => $formules
-        ));
+                    'formules' => $formules,
+                    'types' => $types,
+                    'form' => $form->createView()
+        )); 
     }
 
     /**
@@ -54,11 +65,11 @@ class ReservatieController extends Controller
      * @Route("/reservatieajax", name="reservatieajax")
      */
     public function ajaxAction(Request $request) {
-        $waarden = $request->query->all();
+        $waarden = var_dump($request->query->all());
         
-        $return = array("datum" => $waarden["datum"], "personen" => $waarden["personen"]);
+        //$return = array("datum" => $waarden["datum"], "personen" => $waarden["personen"]);
         
-        return new Response(json_encode($return));
+        return new Response($waarden);
     }
 
 

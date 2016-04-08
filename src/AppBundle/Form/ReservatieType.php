@@ -15,14 +15,12 @@ class ReservatieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('datum', 'date')
+            ->add('datum', 'date', array('attr' => array('class' => 'datepicker'), 'widget' => 'single_text'))
             ->add('naam')
             ->add('opdrachtgever')
             ->add('aantalDeelnemers')
-            ->add('aanvang', 'time')
-            ->add('einde', 'time')
-            ->add('totaal')
-            ->add('commentaar')
+            ->add('aanvang', 'time', array('widget' => 'single_text'))
+            ->add('commentaar', 'textarea')
             ->add('afdeling')
             ->add('product')
             ->add('project')

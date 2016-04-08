@@ -17,15 +17,9 @@ $(function () {
         alignment: 'left' // Displays dropdown with edge aligned to the left of button
     }
     );
-
-        $(".reservatie-form").steps({
-            headerTag: "h3",
-            bodyTag: "section",
-            transitionEffect: "slideLeft"
-            
-        });
-
-
+    $('#menu_formules_info').val();
+    $('#menu_formules_info').trigger('autoresize');
+    });
 }); // end of document ready
 
 
