@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ReservatieRegels list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reservatieid</th>
+                <th>Formuleid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservatieRegel in reservatieRegels %}
+            <tr>
+                <td><a href="{{ path('reservatieregels_show', { 'id': reservatieRegel.id }) }}">{{ reservatieRegel.id }}</a></td>
+                <td>{{ reservatieRegel.reservatieId }}</td>
+                <td>{{ reservatieRegel.formuleId }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reservatieregels_show', { 'id': reservatieRegel.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reservatieregels_edit', { 'id': reservatieRegel.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservatieregels_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

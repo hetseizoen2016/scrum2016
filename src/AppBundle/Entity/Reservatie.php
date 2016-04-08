@@ -44,19 +44,22 @@ class Reservatie{
 	*/
 	protected $aanvang;
 	/**
-	* @ORM\Column(type="time")
+	* @ORM\Column(type="time", nullable=true)
 	*/
 	protected $einde;
 	/**
-     * @ORM\Column(type="decimal", precision=2, scale=0)
+     * @ORM\Column(type="decimal", precision=8, scale=2)
      */
 	protected $totaal;
     /**
-    * @ORM\Column(type="string", length=255, nullable=true)
+    * @ORM\Column(type="text", length=1028, nullable=true)
     */
+
+    protected $reservatieRegels;
+
 	protected $commentaar;
     /**
-    * @ORM\Column(type="string", length=255, nullable=true)
+    * @ORM\Column(type="string", nullable=true)
     */
 	protected $afdeling;
     /**
@@ -357,4 +360,28 @@ class Reservatie{
     {
         return $this->rekening;
     }
+
+    /**
+     * Set reservatieRegels
+     *
+     * @param array $reservatieRegels
+     * @return Reservatie
+     */
+    public function setRekening($reservatieRegels)
+    {
+        $this->reservatieRegels = $reservatieRegels;
+
+        return $this;
+    }
+
+    /**
+     * Get reservatieRegels
+     *
+     * @return array 
+     */
+    public function getReservatieRegels()
+    {
+        return $this->reservatieRegels;
+    }
+
 }
