@@ -345,7 +345,7 @@ nav ul li:hover:after{
 *********************/
 #map{
     position:relative;
-    padding-top: 60%;
+    padding-top: 100%;
     height:0;
     overflow: hidden;
     background-color: #CCC;
@@ -357,6 +357,9 @@ nav ul li:hover:after{
     left:0;
     width: 100% !important;
     height:100% !important;
+}
+#contact-uren-list{
+    line-height: 275%;
 }
 
 /*********************
@@ -386,7 +389,6 @@ li.current a{
 .content .title{
     display: none;
 }
-
 /*********************
         FOOTER
 *********************/
