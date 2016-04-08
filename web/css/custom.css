@@ -206,6 +206,11 @@ nav ul li:hover:after{
 .side-nav .admin-mobile-nav:last-child{
     margin-bottom: 3em;
 }
+#button{
+    margin-top: 10px;
+    width:50%;
+    float: left;
+}
 
 
 /*********************
@@ -493,5 +498,9 @@ footer #top {
 @media screen and (max-width: 550px) {
     #uren-list li{
         font-size: 0.7em;
+    }
+    #button{
+        float: none;
+        width:100%;
     }
 }

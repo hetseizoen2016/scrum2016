@@ -17,5 +17,7 @@ $(function () {
         alignment: 'left' // Displays dropdown with edge aligned to the left of button
     }
     );
+    $('#menu_formules_info').val();
+    $('#menu_formules_info').trigger('autoresize');
 }); // end of document ready
 
