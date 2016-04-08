@@ -92,7 +92,7 @@ header nav{
     min-height: 6em;
     background-color: white;
     border-bottom: 1px solid #eee; 
-     
+
 }
 
 
@@ -140,6 +140,9 @@ nav ul li:hover:after{
 #responsive img{
     height: 50%;
     width: 100%;
+}
+.bxslider img{
+    margin:0 auto;
 }
 .bxslider li{
     margin-left: 1em;
@@ -241,7 +244,7 @@ nav ul li:hover:after{
     padding: 0.3em;
     font-weight: 400;
     margin-bottom: -1em;
-    
+
 }
 
 .title-box h3{    
@@ -431,6 +434,12 @@ footer #top {
 }
 
 .footer-copyright p{
+
+
+}
+
+.footer-copyright p{
+    margin-bottom: 0;
 }
 
 /*********************
@@ -451,7 +460,7 @@ footer #top {
     }
 
     /*footer*/ 
-    
+
 
     footer .col{
         margin-bottom: -2em;

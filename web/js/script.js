@@ -17,6 +17,7 @@ $(function () {
         alignment: 'left' // Displays dropdown with edge aligned to the left of button
     }
     );
+
         $(".reservatie-form").steps({
             headerTag: "h3",
             bodyTag: "section",
@@ -25,5 +26,7 @@ $(function () {
         });
 
 
-    }); // end of document ready
+}); // end of document ready
+
+
 
