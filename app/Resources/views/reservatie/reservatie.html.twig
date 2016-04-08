@@ -8,7 +8,39 @@
 {% endblock %}
 {% block body %}
     <div class="container">
-        <form class="reservatie-form" action="#">
+        {{ form_start(form) }}
+        {#{{ form_widget(form,{'id': 'res-form'}) }}#}
+        <h3>Datum + personen</h3>
+        <section>
+            {{ form_row(form.datum) }}
+            {{form_row(form.aanvang)}}
+            {{form_row(form.aantalDeelnemers)}}
+        </section>
+        <h3>Formules</h3>
+        <section>
+            {{form_row(form.product)}}
+            <label for="types">Menu formule</label>
+            <select id="types" name="types" class="required browser-default">
+                <option value="" disabled selected>- selecteer een formule -</option>
+                {%for formule in formules%}
+                    <option value="{{formule.name}}">{{formule.name}} ({{formule.info}})</option>
+                {%endfor%}
+            </select>
+        </section>
+        <h3>Gegevens</h3>
+        <section>
+            {{form_row(form.naam)}}
+            {{form_row(form.opdrachtgever)}}
+            {{form_row(form.afdeling)}}
+            {{form_row(form.project)}}
+            {{form_row(form.commentaar)}}
+        </section>
+        <h3>Betaling</h3>
+        <section>
+            {{form_row(form.rekening)}}
+        </section>
+        {{ form_end (form) }}
+        {#<form class="reservatie-form" action="#">
             <h3>Datum + personen</h3>
             <section>
                 <label for="datum">Datum</label>
@@ -31,7 +63,7 @@
                 <label for="rekening">Rekeningnummer</label>
                 <input id="rekening" name="rekening" class="required">
             </section>
-        </form>
+        </form>#}
     </div>
 {% endblock %}
 {% block javascripts %}
@@ -42,7 +74,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.time.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/legacy.js"></script>
     <script>
-        var reservatieForm = $(".reservatie-form");
+        var reservatieForm = $( "[name*='reservatie']");
         reservatieForm.steps({
             /* Labels */
             labels: {
@@ -87,40 +119,40 @@
                 }).error(function () {
                     console.log("ajax error");
                 });
-
+                reservatieForm.submit();
             }
         }).validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
             },
             rules: {
-                datum: {
+                "reservatie[datum]": {
                     required: true,
                     date: true
                 },
-                personen: {
+                "reservatie[aantalDeelnemers]": {
                     required: true
                 },
                 types: {
                     required: true
                 },
-                rekening: {
+                "reservatie[rekening]": {
                     required: true,
                     number: true
                 }
             },
             messages: {
-                datum: {
+                "reservatie[datum]": {
                     required: "Selecteer een datum",
                     date: "Dit is geen geldige datum"
                 },
-                personen: {
+                "reservatie[aantalDeelnemers]": {
                     required: "Voer het aantal personen in"
                 },
                 types: {
                     required: "Selecteer een formule"
                 },
-                rekening: {
+                "reservatie[rekening]": {
                     required: "Vul een rekeningnummer in",
                     number: "Geen geldig rekeningnummer"
                 }
@@ -134,6 +166,8 @@
             today: 'vandaag',
             clear: 'wissen',
             close: 'sluit',
+            format: 'd mmmm yyyy',
+            formatSubmit: 'yyyy-mm-dd'
         });
     </script>
 {% endblock %}
