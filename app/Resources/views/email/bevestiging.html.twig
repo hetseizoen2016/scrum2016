@@ -1,24 +1,74 @@
 <body>
 	<div>
 		<img style="" src="{{ asset('images/footer/vdab_wit.png') }}" />
-		<h1 style="text-align: center">Bevestiging reservatie didactisch restaurant 't Seizoen</h1>
+		<h1>Bevestiging reservatie didactisch restaurant 't Seizoen</h1>
 	</div>
 	<div>
 		<p style="width: 100%">In navolging van uw reservatieaanvraag worden volgende afspraken vastgelegd</p>
 	</div>
-	<table style="width:100%; border: 1px solid black;">
-		<colgroup>
-			<col span="2" style="border: 1px solid black">
-		</colgroup>
+
+	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%" cellpadding="3" cellspacing="3">
 		<tr>
 			<th>Formules</th>
 			<th>Praktische afspraken</th>
 		</tr>
 		<tr>
-			<td>Broodjeslunch</td>
-			<td>Datum van uitvoering:</td>
-			<td>Gereserveerd door:</td>
+			<td>
+				{% for type in types %}
+					{{ type }} </br>
+				{% endfor %}
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+				Broodjeslunch à 6 euro p.p. </br>
+			</td>
+			<td>
+				Datum van uitvoering: {{ datum }}</br>
+				Gereserveerd door: {{ naam }}</br>
+				
+				In opdracht van: {{ opdrachtgever }}</br>
+				
+				Aantal deelnemers: {{ aantalDeelnemers }}</br>
+				</br>
+				Aanvangsuur: {{ aanvang }}</br>
+				Einde: </br>
+				</br>				
+			</td>		
 		</tr>
 	</table>
+	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%" cellpadding="3" cellspacing="3">
+		<tr>
+			<th>Datum</th>
+			<th>Akkoord diensthoofd</th>
+			<th>Totaal:</th>
+		</tr>
+	</table>
+	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%" cellpadding="3" cellspacing="3">
+		<tr>
+			<td>
+				Rekening: {{ rekening }}</br>
+				Afdeling: {{ afdeling }}</br>
+				Product: {{ product }}</br>
+				Project: {{ project }}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Extra Informatie:</br>
+				{{ commentaar }}
+			</td>
+		</tr>
+	</table>
+
 </body>
 

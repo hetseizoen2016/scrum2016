@@ -9,8 +9,8 @@ body{
     min-height: 100vh;
     flex-direction: column;
 }
-.main {
-    flex: 1 0 auto;
+main {
+    flex: 1 0 auto;    
 }
 .container{
     width: 80%;
@@ -206,6 +206,14 @@ nav ul li:hover:after{
 .side-nav .admin-mobile-nav:last-child{
     margin-bottom: 3em;
 }
+.button{
+    margin-top: 10px;
+    width:50%;
+    float: left;
+}
+#reservatie-info{
+    width:80%;
+}
 
 
 /*********************
@@ -337,7 +345,7 @@ nav ul li:hover:after{
 *********************/
 #map{
     position:relative;
-    padding-top: 60%;
+    padding-top: 100%;
     height:0;
     overflow: hidden;
     background-color: #CCC;
@@ -349,6 +357,9 @@ nav ul li:hover:after{
     left:0;
     width: 100% !important;
     height:100% !important;
+}
+#contact-uren-list{
+    line-height: 275%;
 }
 
 /*********************
@@ -372,13 +383,12 @@ li.current a{
     padding: 0.5em;
 }
 .disabled a{
-    color: lightgrey;
+    color: #D3D3D3;
 }
 
 .content .title{
     display: none;
 }
-
 /*********************
         FOOTER
 *********************/
@@ -387,12 +397,14 @@ footer{
 }
 
 footer .col{
-    min-height: 16em;
-    margin-bottom: -4em;
+    min-height: 8em;
 }
 
 footer #first{
     margin-top: 2em;
+}
+footer #third{
+    padding-bottom: 1em;
 }
 footer ul{
     margin-top: 2em;
@@ -424,13 +436,18 @@ footer a .brand-logo{
     margin-left: 25px;
 }*/
 footer #top {
-    margin-bottom:0;   
+      
 }
 
 .footer_logo{
     margin-top: 5em;
 }
 .footer-copyright{
+    margin-bottom: -1em;
+}
+
+.footer-copyright p{
+
 
 }
 
@@ -463,7 +480,7 @@ footer #top {
     }
 
     footer #second{
-        margin-bottom: -4em;
+       /* margin-bottom: -4em;*/
     }
 }
 
@@ -482,6 +499,9 @@ footer #top {
     .reserveerknop{
         margin-left: 0;
     }
+    #map{
+        padding-top: 60%;
+    }
 }
 
 @media screen and (max-width: 1050px) {
@@ -489,9 +509,17 @@ footer #top {
     .reserveerknop{
         margin-left: 1em;
     }
+    .button{
+        float: none;
+        width:100%;
+    }
 }
 @media screen and (max-width: 550px) {
-    #uren-list li{
+    #uren-list li a{
         font-size: 0.7em;
+    }
+    .button{
+        float: none;
+        width:100%;
     }
 }

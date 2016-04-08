@@ -1,64 +1,100 @@
-<?php 
+<?php
 
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\ReservatieType;
 
 /**
-* @ORM\Entity
-* @ORM\Table(name="reservatie")
-*/
-class Reservatie{
+ * Class Reservatie
+ * @package AppBundle\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\ReservatieRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="reservatie")
+ */
+class Reservatie {
 
-	/**
-	* @ORM\Column(type="integer")
-	* @ORM\Id
-	* @ORM\GeneratedValue(strategy="AUTO")
-	*/
-	protected $id;
-
-	/**
-	* @ORM\Column(type="date")
-	*/
-	protected $datum;
-
-	/**
-	* @ORM\Column(type="string", length=255)
-	*/
-	protected $naam;
-	/**
-	* @ORM\Column(type="string", length=255)
-	*/
-	protected $opdrachtgever;
-	/**
-	* @ORM\Column(type="integer", name="aantal_deelnemers")
-	*/
-	protected $aantalDeelnemers;
-	/**
-	* @ORM\Column(type="time")
-	*/
-	protected $aanvang;
-	/**
-	* @ORM\Column(type="time")
-	*/
-	protected $einde;
-	/**
-     * @ORM\Column(type="decimal", precision=2, scale=0, nullable=true)
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-	protected $totaal;
-	protected $commentaar;
-	protected $afdeling;
-	protected $product;
-	protected $project;
-	protected $rekening;
+    protected $id;
+
+    /**
+     * @ORM\Column(type="date")
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan("today")
+     */
+    protected $datum;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    protected $naam;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $opdrachtgever;
+
+    /**
+     * @ORM\Column(type="integer", name="aantal_deelnemers")
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(value = 0)
+     */
+    protected $aantalDeelnemers;
+
+    /**
+     * @ORM\Column(type="time")
+     * @Assert\NotBlank()
+     */
+    protected $aanvang;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    protected $einde;
+
+    /**
+     * @ORM\Column(type="decimal", precision=8, scale=2)
+     */
+    protected $totaal;
+
+    /**
+     * @ORM\Column(type="text", length=1028, nullable=true)
+     */
+    protected $commentaar;
+    protected $reservatieRegels;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $afdeling;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $product;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $project;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $rekening;
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -68,8 +104,7 @@ class Reservatie{
      * @param \DateTime $datum
      * @return Reservatie
      */
-    public function setDatum($datum)
-    {
+    public function setDatum($datum) {
         $this->datum = $datum;
 
         return $this;
@@ -80,8 +115,7 @@ class Reservatie{
      *
      * @return \DateTime 
      */
-    public function getDatum()
-    {
+    public function getDatum() {
         return $this->datum;
     }
 
@@ -91,8 +125,7 @@ class Reservatie{
      * @param string $naam
      * @return Reservatie
      */
-    public function setNaam($naam)
-    {
+    public function setNaam($naam) {
         $this->naam = $naam;
 
         return $this;
@@ -103,8 +136,7 @@ class Reservatie{
      *
      * @return string 
      */
-    public function getNaam()
-    {
+    public function getNaam() {
         return $this->naam;
     }
 
@@ -114,8 +146,7 @@ class Reservatie{
      * @param string $opdrachtgever
      * @return Reservatie
      */
-    public function setOpdrachtgever($opdrachtgever)
-    {
+    public function setOpdrachtgever($opdrachtgever) {
         $this->opdrachtgever = $opdrachtgever;
 
         return $this;
@@ -126,8 +157,7 @@ class Reservatie{
      *
      * @return string 
      */
-    public function getOpdrachtgever()
-    {
+    public function getOpdrachtgever() {
         return $this->opdrachtgever;
     }
 
@@ -137,8 +167,7 @@ class Reservatie{
      * @param integer $aantalDeelnemers
      * @return Reservatie
      */
-    public function setAantalDeelnemers($aantalDeelnemers)
-    {
+    public function setAantalDeelnemers($aantalDeelnemers) {
         $this->aantalDeelnemers = $aantalDeelnemers;
 
         return $this;
@@ -149,8 +178,7 @@ class Reservatie{
      *
      * @return integer 
      */
-    public function getAantalDeelnemers()
-    {
+    public function getAantalDeelnemers() {
         return $this->aantalDeelnemers;
     }
 
@@ -160,8 +188,7 @@ class Reservatie{
      * @param \DateTime $aanvang
      * @return Reservatie
      */
-    public function setAanvang($aanvang)
-    {
+    public function setAanvang($aanvang) {
         $this->aanvang = $aanvang;
 
         return $this;
@@ -172,8 +199,7 @@ class Reservatie{
      *
      * @return \DateTime 
      */
-    public function getAanvang()
-    {
+    public function getAanvang() {
         return $this->aanvang;
     }
 
@@ -183,8 +209,7 @@ class Reservatie{
      * @param \DateTime $einde
      * @return Reservatie
      */
-    public function setEinde($einde)
-    {
+    public function setEinde($einde) {
         $this->einde = $einde;
 
         return $this;
@@ -195,8 +220,7 @@ class Reservatie{
      *
      * @return \DateTime 
      */
-    public function getEinde()
-    {
+    public function getEinde() {
         return $this->einde;
     }
 
@@ -206,8 +230,7 @@ class Reservatie{
      * @param string $totaal
      * @return Reservatie
      */
-    public function setTotaal($totaal)
-    {
+    public function setTotaal($totaal) {
         $this->totaal = $totaal;
 
         return $this;
@@ -218,8 +241,134 @@ class Reservatie{
      *
      * @return string 
      */
-    public function getTotaal()
-    {
+    public function getTotaal() {
         return $this->totaal;
     }
+
+    /**
+     * Set commentaar
+     *
+     * @param string $commentaar
+     * @return Reservatie
+     */
+    public function setCommentaar($commentaar) {
+        $this->commentaar = $commentaar;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaar
+     *
+     * @return string 
+     */
+    public function getCommentaar() {
+        return $this->commentaar;
+    }
+
+    /**
+     * Set afdeling
+     *
+     * @param string $afdeling
+     * @return Reservatie
+     */
+    public function setAfdeling($afdeling) {
+        $this->afdeling = $afdeling;
+
+        return $this;
+    }
+
+    /**
+     * Get afdeling
+     *
+     * @return string 
+     */
+    public function getAfdeling() {
+        return $this->afdeling;
+    }
+
+    /**
+     * Set product
+     *
+     * @param string $product
+     * @return Reservatie
+     */
+    public function setProduct($product) {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return string 
+     */
+    public function getProduct() {
+        return $this->product;
+    }
+
+    /**
+     * Set project
+     *
+     * @param string $project
+     * @return Reservatie
+     */
+    public function setProject($project) {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get project
+     *
+     * @return string 
+     */
+    public function getProject() {
+        return $this->project;
+    }
+
+    /**
+     * Set rekening
+     *
+     * @param string $rekening
+     * @return Reservatie
+     */
+    public function setRekening($rekening) {
+        $this->rekening = $rekening;
+
+        return $this;
+    }
+
+    /**
+     * Get rekening
+     *
+     * @return string 
+     */
+    public function getRekening() {
+        return $this->rekening;
+    }
+
+    /**
+     * Set reservatieRegels
+     *
+     * @param array $reservatieRegels
+     * @return Reservatie
+     */
+    public function setReservatieRegels($reservatieRegels = null) {
+        $this->reservatieRegels = $reservatieRegels;
+
+        return $this;
+    }
+
+    /**
+     * Get reservatieRegels
+     *
+     * @return array 
+     */
+    public function getReservatieRegels() {
+        return $this->reservatieRegels;
+    }
+
 }

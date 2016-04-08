@@ -7,31 +7,53 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/default.time.css">
 {% endblock %}
 {% block body %}
+
+    <div class="section">
+        <div class="row center-align" id="reservatie-info">
+            <div class="col s12 m12 l12">
+                <p>Het restaurant staat open voor alle personeelsleden van de VDAB en voor hun genodigden.</p>
+                <p>Let op! Je reservatie is pas definitief nadat we deze bevestigd hebben. Het is namelijk zo dat de menu’s en boekingen altijd afgestemd zijn op het leerproces en de vorderingen van onze cursisten.</p>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <form class="reservatie-form" action="#">
-            <h3>Datum + personen</h3>
-            <section>
-                <label for="datum">Datum</label>
-                <input id="datum" name="datum" type="date" class="datepicker required">
-                <label for="personen">Aantal Personen</label>
-                <input id="personen" name="personen" type="number" class="required">
-            </section>
-            <h3>Formules</h3>
-            <section>
-                <label for="types">Menu formule</label>
-                <select id="types" name="types" class="required browser-default">
+        {{ form_start(form) }}
+        <h3>Datum + personen</h3>
+        <section class="datum-pers">
+            {{ form_row(form.datum) }}
+            {{form_row(form.aanvang)}}
+            {{form_row(form.aantalDeelnemers)}}
+        </section>
+        <h3>Formules</h3>
+        <section>
+            {% for type in types %}
+                <h4>{{type.name}}</h4>
+                <select class="types browser-default" name="{{type.name}}">
                     <option value="" disabled selected>- selecteer een formule -</option>
                     {%for formule in formules%}
-                        <option value="{{formule.name}}">{{formule.name}} ({{formule.info}})</option>
-                    {%endfor%}
+                        {% if formule.menutypeId == type.id %}
+                            <option value="{{formule.name}}" data-minpers="{{formule.minPersons}}" data-maxpers="{{formule.maxPersons}}">{{formule.name}} ({{formule.info}})</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
-            </section>
-            <h3>Gegevens</h3>
-            <section>
-                <label for="rekening">Rekeningnummer</label>
-                <input id="rekening" name="rekening" class="required">
-            </section>
-        </form>
+            {% endfor %}
+        </section>
+        <h3>Gegevens</h3>
+        <section>
+            {{form_row(form.naam)}}
+            {{form_row(form.opdrachtgever)}}
+            {{form_row(form.commentaar)}}
+        </section>
+        <h3>Betaling</h3>
+        <section class="betaling">
+            <input name="betalen" id="cash" class="radio" type="radio" value="cash" checked><label for="cash">Ter plaatse betalen</label>
+            <input name="betalen" id="budget" class="radio" type="radio" value="budget"><label for="budget">Op budget betalen</label>
+            {{form_row(form.rekening)}}
+            {{form_row(form.afdeling)}}
+            {{form_row(form.product)}}
+            {{form_row(form.project)}}
+        </section>
+        {{ form_end (form) }}
     </div>
 {% endblock %}
 {% block javascripts %}
@@ -42,7 +64,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.time.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/legacy.js"></script>
     <script>
-        var reservatieForm = $(".reservatie-form");
+        var reservatieForm = $("[name*='reservatie']");
+
         reservatieForm.steps({
             /* Labels */
             labels: {
@@ -56,6 +79,30 @@
             transitionEffect: "slideLeft",
             onStepChanging: function (event, currentIndex, newIndex)
             {
+                /*if (newIndex == 1) {
+                 console.log(newIndex);
+                 aantalDeelnemers = $("#reservatie_aantalDeelnemers").val();
+                 formules = $("option");
+                 formules.each(function (i) {
+                 if (formules[i].dataset.minpers) {
+                 $(formules[i]).css("background-color", "white");
+                 if (formules[i].dataset.minpers > aantalDeelnemers) {
+                 console.log(aantalDeelnemers + " personen is te weinig (min " + formules[i].dataset.minpers + ")");
+                 $(formules[i]).css("background-color", "blue");
+                 }
+                 } else if (formules[i].dataset.maxpers) {
+                 $(formules[i]).css("background-color", "white");
+                 if (formules[i].dataset.maxpers < aantalDeelnemers) {
+                 console.log(aantalDeelnemers + " personen is te veel (max " + formules[i].dataset.maxpers + ")");
+                 $(formules[i]).css("background-color", "red");
+                 }
+                 } else {
+                 console.log("ok");
+                 $(formules[i]).css("background-color", "white");
+                 }
+                 });
+                 
+                 }*/
                 // Allways allow step back to the previous step even if the current step is not valid!
                 if (currentIndex > newIndex)
                 {
@@ -87,40 +134,49 @@
                 }).error(function () {
                     console.log("ajax error");
                 });
-
+                reservatieForm.submit();
             }
-        }).validate({
+        });
+        $('.datepicker').pickadate({
+            monthsFull: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
+            weekdaysFull: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
+            weekdaysShort: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
+            today: 'vandaag',
+            clear: 'wissen',
+            close: 'sluit',
+        });
+        reservatieForm.validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
             },
             rules: {
-                datum: {
+                "reservatie[datum]": {
                     required: true,
                     date: true
                 },
-                personen: {
+                "reservatie[aantalDeelnemers]": {
                     required: true
                 },
-                types: {
+                Hoofdgerecht: {
                     required: true
                 },
-                rekening: {
+                "reservatie[rekening]": {
                     required: true,
                     number: true
                 }
             },
             messages: {
-                datum: {
+                "reservatie[datum]": {
                     required: "Selecteer een datum",
                     date: "Dit is geen geldige datum"
                 },
-                personen: {
+                "reservatie[aantalDeelnemers]": {
                     required: "Voer het aantal personen in"
                 },
-                types: {
-                    required: "Selecteer een formule"
+                Hoofdgerecht: {
+                    required: "Selecteer minstens één hoofdgerecht"
                 },
-                rekening: {
+                "reservatie[rekening]": {
                     required: "Vul een rekeningnummer in",
                     number: "Geen geldig rekeningnummer"
                 }
@@ -134,6 +190,19 @@
             today: 'vandaag',
             clear: 'wissen',
             close: 'sluit',
+            format: 'd mmmm yyyy',
+            formatSubmit: 'yyyy-mm-dd'
         });
+
+        $(".radio").change(changeCheck);
+        changeCheck();
+        function changeCheck() {
+            var betalen = $(".radio:checked").val();
+            if (betalen == "cash") {
+                $(".betaling div").css("display", "none").find("input").prop("disabled", true);
+            } else {
+                $(".betaling div").css("display", "block").find("input").prop("disabled", false);
+            }
+        }
     </script>
 {% endblock %}

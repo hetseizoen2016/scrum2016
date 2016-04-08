@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reservatie list</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datum</th>
+                <th>Naam</th>
+                <th>Opdrachtgever</th>
+                <th>Aantaldeelnemers</th>
+                <th>Aanvang</th>
+                <th>Einde</th>
+                <th>Totaal</th>
+                <th>Commentaar</th>
+                <th>Afdeling</th>
+                <th>Product</th>
+                <th>Project</th>
+                <th>Rekening</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservatie in reservaties %}
+            <tr>
+                <td><a href="{{ path('reservatie_show', { 'id': reservatie.id }) }}">{{ reservatie.id }}</a></td>
+                <td>{% if reservatie.datum %}{{ reservatie.datum|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ reservatie.naam }}</td>
+                <td>{{ reservatie.opdrachtgever }}</td>
+                <td>{{ reservatie.aantalDeelnemers }}</td>
+                <td>{% if reservatie.aanvang %}{{ reservatie.aanvang|date('H:i:s') }}{% endif %}</td>
+                <td>{% if reservatie.einde %}{{ reservatie.einde|date('H:i:s') }}{% endif %}</td>
+                <td>{{ reservatie.totaal }}</td>
+                <td>{{ reservatie.commentaar }}</td>
+                <td>{{ reservatie.afdeling }}</td>
+                <td>{{ reservatie.product }}</td>
+                <td>{{ reservatie.project }}</td>
+                <td>{{ reservatie.rekening }}</td>
+                <td>
+                    <ul>
+                        {#
+                        <li>
+                            <a href="{{ path('reservatie_show', { 'id': reservatie.id }) }}">show</a>
+                        </li>
+                        #}
+                        <li>
+                            <a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservatie_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
