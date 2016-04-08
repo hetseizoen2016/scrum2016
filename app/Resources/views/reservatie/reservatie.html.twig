@@ -9,7 +9,6 @@
 {% block body %}
     <div class="container">
         {{ form_start(form) }}
-        {#{{ form_widget(form,{'id': 'res-form'}) }}#}
         <h3>Datum + personen</h3>
         <section>
             {{ form_row(form.datum) }}
@@ -18,14 +17,17 @@
         </section>
         <h3>Formules</h3>
         <section>
-            {{form_row(form.product)}}
-            <label for="types">Menu formule</label>
-            <select id="types" name="types" class="required browser-default">
-                <option value="" disabled selected>- selecteer een formule -</option>
-                {%for formule in formules%}
-                    <option value="{{formule.name}}">{{formule.name}} ({{formule.info}})</option>
-                {%endfor%}
-            </select>
+            {% for type in types %}
+                <h4>{{type.name}}</h4>
+                <select class="types browser-default" name="{{type.name}}">
+                    <option value="" disabled selected>- selecteer een formule -</option>
+                    {%for formule in formules%}
+                        {% if formule.menutypeId == type.id %}
+                            <option value="{{formule.name}}" data-minpers="{{formule.minPersons}}" data-maxpers="{{formule.maxPersons}}">{{formule.name}} ({{formule.info}})</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            {% endfor %}
         </section>
         <h3>Gegevens</h3>
         <section>
@@ -38,32 +40,9 @@
         <h3>Betaling</h3>
         <section>
             {{form_row(form.rekening)}}
+            {{form_row(form.product)}}
         </section>
         {{ form_end (form) }}
-        {#<form class="reservatie-form" action="#">
-            <h3>Datum + personen</h3>
-            <section>
-                <label for="datum">Datum</label>
-                <input id="datum" name="datum" type="date" class="datepicker required">
-                <label for="personen">Aantal Personen</label>
-                <input id="personen" name="personen" type="number" class="required">
-            </section>
-            <h3>Formules</h3>
-            <section>
-                <label for="types">Menu formule</label>
-                <select id="types" name="types" class="required browser-default">
-                    <option value="" disabled selected>- selecteer een formule -</option>
-                    {%for formule in formules%}
-                        <option value="{{formule.name}}">{{formule.name}} ({{formule.info}})</option>
-                    {%endfor%}
-                </select>
-            </section>
-            <h3>Gegevens</h3>
-            <section>
-                <label for="rekening">Rekeningnummer</label>
-                <input id="rekening" name="rekening" class="required">
-            </section>
-        </form>#}
     </div>
 {% endblock %}
 {% block javascripts %}
@@ -74,7 +53,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.time.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/legacy.js"></script>
     <script>
-        var reservatieForm = $( "[name*='reservatie']");
+        var reservatieForm = $("[name*='reservatie']");
+
         reservatieForm.steps({
             /* Labels */
             labels: {
@@ -88,6 +68,30 @@
             transitionEffect: "slideLeft",
             onStepChanging: function (event, currentIndex, newIndex)
             {
+                /*if (newIndex == 1) {
+                    console.log(newIndex);
+                    aantalDeelnemers = $("#reservatie_aantalDeelnemers").val();
+                    formules = $("option");
+                    formules.each(function (i) {
+                        if (formules[i].dataset.minpers) {
+                            $(formules[i]).css("background-color", "white");
+                            if (formules[i].dataset.minpers > aantalDeelnemers) {
+                                console.log(aantalDeelnemers + " personen is te weinig (min " + formules[i].dataset.minpers + ")");
+                                $(formules[i]).css("background-color", "blue");
+                            }
+                        } else if (formules[i].dataset.maxpers) {
+                            $(formules[i]).css("background-color", "white");
+                            if (formules[i].dataset.maxpers < aantalDeelnemers) {
+                                console.log(aantalDeelnemers + " personen is te veel (max " + formules[i].dataset.maxpers + ")");
+                                $(formules[i]).css("background-color", "red");
+                            }
+                        } else {
+                            console.log("ok");
+                            $(formules[i]).css("background-color", "white");
+                        }
+                    });*/
+
+                }
                 // Allways allow step back to the previous step even if the current step is not valid!
                 if (currentIndex > newIndex)
                 {
@@ -133,7 +137,7 @@
                 "reservatie[aantalDeelnemers]": {
                     required: true
                 },
-                types: {
+                Hoofdgerecht: {
                     required: true
                 },
                 "reservatie[rekening]": {
@@ -149,8 +153,8 @@
                 "reservatie[aantalDeelnemers]": {
                     required: "Voer het aantal personen in"
                 },
-                types: {
-                    required: "Selecteer een formule"
+                Hoofdgerecht: {
+                    required: "Selecteer minstens één hoofdgerecht"
                 },
                 "reservatie[rekening]": {
                     required: "Vul een rekeningnummer in",
