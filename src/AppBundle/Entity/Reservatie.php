@@ -367,7 +367,7 @@ class Reservatie{
      * @param array $reservatieRegels
      * @return Reservatie
      */
-    public function setRekening($reservatieRegels)
+    public function setReservatieRegels($reservatieRegels)
     {
         $this->reservatieRegels = $reservatieRegels;
 
