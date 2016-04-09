@@ -3,6 +3,8 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,16 +17,68 @@ class ReservatieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('datum', 'date', array('attr' => array('class' => 'datepicker'), 'widget' => 'single_text'))
-            ->add('naam')
-            ->add('opdrachtgever')
-            ->add('aantalDeelnemers')
-            ->add('aanvang', 'time', array('widget' => 'single_text'))
-            ->add('commentaar', 'textarea')
-            ->add('afdeling')
-            ->add('product')
-            ->add('project')
-            ->add('rekening')
+            ->add('datum', DateTimeType::class,
+                array(
+                    'attr' => array('class' => 'datepicker'),
+                    'widget' => 'single_text',
+                    'required' => true,
+                    'label' => 'Datum'
+                )
+            )
+            ->add('naam', TextType::class,
+                array(
+                    'required' => true,
+                    'label' => 'Naam'
+                )
+            )
+            ->add('opdrachtgever', TextType::class,
+                array(
+                    'required' => false,
+                    'label' => 'Opdrachtgever'
+                )
+            )
+            ->add('aantalDeelnemers', TextType::class,
+                array(
+                    'required' => true,
+                    'label' => 'Aantal deelnemers'
+                )
+            )
+            ->add('aanvang', 'time',
+                array(
+                    'widget' => 'single_text',
+                    'required' => true,
+                    'label' => 'Aankomstuur'
+                )
+            )
+            ->add('commentaar', 'textarea',
+                array(
+                    'required' => false
+                )
+            )
+            ->add('afdeling', TextType::class,
+                array(
+                    'required' => false,
+                    'label' => 'Afdeling'
+                    )
+                )
+            ->add('product', TextType::class,
+                array(
+                    'required' => false,
+                    'label' => 'Product'
+                )
+            )
+            ->add('project', TextType::class,
+                array(
+                    'required' => false,
+                    'label' => 'Project'
+                )
+            )
+            ->add('rekening', TextType::class,
+                array(
+                    'required' => false,
+                    'label' => 'Rekening'
+                )
+            )
         ;
     }
     

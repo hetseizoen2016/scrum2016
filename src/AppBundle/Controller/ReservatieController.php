@@ -88,6 +88,39 @@ class ReservatieController extends Controller
 
         $reservaties = $em->getRepository('AppBundle:Reservatie')->findAll();
 
+        $reservatiesArray = array();
+        foreach ($reservaties as $reservatie) {
+
+            $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatie->getId());
+            $menuFormulesArray = array();
+
+            foreach ($reservatieRegels as $reservatieRegel) {
+
+                $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
+                $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
+                array_push($menuFormulesArray, $menuFormule);
+            }
+
+            $reservatie->setReservatieRegels($menuFormulesArray);
+            array_push($reservatiesArray, $reservatie);
+        }
+
+        $reservaties = $reservatiesArray;
+        var_dump($reservaties);
+
+        /*
+        $repository =$this->getDoctrine()->getRepository('AppBundle:Reservatie');
+
+        $query = $repository->createQueryBuilder('p')
+            ->getQuery();
+
+        $reservaties = $query->getResult();
+
+
+        /* menuformules via reservatieRegels toevoegen aan een reservatie */
+
+
+
         /* Openingsuren in footer */
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
@@ -113,11 +146,17 @@ class ReservatieController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            var_dump($reservatie);
+
+            /*
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservatie);
             $em->flush();
 
             return $this->redirectToRoute('reservatie_show', array('id' => $reservatie->getId()));
+            */
         }
 
         /* Openingsuren in footer */

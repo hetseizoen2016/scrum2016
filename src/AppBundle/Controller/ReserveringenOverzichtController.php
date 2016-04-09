@@ -24,11 +24,11 @@ class ReserveringenOverzichtController extends Controller
      */
     public function indexAction()
     {
-        $reservatiesArray = array();
 
         $em = $this->getDoctrine()->getManager();
         $reservaties = $em->getRepository('AppBundle:Reservatie')->findAll();
 
+        $reservatiesArray = array();
         foreach ($reservaties as $reservatie) {
 
             $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatie->getId());

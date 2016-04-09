@@ -6,4 +6,5 @@ use Doctrine\ORM\EntityRepository;
 
 class ReservatieRepository extends EntityRepository
 {
+   
 }

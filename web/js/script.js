@@ -19,7 +19,7 @@ $(function () {
     );
     $('#menu_formules_info').val();
     $('#menu_formules_info').trigger('autoresize');
-    });
+
 }); // end of document ready
 
 
