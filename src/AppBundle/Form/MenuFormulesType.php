@@ -29,7 +29,10 @@ class MenuFormulesType extends AbstractType
                     'label' => 'Beschrijving Menu'
                     ))
             ->add('price', MoneyType::class,
-                array('label' => 'Prijs in Euro '))
+                array(
+                    'label' => 'Prijs in Euro ',
+                    'currency' => ''
+                    ))
             ->add('minPersons', IntegerType::class,
                 array(
                     'required' => false,
