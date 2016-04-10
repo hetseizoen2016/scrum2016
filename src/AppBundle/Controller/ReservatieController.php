@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Reservatie;
-use AppBundle\Form\ReservatieType;
+use DateTime;
 
 
 class ReservatieController extends Controller
@@ -20,9 +20,86 @@ class ReservatieController extends Controller
 
     /**
      * @Route("/reservatie", name="reservatie")
+     * @Method({"GET", "POST"})
      */
-    public function reservatieAction(Request $request)
-    {
+    public function reservatieAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $reservatie = new Reservatie();
+        $defaultData = array('message' => 'my message');
+        $form = $this->createFormBuilder($defaultData)
+                ->add('datum', 'date', array(
+                    'attr' => array('class' => 'datepicker'),
+                    'widget' => 'single_text',
+                    'required' => true,
+                    'label' => 'Datum'
+                        )
+                )
+                ->add('naam', TextType::class, array(
+                    'required' => true,
+                    'label' => 'Naam'
+                        )
+                )
+                ->add('email', EmailType::class, array(
+                    'required' => false,
+                    'label' => 'Email'
+                        )
+                )
+                ->add('telefoon', TextType::class, array(
+                    'required' => false,
+                    'label' => 'Telefoon'
+                        )
+                )
+                ->add('opdrachtgever', TextType::class, array(
+                    'required' => false,
+                    'label' => 'Opdrachtgever'
+                        )
+                )
+                ->add('aantalDeelnemers', TextType::class, array(
+                    'required' => true,
+                    'label' => 'Aantal deelnemers'
+                        )
+                )
+                ->add('aanvang', 'time', array(
+                    'input' => 'datetime',
+                    'widget' => 'single_text',
+                    'with_seconds' => false,
+                    'view_timezone' => 'Europe/Brussels',
+                    'model_timezone' => 'Europe/Brussels',
+                    'required' => true,
+                    'label' => 'Aankomstuur',
+                    'placeholder' => array(
+                        'hour' => 'Uur', 'minute' => 'Minuten',
+                    )
+                        )
+                )
+                ->add('commentaar', TextareaType::class, array(
+                    'required' => false
+                        )
+                )
+                ->add('afdeling', TextType::class, array(
+                    'required' => false,
+                    'label' => 'Afdeling'
+                        )
+                )
+                ->add('product', TextType::class, array(
+                    'required' => false,
+                    'label' => 'Product'
+                        )
+                )
+                ->add('project', TextType::class, array(
+                    'required' => false,
+                    'label' => 'Project'
+                        )
+                )
+                ->add('rekening', TextType::class, array(
+                    'required' => false,
+                    'label' => 'Rekening'
+                        )
+                )
+                ->getForm();
+        $form->handleRequest($request);
+
         /* Openingsuren */
         $em = $this->getDoctrine()->getManager();
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
@@ -30,60 +107,98 @@ class ReservatieController extends Controller
         $formules = $em->getRepository('AppBundle:MenuFormules')->findAll();
         $types = $em->getRepository('AppBundle:MenuType')->findAll();
 
-        $reservatie = new Reservatie();
-        $form = $this->createForm('AppBundle\Form\ReservatieType', $reservatie);
-
-        //$types = $request->request->get('types');
-
-        $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $datum = $form["datum"]->getData()->format('Y-m-d');
-            $naam = $form["naam"]->getData();
-            $opdrachtgever = $form["opdrachtgever"]->getData();
-            $aantalDeelnemers = $form["aantalDeelnemers"]->getData();
-            $aanvang = $form["aanvang"]->getData()->format('H:i:s');
-            $commentaar = $form["commentaar"]->getData();
-            $afdeling = $form["afdeling"]->getData();
-            $product = $form["product"]->getData();
-            $project = $form["project"]->getData();
-            $rekening = $form["rekening"]->getData();
+            if (isset($_POST['form']) && isset($_POST['reservatie'])) {
 
-            //$datumtwee = $request->query->get('datum');
+                $datum = $_POST['form']['datum'];
+                $naam = $_POST['form']['naam'];
+                $email = $_POST['form']['email'];
+                $telefoon = $_POST['form']['telefoon'];
+                $opdrachtgever = $_POST['form']['opdrachtgever'];
+                $aantalDeelnemers = $_POST['form']['aantalDeelnemers'];
+                $aanvang = $_POST['form']['aanvang'];
+                $commentaar = $_POST['form']['commentaar'];
 
-            /*$gegevens = array(
-                "datum" => $request->request->get('datum'),
-                "datumtwee" => $datumtwee
-            );*/
+                if (isset($_POST['form']['afdeling'])) {
+                    $afdeling = $_POST['form']['afdeling'];
+                } else {
+                    $afdeling = null;
+                }
+
+                if (isset($_POST['form']['product'])) {
+                    $product = $_POST['form']['product'];
+                } else {
+                    $product = null;
+                }
+
+                if (isset($_POST['form']['project'])) {
+                    $project = $_POST['form']['project'];
+                } else {
+                    $project = null;
+                }
+
+                if (isset($_POST['form']['rekening'])) {
+                    $rekening = $_POST['form']['rekening'];
+                } else {
+                    $rekening = null;
+                }
+
+                $reservatie
+                        ->setDatum(new \DateTime($datum))
+                        ->setNaam($naam)
+                        ->setEmail($email)
+                        ->setTelefoon($telefoon)
+                        ->setOpdrachtgever($opdrachtgever)
+                        ->setAantalDeelnemers(intval($aantalDeelnemers))
+                        ->setAanvang(new \DateTime($aanvang))
+                        ->setCommentaar($commentaar)
+                        ->setAfdeling($afdeling)
+                        ->setProduct($product)
+                        ->setProject($project)
+                        ->setRekening($rekening);
+
+                $em->persist($reservatie);
+                $em->flush();
+
+                if ($reservatie->getId() > 0) {
+
+                    foreach ($_POST['reservatie'] as $key => $value) {
+                        $reservatieRegel = new ReservatieRegels();
+                        if ($value > 0) {
+                            $reservatieRegel
+                                    ->setReservatieId($reservatie->getId())
+                                    ->setFormuleId($value);
+                            $em->persist($reservatieRegel);
+                            $em->flush();
+                        }
+                    }
+                }
+            }
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('Hello Email')
-                ->setFrom('tseizoen@vdab.be')
-                ->setTo('vincentvanlerberghe_73@hotmail.com')
-                ->setBody(
+                    ->setSubject('Hello Email')
+                    ->setFrom('tseizoen@vdab.be')
+                    ->setTo('vincentvanlerberghe_73@hotmail.com')
+                    ->setBody(
                     $this->renderView(
-                        'email/bevestiging.html.twig',
-                        array("datum"            => $datum, "naam" => $naam, "opdrachtgever" => $opdrachtgever,
-                              "aantalDeelnemers" => $aantalDeelnemers, "aanvang" => $aanvang,
-                              "commentaar"       => $commentaar, "afdeling" => $afdeling, "product" => $product,
-                              "project"          => $project, "rekening" => $rekening, "types" => $types)
-                    ),
-                    'text/html'
-                );
-            $this->get('mailer')->send($message);
-
-            return $this->redirectToRoute('index', array(), 301);
-
+                            'email/bevestiging.html.twig', array("datum" => $datum, "naam" => $naam, "opdrachtgever" => $opdrachtgever,
+                        "aantalDeelnemers" => $aantalDeelnemers, "aanvang" => $aanvang,
+                        "commentaar" => $commentaar, "afdeling" => $afdeling, "product" => $product,
+                        "project" => $project, "rekening" => $rekening, "types" => $types)
+                    ), 'text/html'
+            );
+            //$this->get('mailer')->send($message);
             //return $this->redirectToRoute('send_mail', ['request' => $request], 307);
+            return $this->redirectToRoute('index');
         }
 
         return $this->render('reservatie/reservatie.html.twig', array(
-            'openingsuren' => $openingsuren,
-            'user'         => $this->getUser(),
-            'formules'     => $formules,
-            'types'        => $types,
-            'form'         => $form->createView()
+                    'openingsuren' => $openingsuren,
+                    'user' => $this->getUser(),
+                    'formules' => $formules,
+                    'types' => $types,
+                    'form' => $form->createView()
         ));
     }
 
@@ -96,36 +211,20 @@ class ReservatieController extends Controller
 
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
-            ->setFrom('tseizoen@vdab.be')
-            ->setTo('vincentvanlerberghe_73@hotmail.com')
-            ->setBody(
+                ->setSubject('Hello Email')
+                ->setFrom('tseizoen@vdab.be')
+                ->setTo('vincentvanlerberghe_73@hotmail.com')
+                ->setBody(
                 $this->renderView(
-                    'email/bevestiging.html.twig',
-                    array('name' => "vincent", 'gegevens' => $gegevens)
-                ),
-                'text/html'
-            );
+                        'email/bevestiging.html.twig', array('name' => "vincent", 'gegevens' => $gegevens)
+                ), 'text/html'
+        );
         $this->get('mailer')->send($message);
 
         //return $this->redirectToRoute('index', array(), 301);
     }
 
-    /**
-     * @Route("/reservatieajax", name="reservatieajax")
-     */
-    public function ajaxAction(Request $request)
-    {
-        $waarden = var_dump($request->query->all());
-
-        //$return = array("datum" => $waarden["datum"], "personen" => $waarden["personen"]);
-
-        return new Response($waarden);
-    }
-
-
-    /*--------------------------------VANAF HIER IS CRUD GENERATED-------------------------------*/
-
+    /* --------------------------------VANAF HIER IS CRUD GENERATED------------------------------- */
 
     /**
      * Lists all Reservatie entities.
@@ -163,9 +262,9 @@ class ReservatieController extends Controller
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         return $this->render('reservatie/index.html.twig', array(
-            'openingsuren' => $openingsuren,
-            'user'         => $this->getUser(),
-            'reservaties'  => $reservaties,
+                    'openingsuren' => $openingsuren,
+                    'user' => $this->getUser(),
+                    'reservaties' => $reservaties,
         ));
     }
 
@@ -185,16 +284,16 @@ class ReservatieController extends Controller
         $form = $this->createFormBuilder($defaultData)
             ->add('datum', 'date',
                 array(
-                    'attr'     => array('class' => 'datepicker'),
-                    'widget'   => 'single_text',
+                    'attr' => array('class' => 'datepicker'),
+                    'widget' => 'single_text',
                     'required' => true,
-                    'label'    => 'Datum'
+                    'label' => 'Datum'
                 )
             )
             ->add('naam', TextType::class,
                 array(
                     'required' => true,
-                    'label'    => 'Naam'
+                    'label' => 'Naam'
                 )
             )
             ->add('email', EmailType::class,
@@ -212,26 +311,26 @@ class ReservatieController extends Controller
             ->add('opdrachtgever', TextType::class,
                 array(
                     'required' => false,
-                    'label'    => 'Opdrachtgever'
+                    'label' => 'Opdrachtgever'
                 )
             )
             ->add('aantalDeelnemers', TextType::class,
                 array(
                     'required' => true,
-                    'label'    => 'Aantal deelnemers'
+                    'label' => 'Aantal deelnemers'
                 )
             )
             ->add('aanvang', 'time',
                 array(
-                    'input'          => 'datetime',
-                    'widget'         => 'single_text',
+                    'input' => 'datetime',
+                    'widget' => 'single_text',
                     //    'date_format' => 'HH:mm',
-                    'with_seconds'   => false,
-                    'view_timezone'  => 'Europe/Brussels',
+                    'with_seconds' => false,
+                    'view_timezone' => 'Europe/Brussels',
                     'model_timezone' => 'Europe/Brussels',
-                    'required'       => true,
-                    'label'          => 'Aankomstuur',
-                    'placeholder'    => array(
+                    'required' => true,
+                    'label' => 'Aankomstuur',
+                    'placeholder' => array(
                         'hour' => 'Uur', 'minute' => 'Minuten',
                     )
                 )
@@ -244,29 +343,29 @@ class ReservatieController extends Controller
             ->add('afdeling', TextType::class,
                 array(
                     'required' => false,
-                    'label'    => 'Afdeling'
+                    'label' => 'Afdeling'
                 )
             )
             ->add('product', TextType::class,
                 array(
                     'required' => false,
-                    'label'    => 'Product'
+                    'label' => 'Product'
                 )
             )
             ->add('project', TextType::class,
                 array(
                     'required' => false,
-                    'label'    => 'Project'
+                    'label' => 'Project'
                 )
             )
             ->add('rekening', TextType::class,
                 array(
                     'required' => false,
-                    'label'    => 'Rekening'
+                    'label' => 'Rekening'
                 )
             )
             ->getForm();
-        
+
         $form->handleRequest($request);
 
         $menuTypes = $em->getRepository('AppBundle:MenuType')->findAll();
@@ -306,7 +405,7 @@ class ReservatieController extends Controller
                     foreach ($_POST['reservatie'] as $key => $value) {
 
                         $reservatieRegel = new ReservatieRegels();
-                        
+
                         $reservatieRegel
                             ->setReservatieId($reservatie->getId())
                             ->setFormuleId($value);
@@ -325,12 +424,12 @@ class ReservatieController extends Controller
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         return $this->render('reservatie/new.html.twig', array(
-            'openingsuren' => $openingsuren,
-            'user'         => $this->getUser(),
-            'reservatie'   => $reservatie,
-            'form'         => $form->createView(),
-            'menutypes'    => $menuTypes,
-            'menuformules' => $menuFormules,
+                    'openingsuren' => $openingsuren,
+                    'user' => $this->getUser(),
+                    'reservatie' => $reservatie,
+                    'form' => $form->createView(),
+                    'menutypes' => $menuTypes,
+                    'menuformules' => $menuFormules,
         ));
     }
 
@@ -355,8 +454,8 @@ class ReservatieController extends Controller
         $deleteForm = $this->createDeleteForm($reservatie);
 
         return $this->render('reservatie/show.html.twig', array(
-            'reservatie'  => $reservatie,
-            'delete_form' => $deleteForm->createView(),
+                    'reservatie' => $reservatie,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -385,11 +484,11 @@ class ReservatieController extends Controller
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         return $this->render('reservatie/edit.html.twig', array(
-            'reservatie'   => $reservatie,
-            'edit_form'    => $editForm->createView(),
-            'delete_form'  => $deleteForm->createView(),
-            'openingsuren' => $openingsuren,
-            'user'         => $this->getUser(),
+                    'reservatie' => $reservatie,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
+                    'openingsuren' => $openingsuren,
+                    'user' => $this->getUser(),
         ));
     }
 
