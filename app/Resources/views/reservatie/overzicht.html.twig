@@ -9,6 +9,11 @@
         <div class="row">
             <div class="col s6 offset-s3">
             <h2 class="center-align">Overzicht reserveringen</h2>
+            <div class="center-align">
+                <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                   href="{{ path('reservatie_new') }}">Maak een nieuwe
+                    reservering aan</a>
+            </div>
             </div>
         </div>
         <div class="row">
@@ -20,10 +25,10 @@
                     <div class="col s2"></div>
                 </div>
 
-                <ul class="collapsible" data-collapsible="expandable">
+                <ul class="collapsible blue-grey lighten-5" data-collapsible="expandable">
                     {% for reservatie in reservaties %}
                         <li>
-                            <div class="collapsible-header">
+                            <div class="collapsible-header blue-grey lighten-4">
                                 <div class="col s3">{{ reservatie.datum|date("d/m/Y") }} {{ reservatie.aanvang|date("H:i") }} - {{ reservatie.einde|date("H:i") }}</div>
                                 <div class="col s1">{{ reservatie.aantalDeelnemers }}</div>
                                 <div class="col s6">{{ reservatie.naam }}</div>
@@ -31,45 +36,41 @@
                                 <div class="col s1"><i class="material-icons red-text darken-4">clear</i></div>
                             </div>
                             <div class="collapsible-body">
-                                <ul>
+
                                 {% for menuFormule in reservatie.reservatieRegels %}
-                                    <li>
-                                        <div class="row">
-                                            <div class="col s2">- {{ menuFormule.name }}</div>
+
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="col s2">{{ menuFormule.name }}</div>
                                             <div class="col s1">&euro; {{ menuFormule.price }}</div>
                                             <div class="col s9">{{ menuFormule.info }}</div>
                                         </div>
-                                    </li>
+                                    </div>
+
                                 {% endfor %}
-                                </ul>
-                                <div class="row">
-                                    <div class="col s2">Afdeling</div>
-                                    <div class="col s2">Product</div>
-                                    <div class="col s2">Project</div>
-                                    <div class="col s2">Rekening</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s2">{{ reservatie.afdeling }}</div>
-                                    <div class="col s2">{{ reservatie.product }}</div>
-                                    <div class="col s2">{{ reservatie.project }}</div>
-                                    <div class="col s2">{{ reservatie.rekening }}</div>
+                                <div class="blue-grey lighten-5">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="col s2 offset-s1">Afdeling</div>
+                                            <div class="col s2">Product</div>
+                                            <div class="col s2">Project</div>
+                                            <div class="col s2">Rekening</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="col s2 offset-s1">{{ reservatie.afdeling }}</div>
+                                            <div class="col s2">{{ reservatie.product }}</div>
+                                            <div class="col s2">{{ reservatie.project }}</div>
+                                            <div class="col s2">{{ reservatie.rekening }}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </li>
                     {% endfor %}
 
-{#
-                    <li>
-                        <a href="{{ path('reservatie_show', { 'id': reservatie.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}">edit</a>
-                    </li>
-#}
-
-
                 </ul>
-
 
             </div>
         </div>

@@ -1,16 +1,67 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Reservatie creation</h1>
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s4 offset-s4">
+                <h2 class="center-align">Maak een nieuwe reservering</h2>
     
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                {{ form_start(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('reservatie_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{#
+                {{ form_label(form.datum, 'Datum') }}
+                {{ form_errors(form.datum) }}
+                {{ form_widget(form.datum) }}
+
+                {{ form_label(form.naam, 'HAHA') }}
+                {{ form_errors(form.naam) }}
+                {{ form_widget(form.naam) }}
+
+                {{ form_label(form.naam, 'Naam') }}
+                {{ form_errors(form.naam) }}
+                {{ form_widget(form.naam) }}
+
+                {{ form_label(form.opdrachtgever, 'Naam opdrachtgever') }}
+                {{ form_errors(form.opdrachtgever) }}
+                {{ form_widget(form.opdrachtgever) }}
+
+                {{ form_label(form.aanvang, 'Aanvangstuur') }}
+                {{ form_errors(form.aanvang) }}
+                {{ form_widget(form.aanvang) }}
+
+                {{ form_label(form.aantalDeelnemers, 'Aantal deelnemers') }}
+                {{ form_errors(form.aantalDeelnemers) }}
+                {{ form_widget(form.aantalDeelnemers) }}
+#}
+                {{ form_widget(form) }}
+
+                {% for menutype in menutypes %}
+
+                        <label for="reservatie_{{ menutype.name }}">{{ menutype.name }}</label>
+                        <select id="reservatie_{{ menutype.name }}" name="reservatie[{{ menutype.name }}]">
+                            <option value="" disabled selected>--- kies een {{ menutype.name }} ---</option>
+                            {% for menuformule in menuformules %}
+                                {% if menutype.id == menuformule.menuType.id %}
+                                    <option value="{{ menuformule.id }}">{{ menuformule.name }} - {{ menuformule.info }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+
+                {% endfor %}
+
+
+
+                <div class="center-align">
+                    <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                       href="{{ path('reservatie_overzicht') }}">Terug</a>
+                    <input class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                           type="submit" value="Aanmaken"/>
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
