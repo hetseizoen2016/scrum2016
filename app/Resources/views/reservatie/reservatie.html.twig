@@ -27,12 +27,12 @@
         <h3>Formules</h3>
         <section>
             {% for type in types %}
-                <h4>{{type.name}}</h4>
-                <select class="types browser-default" name="{{type.name}}">
+                <label for="{{ type.name }}">{{ type.name }}</label>
+                <select class="types browser-default" name="reservatie[{{type.name}}]">
                     <option value="" disabled selected>- selecteer een formule -</option>
                     {%for formule in formules%}
                         {% if formule.menutypeId == type.id %}
-                            <option value="{{formule.name}}" data-minpers="{{formule.minPersons}}" data-maxpers="{{formule.maxPersons}}">{{formule.name}} ({{formule.info}})</option>
+                            <option value="{{formule.id}}" data-minpers="{{formule.minPersons}}" data-maxpers="{{formule.maxPersons}}">{{formule.name}} ({{formule.info}})</option>
                         {% endif %}
                     {% endfor %}
                 </select>
@@ -41,6 +41,8 @@
         <h3>Gegevens</h3>
         <section>
             {{form_row(form.naam)}}
+            {{form_row(form.email)}}
+            {{form_row(form.telefoon)}}
             {{form_row(form.opdrachtgever)}}
             {{form_row(form.commentaar)}}
         </section>
@@ -63,146 +65,4 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.date.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.time.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/legacy.js"></script>
-    <script>
-        var reservatieForm = $("[name*='reservatie']");
-
-        reservatieForm.steps({
-            /* Labels */
-            labels: {
-                current: "",
-                finish: "Bevestig",
-                next: "Volgende",
-                previous: "Vorige",
-            },
-            headerTag: "h3",
-            bodyTag: "section",
-            transitionEffect: "slideLeft",
-            onStepChanging: function (event, currentIndex, newIndex)
-            {
-                /*if (newIndex == 1) {
-                 console.log(newIndex);
-                 aantalDeelnemers = $("#reservatie_aantalDeelnemers").val();
-                 formules = $("option");
-                 formules.each(function (i) {
-                 if (formules[i].dataset.minpers) {
-                 $(formules[i]).css("background-color", "white");
-                 if (formules[i].dataset.minpers > aantalDeelnemers) {
-                 console.log(aantalDeelnemers + " personen is te weinig (min " + formules[i].dataset.minpers + ")");
-                 $(formules[i]).css("background-color", "blue");
-                 }
-                 } else if (formules[i].dataset.maxpers) {
-                 $(formules[i]).css("background-color", "white");
-                 if (formules[i].dataset.maxpers < aantalDeelnemers) {
-                 console.log(aantalDeelnemers + " personen is te veel (max " + formules[i].dataset.maxpers + ")");
-                 $(formules[i]).css("background-color", "red");
-                 }
-                 } else {
-                 console.log("ok");
-                 $(formules[i]).css("background-color", "white");
-                 }
-                 });
-                 
-                 }*/
-                // Allways allow step back to the previous step even if the current step is not valid!
-                if (currentIndex > newIndex)
-                {
-                    return true;
-                }
-                // Clean up if user went backward before
-                if (currentIndex < newIndex)
-                {
-                    // To remove error styles
-                    $(".body:eq(" + newIndex + ") label.error", reservatieForm).remove();
-                    $(".body:eq(" + newIndex + ") .error", reservatieForm).removeClass("error");
-                }
-                reservatieForm.validate().settings.ignore = ":disabled,:hidden";
-                return reservatieForm.valid();
-            },
-            onFinishing: function (event, currentIndex)
-            {
-                reservatieForm.validate().settings.ignore = ":disabled";
-                return reservatieForm.valid();
-            },
-            onFinished: function (event, currentIndex)
-            {
-                var data = reservatieForm.serializeArray();
-                $.ajax({
-                    url: "{{ path('reservatieajax') }}",
-                    data: data
-                }).done(function (json) {
-                    console.log(json);
-                }).error(function () {
-                    console.log("ajax error");
-                });
-                reservatieForm.submit();
-            }
-        });
-        $('.datepicker').pickadate({
-            monthsFull: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
-            weekdaysFull: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
-            weekdaysShort: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
-            today: 'vandaag',
-            clear: 'wissen',
-            close: 'sluit',
-        });
-        reservatieForm.validate({
-            errorPlacement: function errorPlacement(error, element) {
-                element.before(error);
-            },
-            rules: {
-                "reservatie[datum]": {
-                    required: true,
-                    date: true
-                },
-                "reservatie[aantalDeelnemers]": {
-                    required: true
-                },
-                Hoofdgerecht: {
-                    required: true
-                },
-                "reservatie[rekening]": {
-                    required: true,
-                    number: true
-                }
-            },
-            messages: {
-                "reservatie[datum]": {
-                    required: "Selecteer een datum",
-                    date: "Dit is geen geldige datum"
-                },
-                "reservatie[aantalDeelnemers]": {
-                    required: "Voer het aantal personen in"
-                },
-                Hoofdgerecht: {
-                    required: "Selecteer minstens één hoofdgerecht"
-                },
-                "reservatie[rekening]": {
-                    required: "Vul een rekeningnummer in",
-                    number: "Geen geldig rekeningnummer"
-                }
-            }
-        });
-
-        $('.datepicker').pickadate({
-            monthsFull: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
-            weekdaysFull: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
-            weekdaysShort: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
-            today: 'vandaag',
-            clear: 'wissen',
-            close: 'sluit',
-            format: 'd mmmm yyyy',
-            formatSubmit: 'yyyy-mm-dd'
-        });
-
-        $(".radio").change(changeCheck);
-        changeCheck();
-        function changeCheck() {
-            var betalen = $(".radio:checked").val();
-            if (betalen == "cash") {
-                $(".betaling div").css("display", "none").find("input").prop("disabled", true);
-            } else {
-                $(".betaling div").css("display", "block").find("input").prop("disabled", false);
-            }
-        }
-    </script>
 {% endblock %}
