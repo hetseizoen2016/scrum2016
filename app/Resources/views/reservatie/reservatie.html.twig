@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="container">
-        {{ form_start(form) }}
+        {#{{ form_start(form) }}
         <h3>Datum + personen</h3>
         <section class="datum-pers">
             {{ form_row(form.datum) }}
@@ -53,7 +53,56 @@
             {{form_row(form.product)}}
             {{form_row(form.project)}}
         </section>
-        {{ form_end (form) }}
+        {{ form_end (form) }}#}
+        <form name="reservatie" method="POST">
+            <h3>Datum + personen</h3>
+            <section class="datum-pers">
+                <label for="datum">Datum</label>
+                <input name="datum" type="date" class="datepicker" class="required">
+                <label for="aanvang">Aanvangsuur</label>
+                <input name="aanvang" type="time" class="required">
+                <label for="aantalDeelnemers">Aantal deelnemers</label>
+                <input name="aantalDeelnemers" type="number" class="required">
+            </section>
+            <h3>Formules</h3>
+            <section>
+                {% for type in types %}
+                    <h4>{{type.name}}</h4>
+                    <select class="types browser-default" name="{{type.name}}">
+                        <option value="" disabled selected>- selecteer een formule -</option>
+                        {%for formule in formules%}
+                            {% if formule.menutypeId == type.id %}
+                                <option value="{{formule.name}}" data-minpers="{{formule.minPersons}}" data-maxpers="{{formule.maxPersons}}">{{formule.name}} ({{formule.info}})</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                {% endfor %}
+            </section>
+            <h3>Gegevens</h3>
+            <section>
+                <label for="naam">Naam</label>
+                <input name="naam" type="text" class="required">
+                <label for="opdrachtgever">Opdrachtgever</label>
+                <input name="opdrachtgever" type="text" class="required">
+                <label for="commentaar">Commentaar</label>
+                <textarea name="commentaar" class="required"></textarea>
+            </section>
+            <h3>Betaling</h3>
+            <section class="betaling">
+                <input name="betalen" id="cash" class="radio" type="radio" value="cash" checked><label for="cash">Ter plaatse betalen</label>
+                <input name="betalen" id="budget" class="radio" type="radio" value="budget"><label for="budget">Op budget betalen</label>
+                <div>
+                    <label for="rekening">Rekening</label>
+                    <input name="rekening" type="text" class="required">
+                    <label for="afdeling">Afdeling</label>
+                    <input name="afdeling" type="text" class="required">
+                    <label for="product">Product</label>
+                    <input name="product" type="text" class="required">
+                    <label for="project">Project</label>
+                    <input name="Project" type="text" class="required">
+                </div>
+            </section>
+        </form>
     </div>
 {% endblock %}
 {% block javascripts %}
@@ -144,39 +193,41 @@
             today: 'vandaag',
             clear: 'wissen',
             close: 'sluit',
+            format: 'd mmmm, yyyy',
+            formatSubmit: 'yyyy-mm-dd',
         });
         reservatieForm.validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
             },
             rules: {
-                "reservatie[datum]": {
+                datum: {
                     required: true,
                     date: true
                 },
-                "reservatie[aantalDeelnemers]": {
+                aantalDeelnemers: {
                     required: true
                 },
                 Hoofdgerecht: {
                     required: true
                 },
-                "reservatie[rekening]": {
+                rekening: {
                     required: true,
                     number: true
                 }
             },
             messages: {
-                "reservatie[datum]": {
+                datum: {
                     required: "Selecteer een datum",
                     date: "Dit is geen geldige datum"
                 },
-                "reservatie[aantalDeelnemers]": {
+                aantalDeelnemers: {
                     required: "Voer het aantal personen in"
                 },
                 Hoofdgerecht: {
                     required: "Selecteer minstens één hoofdgerecht"
                 },
-                "reservatie[rekening]": {
+                rekening: {
                     required: "Vul een rekeningnummer in",
                     number: "Geen geldig rekeningnummer"
                 }
