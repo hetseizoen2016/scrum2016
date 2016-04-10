@@ -179,9 +179,6 @@ class ReservatieController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        //$reservaties = $em->getRepository('AppBundle:Reservatie')->findAll();
-        //var_dump($reservaties);
-
         $reservatie = new Reservatie();
         $defaultData = array('message' => 'my message');
         //$form = $this->createForm('AppBundle\Form\ReservatieType', $reservatie);
@@ -269,18 +266,18 @@ class ReservatieController extends Controller
                 )
             )
             ->getForm();
+        
         $form->handleRequest($request);
-
 
         $menuTypes = $em->getRepository('AppBundle:MenuType')->findAll();
         $menuFormules = $em->getRepository('AppBundle:MenuFormules')->findAll();
+        
         $menuFormulesArray = array();
         foreach ($menuFormules as $menuFormule) {
             $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
             array_push($menuFormulesArray, $menuFormule);
         }
         $menuFormules = $menuFormulesArray;
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (isset($_POST['form']) && isset($_POST['reservatie'])) {
@@ -293,31 +290,27 @@ class ReservatieController extends Controller
                     ->setOpdrachtgever($_POST['form']['opdrachtgever'])
                     ->setAantalDeelnemers(intval($_POST['form']['aantalDeelnemers']))
                     ->setAanvang(new \DateTime($_POST['form']['aanvang']))
-                    //  ->setEinde(new \DateTime($_POST['form']['einde']))
-                    //  ->setTotaal($_POST['form']['totaal'])
+                //  ->setEinde(new \DateTime($_POST['form']['einde']))
+                //  ->setTotaal($_POST['form']['totaal'])
                     ->setCommentaar($_POST['form']['commentaar'])
                     ->setAfdeling($_POST['form']['afdeling'])
                     ->setProduct($_POST['form']['product'])
                     ->setProject($_POST['form']['project'])
                     ->setRekening($_POST['form']['rekening']);
 
-            //    var_dump($reservatie);
-
                 $em->persist($reservatie);
                 $em->flush();
-
-            //    echo "last inserted id " . $reservatie->getId() . "<br>";
 
                 if ($reservatie->getId() > 0) {
 
                     foreach ($_POST['reservatie'] as $key => $value) {
-            //            echo "$key : $value<br>";
+
                         $reservatieRegel = new ReservatieRegels();
                         
                         $reservatieRegel
                             ->setReservatieId($reservatie->getId())
                             ->setFormuleId($value);
-            //            var_dump($reservatieRegel);
+
                         $em->persist($reservatieRegel);
                         $em->flush();
                     }
@@ -327,7 +320,7 @@ class ReservatieController extends Controller
             return $this->redirectToRoute('reservatie_overzicht');
 
         }
-
+        
         /* Openingsuren in footer */
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
@@ -413,6 +406,7 @@ class ReservatieController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->remove($reservatie);
             $em->flush();
         }

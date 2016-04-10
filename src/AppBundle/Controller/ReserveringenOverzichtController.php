@@ -26,7 +26,9 @@ class ReserveringenOverzichtController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $reservaties = $em->getRepository('AppBundle:Reservatie')->findAll();
+
+        $query = $em->createQuery('SELECT p FROM AppBundle:Reservatie p ORDER BY p.datum ASC');
+        $reservaties = $query->getResult();
 
         $reservatiesArray = array();
         foreach ($reservaties as $reservatie) {
@@ -35,9 +37,13 @@ class ReserveringenOverzichtController extends Controller
             $menuFormulesArray = array();
 
             foreach ($reservatieRegels as $reservatieRegel) {
-
-                $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
-                $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
+                
+                if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
+                    $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
+                    if (null !== $menuFormule->getMenutypeId()) {
+                        $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
+                    } 
+                }
                 array_push($menuFormulesArray, $menuFormule);
             }
 
@@ -47,10 +53,7 @@ class ReserveringenOverzichtController extends Controller
 
         $reservaties = $reservatiesArray;
 
-        //var_dump($reservaties);
-
         /* Openingsuren in footer */
-        //$em = $this->getDoctrine()->getManager();
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         return $this->render('reservatie/overzicht.html.twig', array(
@@ -59,5 +62,29 @@ class ReserveringenOverzichtController extends Controller
             'reservaties' => $reservaties,
         ));
 
+    }
+
+    /**
+     * Lists a reservering.
+     *
+     * @Route("/admin/reservatie/overzicht/{id}/delete", name="reservatie_overzicht_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $reservatie = $em->getRepository('AppBundle:Reservatie')->find($id);
+        $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($id);
+
+        foreach ($reservatieRegels as $reservatieRegel) {
+            $em->remove($reservatieRegel);
+        }
+
+        $em->remove($reservatie);
+        $em->flush();
+
+        return $this->redirectToRoute('reservatie_overzicht');
     }
 }

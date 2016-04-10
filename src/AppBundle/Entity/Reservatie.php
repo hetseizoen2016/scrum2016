@@ -34,13 +34,17 @@ class Reservatie {
      * @Assert\NotBlank()
      */
     protected $naam;
-    
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     */
     protected $email;
-    
+    /**
+     * @ORM\Column(type="string", length=20)
+     *
+     */
     protected $telefoon;
-    
-    
-    
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
