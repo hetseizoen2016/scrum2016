@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +18,7 @@ class ReservatieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('datum', DateTimeType::class,
+            ->add('datum', 'date',
                 array(
                     'attr' => array('class' => 'datepicker'),
                     'widget' => 'single_text',
@@ -45,9 +46,17 @@ class ReservatieType extends AbstractType
             )
             ->add('aanvang', 'time',
                 array(
+                    'input'  => 'datetime',
                     'widget' => 'single_text',
+                //    'date_format' => 'HH:mm',
+                    'with_seconds' => false,
+                    'view_timezone' => 'Europe/Brussels',
+                    'model_timezone' => 'Europe/Brussels',
                     'required' => true,
-                    'label' => 'Aankomstuur'
+                    'label' => 'Aankomstuur',
+                    'placeholder' => array(
+                        'hour' => 'Uur', 'minute' => 'Minuten',
+                    )
                 )
             )
             ->add('commentaar', 'textarea',
@@ -79,6 +88,7 @@ class ReservatieType extends AbstractType
                     'label' => 'Rekening'
                 )
             )
+            ->add('reservatie_regels')
         ;
     }
     

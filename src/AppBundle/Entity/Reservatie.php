@@ -34,6 +34,13 @@ class Reservatie {
      * @Assert\NotBlank()
      */
     protected $naam;
+    
+    protected $email;
+    
+    protected $telefoon;
+    
+    
+    
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -67,6 +74,10 @@ class Reservatie {
      * @ORM\Column(type="text", length=1028, nullable=true)
      */
     protected $commentaar;
+    
+    
+    
+    
     protected $reservatieRegels;
 
     /**
@@ -138,6 +149,48 @@ class Reservatie {
      */
     public function getNaam() {
         return $this->naam;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Reservatie
+     */
+    public function setEmail($email) {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail() {
+        return $this->email;
+    }
+
+    /**
+     * Set telefoon
+     *
+     * @param string $telefoon
+     * @return Reservatie
+     */
+    public function setTelefoon($telefoon) {
+        $this->telefoon = $telefoon;
+
+        return $this;
+    }
+
+    /**
+     * Get telefoon
+     *
+     * @return string
+     */
+    public function getTelefoon() {
+        return $this->telefoon;
     }
 
     /**

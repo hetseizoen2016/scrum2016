@@ -37,21 +37,13 @@ class MenuFormulesController extends Controller
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         /* MenuFormules */
-        //$em = $this->getDoctrine()->getManager();
         $menuFormules = $em->getRepository('AppBundle:MenuFormules')->findAll();
 
-        //$menuType = $em->getRepository('AppBundle:MenuType')->find(1);
-        //echo $menuType->getName();
-
         $menuFormulesArray = array();
-
         foreach ($menuFormules as $menuFormule) {
-           //$menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
             $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
             array_push($menuFormulesArray, $menuFormule);
         }
-
-        //var_dump($menuFormulesArray);
 
         return $this->render('menuformules/index.html.twig', array(
             'menuFormules' => $menuFormulesArray,

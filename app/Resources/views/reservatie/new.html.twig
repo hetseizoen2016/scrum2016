@@ -8,7 +8,49 @@
                 <h2 class="center-align">Maak een nieuwe reservering</h2>
     
                 {{ form_start(form) }}
+
+{#
+                {{ form_label(form.datum, 'Datum') }}
+                {{ form_errors(form.datum) }}
+                {{ form_widget(form.datum) }}
+
+                {{ form_label(form.naam, 'HAHA') }}
+                {{ form_errors(form.naam) }}
+                {{ form_widget(form.naam) }}
+
+                {{ form_label(form.naam, 'Naam') }}
+                {{ form_errors(form.naam) }}
+                {{ form_widget(form.naam) }}
+
+                {{ form_label(form.opdrachtgever, 'Naam opdrachtgever') }}
+                {{ form_errors(form.opdrachtgever) }}
+                {{ form_widget(form.opdrachtgever) }}
+
+                {{ form_label(form.aanvang, 'Aanvangstuur') }}
+                {{ form_errors(form.aanvang) }}
+                {{ form_widget(form.aanvang) }}
+
+                {{ form_label(form.aantalDeelnemers, 'Aantal deelnemers') }}
+                {{ form_errors(form.aantalDeelnemers) }}
+                {{ form_widget(form.aantalDeelnemers) }}
+#}
                 {{ form_widget(form) }}
+
+                {% for menutype in menutypes %}
+
+                        <label for="reservatie_{{ menutype.name }}">{{ menutype.name }}</label>
+                        <select id="reservatie_{{ menutype.name }}" name="reservatie[{{ menutype.name }}]">
+                            <option value="" disabled selected>--- kies een {{ menutype.name }} ---</option>
+                            {% for menuformule in menuformules %}
+                                {% if menutype.id == menuformule.menuType.id %}
+                                    <option value="{{ menuformule.id }}">{{ menuformule.name }} - {{ menuformule.info }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+
+                {% endfor %}
+
+
 
                 <div class="center-align">
                     <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
