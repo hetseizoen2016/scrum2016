@@ -45,6 +45,7 @@ class ReservatieController extends Controller
             $aantalDeelnemers = $form["aantalDeelnemers"]->getData();
             $aanvang = $form["aanvang"]->getData()->format('H:i:s');
             $commentaar = $form["commentaar"]->getData();
+            
             $afdeling = $form["afdeling"]->getData();
             $product = $form["product"]->getData();
             $project = $form["project"]->getData();
