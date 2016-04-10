@@ -368,6 +368,7 @@ nav ul li:hover:after{
 
 label.error{
     color: red;
+    margin-left: 0.5em;
 }
 
 li.current{

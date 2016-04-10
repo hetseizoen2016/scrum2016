@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="container">
-        {#{{ form_start(form) }}
+        {{ form_start(form) }}
         <h3>Datum + personen</h3>
         <section class="datum-pers">
             {{ form_row(form.datum) }}
@@ -27,12 +27,12 @@
         <h3>Formules</h3>
         <section>
             {% for type in types %}
-                <h4>{{type.name}}</h4>
-                <select class="types browser-default" name="{{type.name}}">
+                <label for="{{ type.name }}">{{ type.name }}</label>
+                <select class="types browser-default" name="reservatie[{{type.name}}]">
                     <option value="" disabled selected>- selecteer een formule -</option>
                     {%for formule in formules%}
                         {% if formule.menutypeId == type.id %}
-                            <option value="{{formule.name}}" data-minpers="{{formule.minPersons}}" data-maxpers="{{formule.maxPersons}}">{{formule.name}} ({{formule.info}})</option>
+                            <option value="{{formule.id}}" data-minpers="{{formule.minPersons}}" data-maxpers="{{formule.maxPersons}}">{{formule.name}} ({{formule.info}})</option>
                         {% endif %}
                     {% endfor %}
                 </select>
@@ -41,6 +41,8 @@
         <h3>Gegevens</h3>
         <section>
             {{form_row(form.naam)}}
+            {{form_row(form.email)}}
+            {{form_row(form.telefoon)}}
             {{form_row(form.opdrachtgever)}}
             {{form_row(form.commentaar)}}
         </section>
@@ -53,56 +55,7 @@
             {{form_row(form.product)}}
             {{form_row(form.project)}}
         </section>
-        {{ form_end (form) }}#}
-        <form name="reservatie" method="POST">
-            <h3>Datum + personen</h3>
-            <section class="datum-pers">
-                <label for="datum">Datum</label>
-                <input name="datum" type="date" class="datepicker" class="required">
-                <label for="aanvang">Aanvangsuur</label>
-                <input name="aanvang" type="time" class="required">
-                <label for="aantalDeelnemers">Aantal deelnemers</label>
-                <input name="aantalDeelnemers" type="number" class="required">
-            </section>
-            <h3>Formules</h3>
-            <section>
-                {% for type in types %}
-                    <h4>{{type.name}}</h4>
-                    <select class="types browser-default" name="{{type.name}}">
-                        <option value="" disabled selected>- selecteer een formule -</option>
-                        {%for formule in formules%}
-                            {% if formule.menutypeId == type.id %}
-                                <option value="{{formule.name}}" data-minpers="{{formule.minPersons}}" data-maxpers="{{formule.maxPersons}}">{{formule.name}} ({{formule.info}})</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                {% endfor %}
-            </section>
-            <h3>Gegevens</h3>
-            <section>
-                <label for="naam">Naam</label>
-                <input name="naam" type="text" class="required">
-                <label for="opdrachtgever">Opdrachtgever</label>
-                <input name="opdrachtgever" type="text" class="required">
-                <label for="commentaar">Commentaar</label>
-                <textarea name="commentaar" class="required"></textarea>
-            </section>
-            <h3>Betaling</h3>
-            <section class="betaling">
-                <input name="betalen" id="cash" class="radio" type="radio" value="cash" checked><label for="cash">Ter plaatse betalen</label>
-                <input name="betalen" id="budget" class="radio" type="radio" value="budget"><label for="budget">Op budget betalen</label>
-                <div>
-                    <label for="rekening">Rekening</label>
-                    <input name="rekening" type="text" class="required">
-                    <label for="afdeling">Afdeling</label>
-                    <input name="afdeling" type="text" class="required">
-                    <label for="product">Product</label>
-                    <input name="product" type="text" class="required">
-                    <label for="project">Project</label>
-                    <input name="Project" type="text" class="required">
-                </div>
-            </section>
-        </form>
+        {{ form_end (form) }}
     </div>
 {% endblock %}
 {% block javascripts %}
@@ -112,148 +65,4 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.date.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/picker.time.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/legacy.js"></script>
-    <script>
-        var reservatieForm = $("[name*='reservatie']");
-
-        reservatieForm.steps({
-            /* Labels */
-            labels: {
-                current: "",
-                finish: "Bevestig",
-                next: "Volgende",
-                previous: "Vorige",
-            },
-            headerTag: "h3",
-            bodyTag: "section",
-            transitionEffect: "slideLeft",
-            onStepChanging: function (event, currentIndex, newIndex)
-            {
-                /*if (newIndex == 1) {
-                 console.log(newIndex);
-                 aantalDeelnemers = $("#reservatie_aantalDeelnemers").val();
-                 formules = $("option");
-                 formules.each(function (i) {
-                 if (formules[i].dataset.minpers) {
-                 $(formules[i]).css("background-color", "white");
-                 if (formules[i].dataset.minpers > aantalDeelnemers) {
-                 console.log(aantalDeelnemers + " personen is te weinig (min " + formules[i].dataset.minpers + ")");
-                 $(formules[i]).css("background-color", "blue");
-                 }
-                 } else if (formules[i].dataset.maxpers) {
-                 $(formules[i]).css("background-color", "white");
-                 if (formules[i].dataset.maxpers < aantalDeelnemers) {
-                 console.log(aantalDeelnemers + " personen is te veel (max " + formules[i].dataset.maxpers + ")");
-                 $(formules[i]).css("background-color", "red");
-                 }
-                 } else {
-                 console.log("ok");
-                 $(formules[i]).css("background-color", "white");
-                 }
-                 });
-                 
-                 }*/
-                // Allways allow step back to the previous step even if the current step is not valid!
-                if (currentIndex > newIndex)
-                {
-                    return true;
-                }
-                // Clean up if user went backward before
-                if (currentIndex < newIndex)
-                {
-                    // To remove error styles
-                    $(".body:eq(" + newIndex + ") label.error", reservatieForm).remove();
-                    $(".body:eq(" + newIndex + ") .error", reservatieForm).removeClass("error");
-                }
-                reservatieForm.validate().settings.ignore = ":disabled,:hidden";
-                return reservatieForm.valid();
-            },
-            onFinishing: function (event, currentIndex)
-            {
-                reservatieForm.validate().settings.ignore = ":disabled";
-                return reservatieForm.valid();
-            },
-            onFinished: function (event, currentIndex)
-            {
-                var data = reservatieForm.serializeArray();
-                $.ajax({
-                    url: "{{ path('reservatieajax') }}",
-                    data: data
-                }).done(function (json) {
-                    console.log(json);
-                }).error(function () {
-                    console.log("ajax error");
-                });
-                reservatieForm.submit();
-            }
-        });
-        $('.datepicker').pickadate({
-            monthsFull: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
-            weekdaysFull: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
-            weekdaysShort: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
-            today: 'vandaag',
-            clear: 'wissen',
-            close: 'sluit',
-            format: 'd mmmm, yyyy',
-            formatSubmit: 'yyyy-mm-dd',
-        });
-        reservatieForm.validate({
-            errorPlacement: function errorPlacement(error, element) {
-                element.before(error);
-            },
-            rules: {
-                datum: {
-                    required: true,
-                    date: true
-                },
-                aantalDeelnemers: {
-                    required: true
-                },
-                Hoofdgerecht: {
-                    required: true
-                },
-                rekening: {
-                    required: true,
-                    number: true
-                }
-            },
-            messages: {
-                datum: {
-                    required: "Selecteer een datum",
-                    date: "Dit is geen geldige datum"
-                },
-                aantalDeelnemers: {
-                    required: "Voer het aantal personen in"
-                },
-                Hoofdgerecht: {
-                    required: "Selecteer minstens één hoofdgerecht"
-                },
-                rekening: {
-                    required: "Vul een rekeningnummer in",
-                    number: "Geen geldig rekeningnummer"
-                }
-            }
-        });
-
-        $('.datepicker').pickadate({
-            monthsFull: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
-            weekdaysFull: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
-            weekdaysShort: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
-            today: 'vandaag',
-            clear: 'wissen',
-            close: 'sluit',
-            format: 'd mmmm yyyy',
-            formatSubmit: 'yyyy-mm-dd'
-        });
-
-        $(".radio").change(changeCheck);
-        changeCheck();
-        function changeCheck() {
-            var betalen = $(".radio:checked").val();
-            if (betalen == "cash") {
-                $(".betaling div").css("display", "none").find("input").prop("disabled", true);
-            } else {
-                $(".betaling div").css("display", "block").find("input").prop("disabled", false);
-            }
-        }
-    </script>
 {% endblock %}
