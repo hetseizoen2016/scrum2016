@@ -171,6 +171,24 @@ class ReservatieController extends Controller
                         }
                     }
                 }
+                
+                $totaal = 0;
+                $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatie->getId());
+                foreach ($reservatieRegels as $reservatieRegel) {
+
+                    if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
+                        $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
+                        if (null !== $menuFormule->getMenutypeId()) {
+                            $totaal += $menuFormule->getPrice();
+                        }
+                    }
+                }
+                $totaal = $totaal * $aantalDeelnemers;
+                
+                $reservatie->setTotaal($totaal);
+                
+                $em->persist($reservatie);
+                $em->flush();
             }
 
             $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatie->getId());
@@ -226,7 +244,7 @@ class ReservatieController extends Controller
         $reservatie = $em->getRepository('AppBundle:Reservatie')->find($reservatieId);
         $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatieId);
         $menuFormulesArray = array();
-        
+
         foreach ($reservatieRegels as $reservatieRegel) {
 
             if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
