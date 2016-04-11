@@ -19,14 +19,14 @@
 				{% endfor %}
 			</td>
 			<td>
-				<span style="font-weight: bold">Datum van uitvoering:</span> </br>{{ datum }}</br>
-				<span style="font-weight: bold">Gereserveerd door:</span> </br>{{ naam }}</br>
+				<span style="font-weight: bold">Datum van uitvoering:</span> </br>{{ datum }}</br></br>
+				<span style="font-weight: bold">Gereserveerd door:</span> </br>{{ naam }}</br></br>
 				{% if opdrachtgever %}
-				<span style="font-weight: bold">In opdracht van:</span> </br>{{ opdrachtgever }}</br>
+				<span style="font-weight: bold">In opdracht van:</span> </br>{{ opdrachtgever }}</br></br>
 				{% endif %}
-				<span style="font-weight: bold">Aantal deelnemers:</span> </br>{{ aantalDeelnemers }}</br>
+				<span style="font-weight: bold">Aantal deelnemers:</span> </br>{{ aantalDeelnemers }}</br></br>
 				</br>
-				<span style="font-weight: bold">Aanvangsuur:</span> </br>{{ aanvang }}</br>
+				<span style="font-weight: bold">Aanvangsuur:</span> </br>{{ aanvang }}</br></br>
 				<span style="font-weight: bold">Einde:</span> </br>
 				</br>				
 			</td>		
@@ -43,31 +43,34 @@
 			<td style="width: 20%"></td>
 			<td style="width: 40%"><span style="font-weight: bold">Email:</span> {{ email }} </br><span style="font-weight: bold">Telefoon:</span> {{ telefoon }} </br></td>
 			<td style="width: 20%"></td>
-			<td style="width: 20%"></td>
+			<td style="width: 20%;text-align: center">&euro;{{ totaal }}</td>
 		</tr>
 	</table>
-	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%" cellpadding="3" cellspacing="3">
+	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%;table-layout: fixed;" cellpadding="3" cellspacing="3">
 		<tr>
 			<td>
 				<span style="font-weight: bold">Rekening:</span>
 				{% if rekening %}
-				{{ rekening }}</br>
+				{{ rekening }}
 				{% endif %}
+				</br>
 				<span style="font-weight: bold">Afdeling:</span>
 				{% if afdeling %}
 				{{ afdeling }}
 				{% endif %}
+				</br>
 				<span style="font-weight: bold">Product:</span>
 				{% if product %}
-				{{ product }}</br>
+				{{ product }}
 				{% endif %}
+				</br>
 				<span style="font-weight: bold">Project:</span>
 				{% if project %}
 				{{ project }}
 				{% endif %}
 			</td>
 		</tr>
-		<tr>
+		<tr style="min-height:200px">
 			<td>
 				<span style="font-weight: bold">Extra Informatie:</span></br>
 				{% if commentaar %}				

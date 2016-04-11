@@ -209,7 +209,7 @@ class ReservatieController extends Controller
             
 
             $message = \Swift_Message::newInstance()
-                    ->setSubject('Hello Email')
+                    ->setSubject('Nieuwe aanvraag tot reservatie')
                     ->setFrom('tseizoen@vdab.be')
                     ->setTo('vincentvanlerberghe_73@hotmail.com')
                     ->setBody(
@@ -217,11 +217,11 @@ class ReservatieController extends Controller
                             'email/bevestiging.html.twig', array("datum" => $datum, "naam" => $naam, "opdrachtgever" => $opdrachtgever,
                         "aantalDeelnemers" => $aantalDeelnemers, "aanvang" => $aanvang,
                         "commentaar" => $commentaar, "afdeling" => $afdeling, "product" => $product,
-                        "project" => $project, "rekening" => $rekening, "types" => $types, "email" => $email, "telefoon" => $telefoon, "formules" => $menuFormulesArray)
+                        "project" => $project, "rekening" => $rekening, "types" => $types, "email" => $email, "telefoon" => $telefoon, "formules" => $menuFormulesArray, "totaal" => $totaal)
                     ), 'text/html'
             );
             $this->get('mailer')->send($message);
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('bevestiging', array("reservatieId" => $reservatie->getId()));
         }
 
         return $this->render('reservatie/reservatie.html.twig', array(
