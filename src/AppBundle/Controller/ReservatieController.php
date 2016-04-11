@@ -209,8 +209,9 @@ class ReservatieController extends Controller
 
             $message = \Swift_Message::newInstance()
                     ->setSubject('Nieuwe aanvraag tot reservatie')
-                    ->setFrom('tseizoen@vdab.be')
-                    ->setTo('vincentvanlerberghe_73@hotmail.com')
+                    ->setFrom('tseizoen@vdabantwerpen.be')
+                    ->setCc($email)
+                    ->setTo('tseizoen@vdab.be')
                     ->setBody(
                     $this->renderView(
                             'email/bevestiging.html.twig', array("datum" => $datum, "naam" => $naam, "opdrachtgever" => $opdrachtgever,

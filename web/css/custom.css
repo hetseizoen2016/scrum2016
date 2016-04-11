@@ -396,6 +396,16 @@ li.current a{
 .bevestiging-formules div.col{
     padding: 0px 5px;
 }
+
+#bevestig-btn{
+    background-color: #0D8FD0;
+}
+
+.menutype-title{
+    font-size: 2em;
+    text-align: center;
+    color: #0D8FD0;
+}
 /*********************
         FOOTER
 *********************/
