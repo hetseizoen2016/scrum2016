@@ -205,8 +205,7 @@ class ReservatieController extends Controller
                         "project" => $project, "rekening" => $rekening, "types" => $types)
                     ), 'text/html'
             );
-            //$this->get('mailer')->send($message);
-            //return $this->redirectToRoute('send_mail', ['request' => $request], 307);
+            $this->get('mailer')->send($message);
             return $this->redirectToRoute('bevestiging', array("reservatieId" => $reservatie->getId()));
         }
 
