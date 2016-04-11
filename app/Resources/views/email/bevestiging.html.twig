@@ -7,68 +7,77 @@
 		<p style="width: 100%">In navolging van uw reservatieaanvraag worden volgende afspraken vastgelegd</p>
 	</div>
 
-	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%" cellpadding="3" cellspacing="3">
+	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%;table-layout: fixed;" cellpadding="3" cellspacing="3">
 		<tr>
 			<th>Formules</th>
 			<th>Praktische afspraken</th>
 		</tr>
 		<tr>
-			<td>
-				{% for type in types %}
-					{{ type }} </br>
+			<td style="width: 50%">
+				{% for formule in formules %}
+					<span style="font-weight: bold">{{ formule.name }}:</span> </br>{{ formule.info }} </br><span style="font-weight: bold">&euro;{{ formule.price }} p.p.</span></br></br>
 				{% endfor %}
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
-				Broodjeslunch à 6 euro p.p. </br>
 			</td>
 			<td>
-				Datum van uitvoering: {{ datum }}</br>
-				Gereserveerd door: {{ naam }}</br>
-				
-				In opdracht van: {{ opdrachtgever }}</br>
-				
-				Aantal deelnemers: {{ aantalDeelnemers }}</br>
+				<span style="font-weight: bold">Datum van uitvoering:</span> </br>{{ datum }}</br></br>
+				<span style="font-weight: bold">Gereserveerd door:</span> </br>{{ naam }}</br></br>
+				{% if opdrachtgever %}
+				<span style="font-weight: bold">In opdracht van:</span> </br>{{ opdrachtgever }}</br></br>
+				{% endif %}
+				<span style="font-weight: bold">Aantal deelnemers:</span> </br>{{ aantalDeelnemers }}</br></br>
 				</br>
-				Aanvangsuur: {{ aanvang }}</br>
-				Einde: </br>
+				<span style="font-weight: bold">Aanvangsuur:</span> </br>{{ aanvang }}</br></br>
+				<span style="font-weight: bold">Einde:</span> </br>
 				</br>				
 			</td>		
 		</tr>
 	</table>
-	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%" cellpadding="3" cellspacing="3">
+	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%;min-height: 100px;" cellpadding="3" cellspacing="3">
 		<tr>
 			<th>Datum</th>
+			<th>Persoonlijke info:</th>
 			<th>Akkoord diensthoofd</th>
 			<th>Totaal:</th>
 		</tr>
+		<tr>
+			<td style="width: 20%"></td>
+			<td style="width: 40%"><span style="font-weight: bold">Email:</span> {{ email }} </br><span style="font-weight: bold">Telefoon:</span> {{ telefoon }} </br></td>
+			<td style="width: 20%"></td>
+			<td style="width: 20%;text-align: center">&euro;{{ totaal }}</td>
+		</tr>
 	</table>
-	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%" cellpadding="3" cellspacing="3">
+	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%;table-layout: fixed;" cellpadding="3" cellspacing="3">
 		<tr>
 			<td>
-				Rekening: {{ rekening }}</br>
-				Afdeling: {{ afdeling }}</br>
-				Product: {{ product }}</br>
-				Project: {{ project }}
+				<span style="font-weight: bold">Rekening:</span>
+				{% if rekening %}
+				{{ rekening }}
+				{% endif %}
+				</br>
+				<span style="font-weight: bold">Afdeling:</span>
+				{% if afdeling %}
+				{{ afdeling }}
+				{% endif %}
+				</br>
+				<span style="font-weight: bold">Product:</span>
+				{% if product %}
+				{{ product }}
+				{% endif %}
+				</br>
+				<span style="font-weight: bold">Project:</span>
+				{% if project %}
+				{{ project }}
+				{% endif %}
 			</td>
 		</tr>
-		<tr>
+		<tr style="min-height:200px">
 			<td>
-				Extra Informatie:</br>
+				<span style="font-weight: bold">Extra Informatie:</span></br>
+				{% if commentaar %}				
 				{{ commentaar }}
+				{% endif %}
 			</td>
 		</tr>
 	</table>
-
 </body>
 

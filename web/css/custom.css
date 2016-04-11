@@ -37,7 +37,9 @@ main {
 .fw200{
     font-weight: 200;
 }
-
+.bold{
+    font-weight: bold;
+}
 @font-face{
     font-family: SSP;
     src: url(fonts/SourceSansPro-Regular.ttf);
