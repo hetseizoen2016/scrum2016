@@ -95,6 +95,7 @@ $(function () {
         close: 'sluit',
         format: 'd mmmm, yyyy',
         formatSubmit: 'yyyy-mm-dd',
+        min:true,
     });
     reservatieForm.validate({
         errorPlacement: function errorPlacement(error, element) {
