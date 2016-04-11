@@ -60,16 +60,15 @@ class ReservatieController extends Controller
                         )
                 )
                 ->add('aanvang', 'time', array(
-                    'input' => 'datetime',
+                    'attr' => array('class' => 'timepicker'),
+                    'input'  => 'datetime',
                     'widget' => 'single_text',
-                    'with_seconds' => false,
-                    'view_timezone' => 'Europe/Brussels',
-                    'model_timezone' => 'Europe/Brussels',
                     'required' => true,
                     'label' => 'Aankomstuur',
-                    'placeholder' => array(
-                        'hour' => 'Uur', 'minute' => 'Minuten',
-                    )
+                    //'input' => 'datetime',
+                    'widget' => 'single_text',
+                    'required' => true,
+                    'label' => 'Aankomstuur',                   
                         )
                 )
                 ->add('commentaar', TextareaType::class, array(
@@ -345,17 +344,15 @@ class ReservatieController extends Controller
                         )
                 )
                 ->add('aanvang', 'time', array(
-                    'input' => 'datetime',
+                    'attr' => array('class' => 'timepicker'),
+                    'input'  => 'datetime',
                     'widget' => 'single_text',
-                    //    'date_format' => 'HH:mm',
-                    'with_seconds' => false,
-                    'view_timezone' => 'Europe/Brussels',
-                    'model_timezone' => 'Europe/Brussels',
                     'required' => true,
                     'label' => 'Aankomstuur',
-                    'placeholder' => array(
-                        'hour' => 'Uur', 'minute' => 'Minuten',
-                    )
+                    //'input' => 'datetime',
+                    'widget' => 'single_text',
+                    'required' => true,
+                    'label' => 'Aankomstuur',
                         )
                 )
                 ->add('commentaar', TextareaType::class, array(
