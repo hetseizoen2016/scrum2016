@@ -1,0 +1,14 @@
+parameters:
+  database_host: localhost
+  database_name: tseizoen
+  database_user: tseizoen
+  database_password: v6HrUPhAYr4VfhSJ
+  database_port: null
+  mailer_transport: smtp
+  mailer_encryption: tls
+  mailer_auth_mode: login
+  mailer_host: 195.130.132.11
+  mailer_user: ad48433
+  mailer_password: Vdab1007
+  mailer_port: 587
+  secret: c9aa748da83adda38beffdfa1b96bbe76b76d9a8
