@@ -216,7 +216,10 @@ nav ul li:hover:after{
 #reservatie-info{
     width:80%;
 }
-
+.collection-item.active{
+    background-color: white !important;
+    color: black !important;
+}
 
 /*********************
       OPLEIDINGEN
