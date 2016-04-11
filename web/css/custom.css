@@ -390,6 +390,10 @@ li.current a{
 .content .title{
     display: none;
 }
+
+.bevestiging-formules div.col{
+    padding: 0px 5px;
+}
 /*********************
         FOOTER
 *********************/

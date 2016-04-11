@@ -14,7 +14,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Reservatie;
 use DateTime;
 
-
 class ReservatieController extends Controller
 {
 
@@ -190,7 +189,7 @@ class ReservatieController extends Controller
             );
             //$this->get('mailer')->send($message);
             //return $this->redirectToRoute('send_mail', ['request' => $request], 307);
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('bevestiging', array("reservatieId" => $reservatie->getId()));
         }
 
         return $this->render('reservatie/reservatie.html.twig', array(
@@ -203,10 +202,43 @@ class ReservatieController extends Controller
     }
 
     /**
+     * @Route("/bevestiging", name="bevestiging")
+     */
+    public function bevestigingsAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $reservatieId = $request->query->get("reservatieId");
+
+        $reservatie = $em->getRepository('AppBundle:Reservatie')->find($reservatieId);
+        $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatieId);
+        $menuFormulesArray = array();
+        
+        foreach ($reservatieRegels as $reservatieRegel) {
+
+            if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
+                $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
+                if (null !== $menuFormule->getMenutypeId()) {
+                    $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
+                }
+            }
+            array_push($menuFormulesArray, $menuFormule);
+        }
+        $reservatie->setReservatieRegels($menuFormulesArray);
+
+        /* Openingsuren in footer */
+        $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
+
+        return $this->render('reservatie/bevestiging.html.twig', array(
+                    'openingsuren' => $openingsuren,
+                    'user' => $this->getUser(),
+                    'reservatie' => $reservatie,
+        ));
+    }
+
+    /**
      * @Route("/reservatie/send", name="send_mail")
      */
-    public function sendAction(Request $request)
-    {
+    public function sendAction(Request $request) {
         //echo($request->query->get('datum'));
 
 
@@ -232,8 +264,7 @@ class ReservatieController extends Controller
      * @Route("/admin/reservatie/index", name="reservatie_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $reservaties = $em->getRepository('AppBundle:Reservatie')->findAll();
@@ -274,54 +305,46 @@ class ReservatieController extends Controller
      * @Route("/admin/reservatie/new", name="reservatie_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
         $reservatie = new Reservatie();
         $defaultData = array('message' => 'my message');
         //$form = $this->createForm('AppBundle\Form\ReservatieType', $reservatie);
         $form = $this->createFormBuilder($defaultData)
-            ->add('datum', 'date',
-                array(
+                ->add('datum', 'date', array(
                     'attr' => array('class' => 'datepicker'),
                     'widget' => 'single_text',
                     'required' => true,
                     'label' => 'Datum'
+                        )
                 )
-            )
-            ->add('naam', TextType::class,
-                array(
+                ->add('naam', TextType::class, array(
                     'required' => true,
                     'label' => 'Naam'
+                        )
                 )
-            )
-            ->add('email', EmailType::class,
-                array(
+                ->add('email', EmailType::class, array(
                     'required' => false,
                     'label' => 'Email'
+                        )
                 )
-            )
-            ->add('telefoon', TextType::class,
-                array(
+                ->add('telefoon', TextType::class, array(
                     'required' => false,
                     'label' => 'Telefoon'
+                        )
                 )
-            )
-            ->add('opdrachtgever', TextType::class,
-                array(
+                ->add('opdrachtgever', TextType::class, array(
                     'required' => false,
                     'label' => 'Opdrachtgever'
+                        )
                 )
-            )
-            ->add('aantalDeelnemers', TextType::class,
-                array(
+                ->add('aantalDeelnemers', TextType::class, array(
                     'required' => true,
                     'label' => 'Aantal deelnemers'
+                        )
                 )
-            )
-            ->add('aanvang', 'time',
-                array(
+                ->add('aanvang', 'time', array(
                     'input' => 'datetime',
                     'widget' => 'single_text',
                     //    'date_format' => 'HH:mm',
@@ -333,44 +356,39 @@ class ReservatieController extends Controller
                     'placeholder' => array(
                         'hour' => 'Uur', 'minute' => 'Minuten',
                     )
+                        )
                 )
-            )
-            ->add('commentaar', TextareaType::class,
-                array(
+                ->add('commentaar', TextareaType::class, array(
                     'required' => false
+                        )
                 )
-            )
-            ->add('afdeling', TextType::class,
-                array(
+                ->add('afdeling', TextType::class, array(
                     'required' => false,
                     'label' => 'Afdeling'
+                        )
                 )
-            )
-            ->add('product', TextType::class,
-                array(
+                ->add('product', TextType::class, array(
                     'required' => false,
                     'label' => 'Product'
+                        )
                 )
-            )
-            ->add('project', TextType::class,
-                array(
+                ->add('project', TextType::class, array(
                     'required' => false,
                     'label' => 'Project'
+                        )
                 )
-            )
-            ->add('rekening', TextType::class,
-                array(
+                ->add('rekening', TextType::class, array(
                     'required' => false,
                     'label' => 'Rekening'
+                        )
                 )
-            )
-            ->getForm();
+                ->getForm();
 
         $form->handleRequest($request);
 
         $menuTypes = $em->getRepository('AppBundle:MenuType')->findAll();
         $menuFormules = $em->getRepository('AppBundle:MenuFormules')->findAll();
-        
+
         $menuFormulesArray = array();
         foreach ($menuFormules as $menuFormule) {
             $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
@@ -382,20 +400,20 @@ class ReservatieController extends Controller
             if (isset($_POST['form']) && isset($_POST['reservatie'])) {
 
                 $reservatie
-                    ->setDatum(new \DateTime($_POST['form']['datum']))
-                    ->setNaam($_POST['form']['naam'])
-                    ->setEmail($_POST['form']['email'])
-                    ->setTelefoon($_POST['form']['telefoon'])
-                    ->setOpdrachtgever($_POST['form']['opdrachtgever'])
-                    ->setAantalDeelnemers(intval($_POST['form']['aantalDeelnemers']))
-                    ->setAanvang(new \DateTime($_POST['form']['aanvang']))
-                //  ->setEinde(new \DateTime($_POST['form']['einde']))
-                //  ->setTotaal($_POST['form']['totaal'])
-                    ->setCommentaar($_POST['form']['commentaar'])
-                    ->setAfdeling($_POST['form']['afdeling'])
-                    ->setProduct($_POST['form']['product'])
-                    ->setProject($_POST['form']['project'])
-                    ->setRekening($_POST['form']['rekening']);
+                        ->setDatum(new \DateTime($_POST['form']['datum']))
+                        ->setNaam($_POST['form']['naam'])
+                        ->setEmail($_POST['form']['email'])
+                        ->setTelefoon($_POST['form']['telefoon'])
+                        ->setOpdrachtgever($_POST['form']['opdrachtgever'])
+                        ->setAantalDeelnemers(intval($_POST['form']['aantalDeelnemers']))
+                        ->setAanvang(new \DateTime($_POST['form']['aanvang']))
+                        //  ->setEinde(new \DateTime($_POST['form']['einde']))
+                        //  ->setTotaal($_POST['form']['totaal'])
+                        ->setCommentaar($_POST['form']['commentaar'])
+                        ->setAfdeling($_POST['form']['afdeling'])
+                        ->setProduct($_POST['form']['product'])
+                        ->setProject($_POST['form']['project'])
+                        ->setRekening($_POST['form']['rekening']);
 
                 $em->persist($reservatie);
                 $em->flush();
@@ -407,8 +425,8 @@ class ReservatieController extends Controller
                         $reservatieRegel = new ReservatieRegels();
 
                         $reservatieRegel
-                            ->setReservatieId($reservatie->getId())
-                            ->setFormuleId($value);
+                                ->setReservatieId($reservatie->getId())
+                                ->setFormuleId($value);
 
                         $em->persist($reservatieRegel);
                         $em->flush();
@@ -417,9 +435,8 @@ class ReservatieController extends Controller
             }
 
             return $this->redirectToRoute('reservatie_overzicht');
-
         }
-        
+
         /* Openingsuren in footer */
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
@@ -436,11 +453,9 @@ class ReservatieController extends Controller
     /**
      * @Route("/admin/reservatie/newMenuFormule", name="reservatie_newMenuFormule")
      */
-    public function newMenuFormule()
-    {
-
+    public function newMenuFormule() {
+        
     }
-
 
     /**
      * Finds and displays a Reservatie entity.
@@ -449,8 +464,7 @@ class ReservatieController extends Controller
      * @Method("GET")
      */
     /* wordt niet gebruikt */
-    public function showAction(Reservatie $reservatie)
-    {
+    public function showAction(Reservatie $reservatie) {
         $deleteForm = $this->createDeleteForm($reservatie);
 
         return $this->render('reservatie/show.html.twig', array(
@@ -465,8 +479,7 @@ class ReservatieController extends Controller
      * @Route("/admin/reservatie/{id}/edit", name="reservatie_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Reservatie $reservatie)
-    {
+    public function editAction(Request $request, Reservatie $reservatie) {
         $deleteForm = $this->createDeleteForm($reservatie);
         $editForm = $this->createForm('AppBundle\Form\ReservatieType', $reservatie);
         $editForm->handleRequest($request);
@@ -498,8 +511,7 @@ class ReservatieController extends Controller
      * @Route("reservatie//{id}", name="reservatie_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Reservatie $reservatie)
-    {
+    public function deleteAction(Request $request, Reservatie $reservatie) {
         $form = $this->createDeleteForm($reservatie);
         $form->handleRequest($request);
 
@@ -520,11 +532,11 @@ class ReservatieController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Reservatie $reservatie)
-    {
+    private function createDeleteForm(Reservatie $reservatie) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('reservatie_delete', array('id' => $reservatie->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
+                        ->setAction($this->generateUrl('reservatie_delete', array('id' => $reservatie->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm();
     }
+
 }
