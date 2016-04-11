@@ -14,31 +14,20 @@
 		</tr>
 		<tr>
 			<td>
-				{% for type in types %}
-					{{ type }} </br>
+				{% for formule in formules %}
+					{{ formule.name }}</br>
 				{% endfor %}
-				Aperitief: </br>
-				{{ aperitief }} </br>
-				<hr>
-				Voorgerecht: </br>
-				{{ voorgerecht }} </br>				
-				<hr>
-				Hoofdgerecht: </br>
-				{{ hoofdgerecht }} </br>
-				<hr>
-				Nagerecht: </br>
-				{{ nqgerecht }} </br>
 			</td>
 			<td>
-				Datum van uitvoering: {{ datum }}</br>
-				Gereserveerd door: {{ naam }}</br>
-				
-				In opdracht van: {{ opdrachtgever }}</br>
-				
-				Aantal deelnemers: {{ aantalDeelnemers }}</br>
+				<span style="font-weight: bold">Datum van uitvoering:</span> {{ datum }}</br>
+				<span style="font-weight: bold">Gereserveerd door:</span> {{ naam }}</br>
+				{% if opdrachtgever %}
+				<span style="font-weight: bold">In opdracht van:</span> {{ opdrachtgever }}</br>
+				{% endif %}
+				<span style="font-weight: bold">Aantal deelnemers:</span> {{ aantalDeelnemers }}</br>
 				</br>
-				Aanvangsuur: {{ aanvang }}</br>
-				Einde: </br>
+				<span style="font-weight: bold">Aanvangsuur:</span> {{ aanvang }}</br>
+				<span style="font-weight: bold">Einde:</span> </br>
 				</br>				
 			</td>		
 		</tr>
@@ -52,27 +41,40 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>{{ email }} </br> {{ telefoon }} </br></td>
+			<td><span style="font-weight: bold">Email:</span> {{ email }} </br><span style="font-weight: bold">Telefoon:</span> {{ telefoon }} </br></td>
 			<td></td>
-			<td></td>
+			<td>{{ totaal }}</td>
 		</tr>
 	</table>
 	<table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000;color:#000000;width:100%" cellpadding="3" cellspacing="3">
 		<tr>
 			<td>
-				Rekening: {{ rekening }}</br>
-				Afdeling: {{ afdeling }}</br>
-				Product: {{ product }}</br>
-				Project: {{ project }}
+				<span style="font-weight: bold">Rekening:</span> </br>
+				{% if rekening %}
+				{{ rekening }}</br>
+				{% endif %}
+				<span style="font-weight: bold">Afdeling:</span> </br>
+				{% if afdeling %}
+				{{ afdeling }}
+				{% endif %}
+				<span style="font-weight: bold">Product:</span> </br>
+				{% if product %}
+				{{ product }}</br>
+				{% endif %}
+				<span style="font-weight: bold">Project:</span> </br>
+				{% if project %}
+				{{ project }}
+				{% endif %}
 			</td>
 		</tr>
 		<tr>
 			<td>
-				Extra Informatie:</br>
+				<span style="font-weight: bold">Extra Informatie:</span></br>
+				{% if commentaar %}				
 				{{ commentaar }}
+				{% endif %}
 			</td>
 		</tr>
 	</table>
-
 </body>
 

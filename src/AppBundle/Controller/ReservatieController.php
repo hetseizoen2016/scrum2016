@@ -137,6 +137,11 @@ class ReservatieController extends Controller
                 } else {
                     $project = null;
                 }
+                if (isset($_POST['form']['rekening'])) {
+                    $rekening = $_POST['form']['rekening'];
+                } else {
+                    $rekening = null;
+                }
                 $reservatie
                         ->setDatum(new \DateTime($datum))
                         ->setNaam($naam)
@@ -169,6 +174,16 @@ class ReservatieController extends Controller
                 }
             }
 
+            foreach ($reservatieRegel as $regel) {
+                $formules[] = $this->getDoctrine()
+                    ->getRepository('AppBundle:MenuFormules')
+                    ->find($regel->getFormuleId());
+            }
+
+            foreach ($formules as $formule){
+                $totaal += $formule->getPrice();
+            }
+
             $message = \Swift_Message::newInstance()
                     ->setSubject('Hello Email')
                     ->setFrom('tseizoen@vdab.be')
@@ -178,11 +193,10 @@ class ReservatieController extends Controller
                             'email/bevestiging.html.twig', array("datum" => $datum, "naam" => $naam, "opdrachtgever" => $opdrachtgever,
                         "aantalDeelnemers" => $aantalDeelnemers, "aanvang" => $aanvang,
                         "commentaar" => $commentaar, "afdeling" => $afdeling, "product" => $product,
-                        "project" => $project, "rekening" => $rekening, "types" => $types, "email" => $email, "telefoon" => $telefoon)
+                        "project" => $project, "rekening" => $rekening, "types" => $types, "email" => $email, "telefoon" => $telefoon, "formules" => $formules, "totaal" => $totaal)
                     ), 'text/html'
             );
-            //$this->get('mailer')->send($message);
-            //return $this->redirectToRoute('send_mail', ['request' => $request], 307);
+            $this->get('mailer')->send($message);
             return $this->redirectToRoute('index');
         }
 
