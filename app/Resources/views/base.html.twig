@@ -4,7 +4,7 @@
         <meta charset="UTF-8"/>
         <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon-96x96.png') }}"/>
     <!-- Compiled and minified CSS for Materialize -->
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
@@ -23,6 +23,9 @@
                 <ul class="right hide-on-med-and-down">                    
                     <li>
                         <a class="black-text" href="{{ path('admin') }}">Admin home</a>
+                    </li>
+                    <li>
+                        <p>|</p>
                     </li>
                     <li>
                         <a class="black-text" href="{{ path('logout') }}">Uitloggen</a>

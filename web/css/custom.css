@@ -37,7 +37,9 @@ main {
 .fw200{
     font-weight: 200;
 }
-
+.bold{
+    font-weight: bold;
+}
 @font-face{
     font-family: SSP;
     src: url(fonts/SourceSansPro-Regular.ttf);
@@ -389,6 +391,10 @@ li.current a{
 
 .content .title{
     display: none;
+}
+
+.bevestiging-formules div.col{
+    padding: 0px 5px;
 }
 /*********************
         FOOTER

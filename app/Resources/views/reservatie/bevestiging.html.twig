@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Uw reservatie</h1>
+        <p>
+            Bedankt om te reserveren bij 't Seizoen.
+        </p>
+        <p>
+            Wij hebben uw aanvraag tot reservatie ontvangen. 
+        </p>
+        <p>
+            U zal zo spoedig mogelijk een mail van ons ontvangen ter bevestiging van uw reservatie.
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Datum</th>
+                    <td>{% if reservatie.datum %}{{ reservatie.datum|date('Y-m-d') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Naam</th>
+                    <td>{{ reservatie.naam }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ reservatie.email }}</td>
+                </tr>
+                <tr>
+                    <th>telefoon</th>
+                    <td>{{ reservatie.telefoon }}</td>
+                </tr>
+                {% if reservatie.opdrachtgever %}
+                    <tr>
+                        <th>Opdrachtgever</th>
+                        <td>{{ reservatie.opdrachtgever }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Aantaldeelnemers</th>
+                    <td>{{ reservatie.aantalDeelnemers }}</td>
+                </tr>
+                <tr>
+                    <th>Aanvang</th>
+                    <td>{% if reservatie.aanvang %}{{ reservatie.aanvang|date('H:i:s') }}{% endif %}</td>
+                </tr>
+                {% if reservatie.einde %}
+                    <tr>
+                        <th>Einde</th>
+                        <td>{% if reservatie.einde %}{{ reservatie.einde|date('H:i:s') }}{% endif %}</td>
+                    </tr>
+                {% endif %}
+                {% if reservatie.commentaar %}
+                    <tr>
+                        <th>Commentaar</th>
+                        <td>{{ reservatie.commentaar }}</td>
+                    </tr>
+                {% endif %}
+                {% if reservatie.afdeling %}
+                    <tr>
+                        <th>Afdeling</th>
+                        <td>{{ reservatie.afdeling }}</td>
+                    </tr>
+                {% endif %}
+                {% if reservatie.product %}
+                    <tr>
+                        <th>Product</th>
+                        <td>{{ reservatie.product }}</td>
+                    </tr>
+                {% endif %}
+                {% if reservatie.project %}
+                    <tr>
+                        <th>Project</th>
+                        <td>{{ reservatie.project }}</td>
+                    </tr>
+                {% endif %}
+                {% if reservatie.rekening %}
+                    <tr>
+                        <th>Rekening</th>
+                        <td>{{ reservatie.rekening }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Formules</th>
+                    <td>
+                        {% for menuFormule in reservatie.reservatieRegels %}
+                            <div class="row bevestiging-formules">
+                                <div class="col s12">
+                                    <div class="col s2">{{ menuFormule.name }}</div>
+                                    <div class="col s1">&euro; {{ menuFormule.price }}</div>
+                                    <div class="col s9">{{ menuFormule.info }}</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% if reservatie.totaal %}
+                    <tr>
+                        <th>Totaal</th>
+                        <td>&#128; {{ reservatie.totaal }}</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <a href="{{path('index')}}" class="btn">OK</a>
+    </div>
+{% endblock %}
