@@ -60,16 +60,15 @@ class ReservatieController extends Controller
                         )
                 )
                 ->add('aanvang', 'time', array(
-                    'input' => 'datetime',
+                    'attr' => array('class' => 'timepicker'),
+                    'input'  => 'datetime',
                     'widget' => 'single_text',
-                    'with_seconds' => false,
-                    'view_timezone' => 'Europe/Brussels',
-                    'model_timezone' => 'Europe/Brussels',
                     'required' => true,
                     'label' => 'Aankomstuur',
-                    'placeholder' => array(
-                        'hour' => 'Uur', 'minute' => 'Minuten',
-                    )
+                    //'input' => 'datetime',
+                    'widget' => 'single_text',
+                    'required' => true,
+                    'label' => 'Aankomstuur',                   
                         )
                 )
                 ->add('commentaar', TextareaType::class, array(
@@ -136,13 +135,11 @@ class ReservatieController extends Controller
                 } else {
                     $project = null;
                 }
-
                 if (isset($_POST['form']['rekening'])) {
                     $rekening = $_POST['form']['rekening'];
                 } else {
                     $rekening = null;
                 }
-
                 $reservatie
                         ->setDatum(new \DateTime($datum))
                         ->setNaam($naam)
@@ -193,8 +190,25 @@ class ReservatieController extends Controller
                 $em->flush();
             }
 
+            $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatie->getId());
+            $menuFormulesArray = array();
+            
+            foreach ($reservatieRegels as $reservatieRegel) {
+
+                if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
+                    $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
+                    if (null !== $menuFormule->getMenutypeId()) {
+                        $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
+                    }
+                }
+                array_push($menuFormulesArray, $menuFormule);
+            }
+
+
+            
+
             $message = \Swift_Message::newInstance()
-                    ->setSubject('Hello Email')
+                    ->setSubject('Nieuwe aanvraag tot reservatie')
                     ->setFrom('tseizoen@vdab.be')
                     ->setTo('vincentvanlerberghe_73@hotmail.com')
                     ->setBody(
@@ -202,7 +216,7 @@ class ReservatieController extends Controller
                             'email/bevestiging.html.twig', array("datum" => $datum, "naam" => $naam, "opdrachtgever" => $opdrachtgever,
                         "aantalDeelnemers" => $aantalDeelnemers, "aanvang" => $aanvang,
                         "commentaar" => $commentaar, "afdeling" => $afdeling, "product" => $product,
-                        "project" => $project, "rekening" => $rekening, "types" => $types)
+                        "project" => $project, "rekening" => $rekening, "types" => $types, "email" => $email, "telefoon" => $telefoon, "formules" => $menuFormulesArray, "totaal" => $totaal)
                     ), 'text/html'
             );
             $this->get('mailer')->send($message);
@@ -362,17 +376,15 @@ class ReservatieController extends Controller
                         )
                 )
                 ->add('aanvang', 'time', array(
-                    'input' => 'datetime',
+                    'attr' => array('class' => 'timepicker'),
+                    'input'  => 'datetime',
                     'widget' => 'single_text',
-                    //    'date_format' => 'HH:mm',
-                    'with_seconds' => false,
-                    'view_timezone' => 'Europe/Brussels',
-                    'model_timezone' => 'Europe/Brussels',
                     'required' => true,
                     'label' => 'Aankomstuur',
-                    'placeholder' => array(
-                        'hour' => 'Uur', 'minute' => 'Minuten',
-                    )
+                    //'input' => 'datetime',
+                    'widget' => 'single_text',
+                    'required' => true,
+                    'label' => 'Aankomstuur',
                         )
                 )
                 ->add('commentaar', TextareaType::class, array(

@@ -46,17 +46,16 @@ class ReservatieType extends AbstractType
             )
             ->add('aanvang', 'time',
                 array(
+                   'attr' => array('class' => 'timepicker'),
                     'input'  => 'datetime',
                     'widget' => 'single_text',
-                //    'date_format' => 'HH:mm',
-                    'with_seconds' => false,
-                    'view_timezone' => 'Europe/Brussels',
-                    'model_timezone' => 'Europe/Brussels',
                     'required' => true,
                     'label' => 'Aankomstuur',
-                    'placeholder' => array(
-                        'hour' => 'Uur', 'minute' => 'Minuten',
-                    )
+                    //'input' => 'datetime',
+                    'widget' => 'single_text',
+                    'required' => true,
+                    'label' => 'Aankomstuur',
+                    
                 )
             )
             ->add('commentaar', 'textarea',

@@ -101,6 +101,14 @@ $(function () {
         close: 'sluit',
         format: 'd mmmm, yyyy',
         formatSubmit: 'yyyy-mm-dd',
+        min:true,
+    });
+    $('.timepicker').pickatime({
+        interval:15,
+        format:'HH u i',
+        formatSubmit:'HH:i',
+        min:[8,00],
+        max:[17,00],
     });
     reservatieForm.validate({
         errorPlacement: function errorPlacement(error, element) {

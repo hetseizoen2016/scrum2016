@@ -21,14 +21,17 @@ class MenuController extends Controller{
 
 		/* MenuFormules */
 		$menuFormules = $em->getRepository('AppBundle:MenuFormules')->findAllOrderedByNameAndByPrice();
+
+		$em = $this->getDoctrine()->getManager();
+		$menuTypes = $em->getRepository('AppBundle:MenuType')->findAll();
 		
                 $menuTypes = $em->getRepository('AppBundle:MenuType')->findAll();
                 
 		return $this->render('menu/menu.html.twig', array(
 			'openingsuren' => $openingsuren,
 			'menuformules' => $menuFormules,
-                        'user' => $this->getUser(),
-                        'menutypes' => $menuTypes
+			'menutypes' => $menuTypes,
+                        'user' => $this->getUser()
 		));
 	}
 }
