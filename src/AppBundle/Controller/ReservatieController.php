@@ -211,6 +211,11 @@ class ReservatieController extends Controller
                     ->setSubject('Nieuwe aanvraag tot reservatie')
                     ->setFrom('tseizoen@vdabantwerpen.be')
                     ->setCc($email)
+                    ->setBcc(array(
+                            'henri.bonte@vdab.be',
+                            'guy.daemen@vdab.be',
+                            'maurice.vandeput@vdab.be'
+                        ))
                     ->setTo('tseizoen@vdab.be')
                     ->setBody(
                     $this->renderView(
