@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin.html.twig' %}
 
 {% block body %}
 <div class="container">
@@ -8,32 +8,6 @@
                 <h2 class="center-align">Maak een nieuwe reservering</h2>
     
                 {{ form_start(form) }}
-
-{#
-                {{ form_label(form.datum, 'Datum') }}
-                {{ form_errors(form.datum) }}
-                {{ form_widget(form.datum) }}
-
-                {{ form_label(form.naam, 'HAHA') }}
-                {{ form_errors(form.naam) }}
-                {{ form_widget(form.naam) }}
-
-                {{ form_label(form.naam, 'Naam') }}
-                {{ form_errors(form.naam) }}
-                {{ form_widget(form.naam) }}
-
-                {{ form_label(form.opdrachtgever, 'Naam opdrachtgever') }}
-                {{ form_errors(form.opdrachtgever) }}
-                {{ form_widget(form.opdrachtgever) }}
-
-                {{ form_label(form.aanvang, 'Aanvangstuur') }}
-                {{ form_errors(form.aanvang) }}
-                {{ form_widget(form.aanvang) }}
-
-                {{ form_label(form.aantalDeelnemers, 'Aantal deelnemers') }}
-                {{ form_errors(form.aantalDeelnemers) }}
-                {{ form_widget(form.aantalDeelnemers) }}
-#}
                 {{ form_widget(form) }}
 
                 {% for menutype in menutypes %}

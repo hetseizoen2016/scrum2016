@@ -1,6 +1,6 @@
 {% extends 'admin/admin.html.twig' %}
 
-{% block title %}Alle Menugangen{% endblock %}
+{% block title %}Overzicht reserveringen{% endblock %}
 
 {% block body %}
 
@@ -20,20 +20,25 @@
             <div class="col s12">
                 <div class="collapsible-header">
                     <div class="col s3">Datum en uur</div>
-                    <div class="col s1">personen</div>
+                    <div class="col s2">Aantal deelnemers</div>
                     <div class="col s6">Naam</div>
-                    <div class="col s2"></div>
+                    <div class="col s1"></div>
                 </div>
 
                 <ul class="collapsible blue-grey lighten-5" data-collapsible="expandable">
                     {% for reservatie in reservaties %}
                         <li>
                             <div class="collapsible-header blue-grey lighten-4">
-                                <div class="col s3">{{ reservatie.datum|date("d/m/Y") }} {{ reservatie.aanvang|date("H:i") }} - {{ reservatie.einde|date("H:i") }}</div>
-                                <div class="col s1">{{ reservatie.aantalDeelnemers }}</div>
-                                <div class="col s6">{{ reservatie.naam }}</div>
-                                <div class="col s1"><a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}"><i class="material-icons blue-text darken-3">mode_edit</i></a></div>
-                                <div class="col s1"><i class="material-icons red-text darken-4">clear</i></div>
+                                <div class="col s3">{{ reservatie.datum|date("d/m/Y") }} ({{ reservatie.aanvang|date("H:i") }})</div>
+                                <div class="col s2">{{ reservatie.aantalDeelnemers }}</div>
+                                <div class="col s6">{{ reservatie.naam }}
+                                    {% if reservatie.email or reservatie.telefoon %}({% endif %}
+                                    {% if reservatie.email %}email: {{ reservatie.email }}{% endif %}
+                                    {% if reservatie.email and reservatie.telefoon %} - {% endif %}
+                                    {% if reservatie.telefoon %}telefoon: {{ reservatie.telefoon }}{% endif %}
+                                    {% if reservatie.email or reservatie.telefoon %}){% endif %}</div>
+                          {#    <div class="col s1"><a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}"><i class="material-icons blue-text darken-3">mode_edit</i></a></div>#}
+                                <div class="col s1 right-align"><a href="{{ path('reservatie_overzicht_delete', { 'id': reservatie.id }) }}"><i class="material-icons red-text darken-4">clear</i></a></div>
                             </div>
                             <div class="collapsible-body">
 
