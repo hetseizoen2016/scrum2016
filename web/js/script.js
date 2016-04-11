@@ -20,6 +20,12 @@ $(function () {
     $('#menu_formules_info').val();
     $('#menu_formules_info').trigger('autoresize');
 
+    $(".menutype-title").each(function () { //menutypes zonder menuformules niet weergeven
+        if (!$(this).siblings().size() > 0) {
+            $(this).parent().css("display", "none");
+        }
+    });
+
     var reservatieForm = $("[name*='form']");
 
     reservatieForm.steps({
