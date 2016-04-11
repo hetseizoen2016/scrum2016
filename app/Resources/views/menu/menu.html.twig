@@ -25,7 +25,7 @@
                 <h1 class="menutype-title">{{menutype.name}}</h3>
                 {% for menuformule in menuformules %}
                     {% if menuformule.menutypeId == menutype.id %}
-                    <div class="col s12 m6 l6 offset-l3 offset-m3">
+                    <div class="col s12 m12 l12  ">
                         <h3 class="center-align">{{ menuformule.name }}</h3>
                         <p class="center-align">{{ menuformule.info }}
                         {% if menuformule.minPersons %}<br>Vanaf minimum {{ menuformule.minPersons }} personen{% if menuformule.maxPersons %} tot maximum {{ menuformule.maxPersons }} personen.{% else %}.{% endif %}{% endif %}
