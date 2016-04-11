@@ -209,7 +209,8 @@ class ReservatieController extends Controller
 
             $message = \Swift_Message::newInstance()
                     ->setSubject('Nieuwe aanvraag tot reservatie')
-                    ->setFrom('tseizoen@vdab.be')
+                    ->setFrom('tseizoen@vdabantwerpen.be')
+                    ->setCc($email)
                     ->setTo('tseizoen@vdab.be')
                     ->setBody(
                     $this->renderView(
