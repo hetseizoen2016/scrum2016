@@ -186,7 +186,6 @@ class ReservatieController extends Controller
                 }
                 array_push($menuFormulesArray, $menuFormule);
             }
-            
 
 
             
