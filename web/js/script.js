@@ -100,6 +100,7 @@ $(function () {
     $('.timepicker').pickatime({
         interval:15,
         format:'HH u i',
+        formatSubmit:'HH:i',
         min:[8,00],
         max:[17,00],
     });
