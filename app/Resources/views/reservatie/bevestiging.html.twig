@@ -50,12 +50,6 @@
                         <td>{% if reservatie.einde %}{{ reservatie.einde|date('H:i:s') }}{% endif %}</td>
                     </tr>
                 {% endif %}
-                {% if reservatie.totaal %}
-                    <tr>
-                        <th>Totaal</th>
-                        <td>{{ reservatie.totaal }}</td>
-                    </tr>
-                {% endif %}
                 {% if reservatie.commentaar %}
                     <tr>
                         <th>Commentaar</th>
@@ -100,6 +94,12 @@
                         {% endfor %}
                     </td>
                 </tr>
+                {% if reservatie.totaal %}
+                    <tr>
+                        <th>Totaal</th>
+                        <td>&#128; {{ reservatie.totaal }}</td>
+                    </tr>
+                {% endif %}
             </tbody>
         </table>
         <a href="{{path('index')}}" class="btn">OK</a>
