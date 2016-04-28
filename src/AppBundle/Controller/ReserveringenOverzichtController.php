@@ -29,7 +29,6 @@ class ReserveringenOverzichtController extends Controller
 
         $query = $em->createQuery('SELECT p FROM AppBundle:Reservatie p ORDER BY p.datum ASC');
         $reservaties = $query->getResult();
-
         $reservatiesArray = array();
         foreach ($reservaties as $reservatie) {
 
@@ -37,14 +36,16 @@ class ReserveringenOverzichtController extends Controller
             $menuFormulesArray = array();
 
             foreach ($reservatieRegels as $reservatieRegel) {
-                
-                if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
+
+             //   if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
+                if ($reservatieRegel) {
                     $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
-                    if (null !== $menuFormule->getMenutypeId()) {
+
+                    if ($menuFormule) {
                         $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
-                    } 
+                        array_push($menuFormulesArray, $menuFormule);
+                    }
                 }
-                array_push($menuFormulesArray, $menuFormule);
             }
 
             $reservatie->setReservatieRegels($menuFormulesArray);
