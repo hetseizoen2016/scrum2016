@@ -20,25 +20,32 @@ De case
 -
 
  In het didactisch restaurant 't Seizoen van VDAB krijgen de horeca cursisten de kans hun nieuwe vaardigheden te oefenen. Daarom nodigt 't Seizoen soms gasten uit om het restaurant te vullen.
- Vaak krijgt 't Seizoen zelf vragen van gasten om in 't Seizoen te komen luncjen.
+ Vaak krijgt 't Seizoen zelf vragen van gasten om in 't Seizoen te komen lunchen.
 
  De horeca instructeurs willen een website waarop ze 't Seizoen kunnen voorstellen en langs waar men kan laten weten aan potentiële gasten wat de mogelijkheden zijn.
 
- Bespreek met de 'klant' wat hij verwacht/wenst voor de wensite en ontwerp deze zodat van de huidige technologieën gebruik gemaakt wordt en de website aanpasbaar en uitbreidbaar is.
+ Bespreek met de 'klant' wat hij verwacht/wenst voor de website en ontwerp deze zodat van de huidige technologieën gebruik gemaakt wordt en de website aanpasbaar en uitbreidbaar is.
 
 
 Het team
 -
 
 
-Developers
- - geert@geertvanpoucke.be
- - sam_verhoeven3@hotmail.com
- - kristof.maurissen1@telenet.be
- - vanlerberghe.vc@gmail.com
+**Developers**
 
- Product owner
- - kay.meulders1@telenet.be
+geert@geertvanpoucke.be
+
+sam_verhoeven3@hotmail.com
+
+kristof.maurissen1@telenet.be
+
+vanlerberghe.vc@gmail.com
+
+
+**Product Owner**
+
+kay.meulders1@telenet.be
+
 
 Gebruikte technologieën en frameworks
 -
@@ -49,6 +56,7 @@ Gebruikte technologieën en frameworks
 - Symfony 2.8 (symfony.com)
 - Materialize (materializecss.com)
 - Git, Github, Netbeans, PhpStorm, PhpMyAdmin, FileZilla
+
 
 ---
 A Symfony project created on March 29, 2016, 10:39 am.
