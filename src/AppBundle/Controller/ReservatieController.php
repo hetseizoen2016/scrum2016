@@ -218,12 +218,26 @@ class ReservatieController extends Controller
                         ))
                     ->setTo('tseizoen@vdab.be')
                     ->setBody(
-                    $this->renderView(
-                            'email/bevestiging.html.twig', array("datum" => $datum, "naam" => $naam, "opdrachtgever" => $opdrachtgever,
-                        "aantalDeelnemers" => $aantalDeelnemers, "aanvang" => $aanvang,
-                        "commentaar" => $commentaar, "afdeling" => $afdeling, "product" => $product,
-                        "project" => $project, "rekening" => $rekening, "types" => $types, "email" => $email, "telefoon" => $telefoon, "formules" => $menuFormulesArray, "totaal" => $totaal)
-                    ), 'text/html'
+						$this->renderView(
+                            'email/bevestiging.html.twig', array(
+								"datum" => $datum, 
+								"naam" => $naam, 
+								"opdrachtgever" => $opdrachtgever, 
+								"aantalDeelnemers" => $aantalDeelnemers, 
+								"aanvang" => $aanvang, 
+								"commentaar" => $commentaar, 
+								"afdeling" => $afdeling, 
+								"product" => $product, 
+								"project" => $project, 
+								"rekening" => $rekening, 
+								"types" => $types, 
+								"email" => $email, 
+								"telefoon" => $telefoon, 
+								"formules" => $menuFormulesArray, 
+								"totaal" => $totaal
+							)
+						), 
+					'text/html'
             );
             $this->get('mailer')->send($message);
             return $this->redirectToRoute('bevestiging', array("reservatieId" => $reservatie->getId()));
