@@ -183,7 +183,7 @@ class ReservatieController extends Controller
                     if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
                         $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
                         if (null !== $menuFormule->getMenutypeId()) {
-                            $totaal += $menuFormule->getPrice();
+                            $totaal =+ $menuFormule->getPrice();
                         }
                     }
                 }
@@ -215,11 +215,15 @@ class ReservatieController extends Controller
             $message = \Swift_Message::newInstance()
                     ->setSubject('Nieuwe aanvraag tot reservatie')
                     ->setFrom('tseizoen@vdabantwerpen.be')
-                    ->setCc($email)
+                    ->setCc(array(
+						$email, 
+						$emailopdrachtgever)
+					)
                     ->setBcc(array(
                       'henri.bonte@vdab.be',
                       'guy.daemen@vdab.be',
-                      'maurice.vandeput@vdab.be'
+                      'maurice.vandeput@vdab.be',
+					  
                     )) 
                     ->setTo('tseizoen@vdab.be')
                     ->setBody(
