@@ -11,8 +11,8 @@ Doelstelling
  - Ontwerp van databanken
  - Ontwikkeling van een meerlagenstructuur
  - Opmaak van web interfaces
- - Gebruik van javascript en JQuery
  - Gebruik van Git
+ - Gebruik van javascript en JQuery
 
  Ook de werkwijzen en analytisch inzicht worden beoordeeld aan de hand van deze onderwerpen.
 
@@ -34,8 +34,8 @@ Het team
 Developers
  - geert@geertvanpoucke.be
  - sam_verhoeven3@hotmail.com
- - vanlerberghe.vc@gmail.com
  - kristof.maurissen1@telenet.be
+ - vanlerberghe.vc@gmail.com
 
  Product owner
  - kay.meulders1@telenet.be
