@@ -24,6 +24,9 @@
 				{% if opdrachtgever %}
 				<span style="font-weight: bold">In opdracht van:</span> </br>{{ opdrachtgever }}</br></br>
 				{% endif %}
+                                {% if emailopdrachtgever %}
+				<span style="font-weight: bold">Email opdrachtgever:</span> </br>{{ emailopdrachtgever }}</br></br>
+				{% endif %}
 				<span style="font-weight: bold">Aantal deelnemers:</span> </br>{{ aantalDeelnemers }}</br></br>
 				</br>
 				<span style="font-weight: bold">Aanvangsuur:</span> </br>{{ aanvang }}</br></br>
