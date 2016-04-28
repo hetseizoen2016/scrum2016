@@ -6,7 +6,8 @@
 Doelstelling
 -
  Met deze oefening leer je werken in team volgens de scrum methodologie.
- De oefening controleert je kennis van de verschillende aspecten die in de opleiding PHP ontwikkelaar aan bod zijn gekomen
+ De oefening controleert je kennis van de verschillende aspecten die in de opleiding PHP ontwikkelaar aan bod zijn gekomen.
+ Ook de werkwijzen en analytisch inzicht worden beoordeeld aan de hand van deze onderwerpen.
  Er wordt nagegaan of je, in team, in staat bent de verschillende aangeleerde technieken te combineren in een groter project:
 
  * Ontwerp van databanken
@@ -15,8 +16,7 @@ Doelstelling
  * Gebruik van Git
  * Gebruik van javascript en JQuery
 
- Ook de werkwijzen en analytisch inzicht worden beoordeeld aan de hand van deze onderwerpen.
-
+ 
 De case
 -
 
