@@ -138,6 +138,12 @@ $(function () {
             "form[telefoon]": {
                 required: true
             },
+            "form[oprachtgever]": {
+                required: true
+            },
+            "form[emailopdrachtgever]": {
+                required: true
+            },
             "form[rekening]": {
                 required: true,
                 number: true
@@ -175,6 +181,12 @@ $(function () {
             },
             "form[telefoon]": {
                 required: "Voer een telefoonnummer in"
+            },
+            "form[opdrachtgever]": {
+                required: "Voer een oprachtgever in"
+            },
+            "form[emailopdrachtgever]": {
+                required: "Voer het emailadres van  de opdrachtgever in"
             },
             "form[rekening]": {
                 required: "Voer een rekeningnummer in",

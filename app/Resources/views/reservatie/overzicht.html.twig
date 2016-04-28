@@ -4,83 +4,83 @@
 
 {% block body %}
 
-<div class="container">
-    <div class="section">
-        <div class="row">
-            <div class="col s6 offset-s3">
-            <h2 class="center-align">Overzicht reserveringen</h2>
-            <div class="center-align">
-                <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
-                   href="{{ path('reservatie_new') }}">Maak een nieuwe
-                    reservering aan</a>
-            </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="collapsible-header">
-                    <div class="col s3 m3 l3">Datum en uur</div>
-                    <div class="col s3 m2 l2">Aantal deelnemers</div>
-                    <div class="col s4 m6 l6">Naam</div>
-                    <div class="col s2 m1 l1"></div>
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s6 offset-s3">
+                    <h2 class="center-align">Overzicht reserveringen</h2>
+                    <div class="center-align">
+                        <a class="waves-effect waves-light blue-grey darken-3 white-text btn"
+                           href="{{ path('reservatie_new') }}">Maak een nieuwe
+                            reservering aan</a>
+                    </div>
                 </div>
-        </div>
-            <div class="col s12 m12 l12">
-                <ul class="collection  collapsible" >
-                <!--<ul class="collection  collapsible-header data-collapsible="expandable">-->
-                    {% for reservatie in reservaties %}
-                        <li class="collection-item" data-collapsible="expandable">
-                            <div class="collapsible-header lighten-4">
-                            <div class="row">
-                                <div class="col s3 m3 l3">{{ reservatie.datum|date("d/m/Y") }} ({{ reservatie.aanvang|date("H:i") }})</div>
-                                <div class="col s3 m2 l2">{{ reservatie.aantalDeelnemers }}</div>
-                                <div class="col s4 m6 l6">{{ reservatie.naam }}
-                                    {% if reservatie.email or reservatie.telefoon %}({% endif %}
-                                    {% if reservatie.email %}email: {{ reservatie.email }}{% endif %}
-                                    {% if reservatie.email and reservatie.telefoon %} - {% endif %}
-                                    {% if reservatie.telefoon %}telefoon: {{ reservatie.telefoon }}{% endif %}
-                                    {% if reservatie.email or reservatie.telefoon %}){% endif %}</div>
-                          {#    <div class="col s2 m1 l1"><a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}"><i class="material-icons blue-text darken-3">mode_edit</i></a></div>#}
-                                <div class="col s2 m1 l1 right-align"><a href="{{ path('reservatie_overzicht_delete', { 'id': reservatie.id }) }}"><i class="material-icons red-text darken-4">clear</i></a></div>
-                            </div>
-                            </div>
-                            
-                            <div class="collapsible-body">
-
-                                {% for menuFormule in reservatie.reservatieRegels %}
-
+            </div>
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div class="collapsible-header">
+                        <div class="col s3 m3 l3">Datum en uur</div>
+                        <div class="col s3 m2 l2">Aantal deelnemers</div>
+                        <div class="col s4 m6 l6">Naam</div>
+                        <div class="col s2 m1 l1"></div>
+                    </div>
+                </div>
+                <div class="col s12 m12 l12">
+                    <ul class="collection  collapsible" >
+                        <!--<ul class="collection  collapsible-header data-collapsible="expandable">-->
+                        {% for reservatie in reservaties %}
+                            <li class="collection-item" data-collapsible="expandable">
+                                <div class="collapsible-header lighten-4">
                                     <div class="row">
-                                        <div class="col s12 ">
-                                            <div class="col s2">{{ menuFormule.name }}</div>
-                                            <div class="col s1">&euro; {{ menuFormule.price }}</div>
-                                            <div class="col s9">{{ menuFormule.info }}</div>
-                                        </div>
+                                        <div class="col s3 m3 l3">{{ reservatie.datum|date("d/m/Y") }} ({{ reservatie.aanvang|date("H:i") }})</div>
+                                        <div class="col s3 m2 l2">{{ reservatie.aantalDeelnemers }}</div>
+                                        <div class="col s4 m6 l6">{{ reservatie.naam }}
+                                            {% if reservatie.email or reservatie.telefoon %}({% endif %}
+                                            {% if reservatie.email %}email: {{ reservatie.email }}{% endif %}
+                                            {% if reservatie.email and reservatie.telefoon %} - {% endif %}
+                                            {% if reservatie.telefoon %}telefoon: {{ reservatie.telefoon }}{% endif %}
+                                            {% if reservatie.email or reservatie.telefoon %}){% endif %}</div>
+                                            {#    <div class="col s2 m1 l1"><a href="{{ path('reservatie_edit', { 'id': reservatie.id }) }}"><i class="material-icons blue-text darken-3">mode_edit</i></a></div>#}
+                                        <div class="col s2 m1 l1 right-align"><a href="{{ path('reservatie_overzicht_delete', { 'id': reservatie.id }) }}"><i class="material-icons red-text darken-4">clear</i></a></div>
                                     </div>
+                                </div>
 
-                                {% endfor %}
-                                <div class="">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div class="col s2 offset-s1">Afdeling</div>
-                                            <div class="col s2">Product</div>
-                                            <div class="col s2">Project</div>
-                                            <div class="col s2">Rekening</div>
+                                <div class="collapsible-body">
+
+                                    {% for menuFormule in reservatie.reservatieRegels %}
+
+                                        <div class="row">
+                                            <div class="col s12 ">
+                                                <div class="col s2">{{ menuFormule.name }}</div>
+                                                <div class="col s1">&euro; {{ menuFormule.price }}</div>
+                                                <div class="col s9">{{ menuFormule.info }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div class="col s2 offset-s1">{{ reservatie.afdeling }}</div>
-                                            <div class="col s2">{{ reservatie.product }}</div>
-                                            <div class="col s2">{{ reservatie.project }}</div>
-                                            <div class="col s2">{{ reservatie.rekening }}</div>
+
+                                    {% endfor %}
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="col s2 offset-s1">Afdeling</div>
+                                                <div class="col s2">Product</div>
+                                                <div class="col s2">Project</div>
+                                                <div class="col s2">Rekening</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="col s2 offset-s1">{{ reservatie.afdeling }}</div>
+                                                <div class="col s2">{{ reservatie.product }}</div>
+                                                <div class="col s2">{{ reservatie.project }}</div>
+                                                <div class="col s2">{{ reservatie.rekening }}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    {% endfor %}
+                            </li>
+                        {% endfor %}
 
-                </ul>
+                    </ul>
                 </div>
             </div>
         </div>

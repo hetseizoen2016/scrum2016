@@ -36,6 +36,12 @@
                         <td>{{ reservatie.opdrachtgever }}</td>
                     </tr>
                 {% endif %}
+                {% if reservatie.opdrachtgever %}
+                    <tr>
+                        <th>Email opdrachtgever</th>
+                        <td>{{ reservatie.emailopdrachtgever }}</td>
+                    </tr>
+                {% endif %}
                 <tr>
                     <th>Aantaldeelnemers</th>
                     <td>{{ reservatie.aantalDeelnemers }}</td>

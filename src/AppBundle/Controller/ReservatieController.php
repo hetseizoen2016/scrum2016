@@ -50,8 +50,13 @@ class ReservatieController extends Controller
                         )
                 )
                 ->add('opdrachtgever', TextType::class, array(
-                    'required' => false,
+                    'required' => true,
                     'label' => 'Opdrachtgever'
+                        )
+                )
+                ->add('emailopdrachtgever', EmailType::class, array(
+                    'required' => true,
+                    'label' => 'Email oprachtgever'
                         )
                 )
                 ->add('aantalDeelnemers', TextType::class, array(
@@ -61,14 +66,14 @@ class ReservatieController extends Controller
                 )
                 ->add('aanvang', 'time', array(
                     'attr' => array('class' => 'timepicker'),
-                    'input'  => 'datetime',
+                    'input' => 'datetime',
                     'widget' => 'single_text',
                     'required' => true,
                     'label' => 'Aankomstuur',
                     //'input' => 'datetime',
                     'widget' => 'single_text',
                     'required' => true,
-                    'label' => 'Aankomstuur',                   
+                    'label' => 'Aankomstuur',
                         )
                 )
                 ->add('commentaar', TextareaType::class, array(
@@ -114,6 +119,7 @@ class ReservatieController extends Controller
                 $email = $_POST['form']['email'];
                 $telefoon = $_POST['form']['telefoon'];
                 $opdrachtgever = $_POST['form']['opdrachtgever'];
+                $emailopdrachtgever = $_POST['form']['emailopdrachtgever'];
                 $aantalDeelnemers = $_POST['form']['aantalDeelnemers'];
                 $aanvang = $_POST['form']['aanvang'];
                 $commentaar = $_POST['form']['commentaar'];
@@ -140,12 +146,14 @@ class ReservatieController extends Controller
                 } else {
                     $rekening = null;
                 }
+
                 $reservatie
                         ->setDatum(new \DateTime($datum))
                         ->setNaam($naam)
                         ->setEmail($email)
                         ->setTelefoon($telefoon)
                         ->setOpdrachtgever($opdrachtgever)
+                        ->setEmailopdrachtgever($emailopdrachtgever)
                         ->setAantalDeelnemers(intval($aantalDeelnemers))
                         ->setAanvang(new \DateTime($aanvang))
                         ->setCommentaar($commentaar)
@@ -153,7 +161,7 @@ class ReservatieController extends Controller
                         ->setProduct($product)
                         ->setProject($project)
                         ->setRekening($rekening);
-
+                var_dump($reservatie);
                 $em->persist($reservatie);
                 $em->flush();
 
@@ -170,7 +178,7 @@ class ReservatieController extends Controller
                         }
                     }
                 }
-                
+
                 $totaal = 0;
                 $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatie->getId());
                 foreach ($reservatieRegels as $reservatieRegel) {
@@ -185,14 +193,14 @@ class ReservatieController extends Controller
                 $totaal = $totaal * $aantalDeelnemers;
                 
                 $reservatie->setTotaal($totaal);
-                
+
                 $em->persist($reservatie);
                 $em->flush();
             }
 
             $reservatieRegels = $em->getRepository('AppBundle:ReservatieRegels')->findByReservatieId($reservatie->getId());
             $menuFormulesArray = array();
-            
+
             foreach ($reservatieRegels as $reservatieRegel) {
 
                 if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
@@ -205,24 +213,25 @@ class ReservatieController extends Controller
             }
 
 
-            
+
 
             $message = \Swift_Message::newInstance()
                     ->setSubject('Nieuwe aanvraag tot reservatie')
                     ->setFrom('tseizoen@vdabantwerpen.be')
                     ->setCc($email)
                     ->setBcc(array(
-                            'henri.bonte@vdab.be',
-                            'guy.daemen@vdab.be',
-                            'maurice.vandeput@vdab.be'
-                        ))
+                      'henri.bonte@vdab.be',
+                      'guy.daemen@vdab.be',
+                      'maurice.vandeput@vdab.be'
+                    )) 
                     ->setTo('tseizoen@vdab.be')
                     ->setBody(
                     $this->renderView(
                             'email/bevestiging.html.twig', array("datum" => $datum, "naam" => $naam, "opdrachtgever" => $opdrachtgever,
                         "aantalDeelnemers" => $aantalDeelnemers, "aanvang" => $aanvang,
                         "commentaar" => $commentaar, "afdeling" => $afdeling, "product" => $product,
-                        "project" => $project, "rekening" => $rekening, "types" => $types, "email" => $email, "telefoon" => $telefoon, "formules" => $menuFormulesArray, "totaal" => $totaal)
+                        "project" => $project, "rekening" => $rekening, "types" => $types, "email" => $email, "telefoon" => $telefoon, "formules" => $menuFormulesArray, 
+                        "totaal" => $totaal, "emailopdrachtgever" => $emailopdrachtgever)
                     ), 'text/html'
             );
             $this->get('mailer')->send($message);
@@ -376,6 +385,11 @@ class ReservatieController extends Controller
                     'label' => 'Opdrachtgever'
                         )
                 )
+                ->add('emailopdrachtgever', EmailType::class, array(
+                    'required' => true,
+                    'label' => 'Email oprachtgever'
+                        )
+                )
                 ->add('aantalDeelnemers', TextType::class, array(
                     'required' => true,
                     'label' => 'Aantal deelnemers'
@@ -383,7 +397,7 @@ class ReservatieController extends Controller
                 )
                 ->add('aanvang', 'time', array(
                     'attr' => array('class' => 'timepicker'),
-                    'input'  => 'datetime',
+                    'input' => 'datetime',
                     'widget' => 'single_text',
                     'required' => true,
                     'label' => 'Aankomstuur',
@@ -440,6 +454,7 @@ class ReservatieController extends Controller
                         ->setEmail($_POST['form']['email'])
                         ->setTelefoon($_POST['form']['telefoon'])
                         ->setOpdrachtgever($_POST['form']['opdrachtgever'])
+                        ->setEmailopdrachtgever($_POST['form']['emailopdrachtgever'])
                         ->setAantalDeelnemers(intval($_POST['form']['aantalDeelnemers']))
                         ->setAanvang(new \DateTime($_POST['form']['aanvang']))
                         //  ->setEinde(new \DateTime($_POST['form']['einde']))
