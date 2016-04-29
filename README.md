@@ -16,7 +16,7 @@ Doelstelling
  * Gebruik van Git
  * Gebruik van javascript en JQuery
 
- 
+
 De case
 -
 
@@ -56,7 +56,7 @@ Gebruikte technologieën en frameworks
 - JQuery
 - Symfony 2.8 (symfony.com)
 - Materialize (materializecss.com)
-- Git, Github, Netbeans, PhpStorm, PhpMyAdmin, FileZilla
+- Git, Github, Atlassian Jira, Netbeans, PhpStorm, PhpMyAdmin, FileZilla
 
 
 ---
