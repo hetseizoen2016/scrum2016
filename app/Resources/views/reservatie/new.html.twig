@@ -13,7 +13,7 @@
                 {% for menutype in menutypes %}
 
                         <label for="reservatie_{{ menutype.name }}">{{ menutype.name }}</label>
-                        <select id="reservatie_{{ menutype.name }}" name="reservatie[{{ menutype.name }}]">
+                        <select id="reservatie_{{ menutype.name }}" name="reservatie[{{ menutype.name }}]" class="browser-default">
                             <option value="" disabled selected>--- kies een {{ menutype.name }} ---</option>
                             {% for menuformule in menuformules %}
                                 {% if menutype.id == menuformule.menuType.id %}

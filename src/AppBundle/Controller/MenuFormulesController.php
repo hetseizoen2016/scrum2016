@@ -106,7 +106,7 @@ class MenuFormulesController extends Controller
     public function showAction(MenuFormules $menuFormule)
     {
         $deleteForm = $this->createDeleteForm($menuFormule);
-        var_dump($menuFormule);
+        //var_dump($menuFormule);
         //$menuFormule->setMenutypeId($menuFormule->getMenuType()->getId());
 
         /* Openingsuren */
