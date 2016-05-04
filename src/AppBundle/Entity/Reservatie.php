@@ -13,7 +13,8 @@ use AppBundle\Entity\ReservatieType;
  * @ORM\Entity
  * @ORM\Table(name="reservatie")
  */
-class Reservatie {
+class Reservatie
+{
 
     /**
      * @ORM\Column(type="integer")
@@ -40,6 +41,7 @@ class Reservatie {
      *
      */
     protected $email;
+
     /**
      * @ORM\Column(type="string", length=20)
      *
@@ -50,6 +52,12 @@ class Reservatie {
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $opdrachtgever;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    protected $emailopdrachtgever;
 
     /**
      * @ORM\Column(type="integer", name="aantal_deelnemers")
@@ -78,10 +86,6 @@ class Reservatie {
      * @ORM\Column(type="text", length=1028, nullable=true)
      */
     protected $commentaar;
-    
-    
-    
-    
     protected $reservatieRegels;
 
     /**
@@ -405,6 +409,27 @@ class Reservatie {
      */
     public function getRekening() {
         return $this->rekening;
+    }
+
+    /**
+     * Set emailopdrachtgever
+     *
+     * @param string $emailopdrachtgever
+     * @return Reservatie
+     */
+    function setEmailopdrachtgever($emailopdrachtgever) {
+        $this->emailopdrachtgever = $emailopdrachtgever;
+
+        return $this;
+    }
+
+    /**
+     * Get emailopdrachtgever
+     *
+     * @return string 
+     */
+    function getEmailopdrachtgever() {
+        return $this->emailopdrachtgever;
     }
 
     /**

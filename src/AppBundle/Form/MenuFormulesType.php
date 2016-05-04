@@ -49,7 +49,8 @@ class MenuFormulesType extends AbstractType
                     'choice_label' => 'name',
             //        'required' => false,
             //        'placeholder' => '--- kies een menu type ---',
-                    'label' => 'Menu type'
+                    'label' => 'Menu type',
+                    'attr' => array('class' => 'browser-default')
                 ))
         ;
     }

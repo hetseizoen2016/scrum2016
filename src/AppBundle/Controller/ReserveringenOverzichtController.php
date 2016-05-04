@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Geert
@@ -8,7 +9,6 @@
 
 namespace AppBundle\Controller;
 
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,20 +16,19 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ReserveringenOverzichtController extends Controller
 {
+
     /**
      * Lists all Reserveringen.
      *
      * @Route("/admin/reservatie/overzicht", name="reservatie_overzicht")
      * @Method({"GET", "POST"})
      */
-    public function indexAction()
-    {
+    public function indexAction() {
 
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery('SELECT p FROM AppBundle:Reservatie p ORDER BY p.datum ASC');
         $reservaties = $query->getResult();
-
         $reservatiesArray = array();
         foreach ($reservaties as $reservatie) {
 
@@ -37,14 +36,20 @@ class ReserveringenOverzichtController extends Controller
             $menuFormulesArray = array();
 
             foreach ($reservatieRegels as $reservatieRegel) {
-                
-                if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
+
+                //   if (null !== $reservatieRegel->getFormuleId() || null !== $reservatieRegel->getReservatieId() || 0 !== $reservatieRegel->getReservatieId()) {
+                if ($reservatieRegel) {
                     $menuFormule = $em->getRepository('AppBundle:MenuFormules')->find($reservatieRegel->getFormuleId());
-                    if (null !== $menuFormule->getMenutypeId()) {
-                        $menuFormule->setMenuType($em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId()));
-                    } 
+
+                    if ($menuFormule) {
+                        $menuType = $em->getRepository('AppBundle:MenuType')->find($menuFormule->getMenutypeId());
+                        
+                        if ($menuType) {
+                            $menuFormule->setMenuType($menuType);
+                            array_push($menuFormulesArray, $menuFormule);
+                        }
+                    }
                 }
-                array_push($menuFormulesArray, $menuFormule);
             }
 
             $reservatie->setReservatieRegels($menuFormulesArray);
@@ -57,11 +62,10 @@ class ReserveringenOverzichtController extends Controller
         $openingsuren = $em->getRepository('AppBundle:Openingsuur')->findAll();
 
         return $this->render('reservatie/overzicht.html.twig', array(
-            'openingsuren' => $openingsuren,
-            'user' => $this->getUser(),
-            'reservaties' => $reservaties,
+                    'openingsuren' => $openingsuren,
+                    'user' => $this->getUser(),
+                    'reservaties' => $reservaties,
         ));
-
     }
 
     /**
@@ -70,8 +74,7 @@ class ReserveringenOverzichtController extends Controller
      * @Route("/admin/reservatie/overzicht/{id}/delete", name="reservatie_overzicht_delete")
      * @Method({"GET", "POST"})
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
 
@@ -87,4 +90,5 @@ class ReserveringenOverzichtController extends Controller
 
         return $this->redirectToRoute('reservatie_overzicht');
     }
+
 }
