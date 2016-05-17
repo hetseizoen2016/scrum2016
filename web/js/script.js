@@ -99,7 +99,7 @@ $(function () {
         today: 'vandaag',
         clear: 'wissen',
         close: 'sluit',
-        format: 'd mmmm, yyyy',
+        format: 'dd/mm/yyyy',
         formatSubmit: 'yyyy-mm-dd',
         min:true,
     });
@@ -107,8 +107,8 @@ $(function () {
         interval:15,
         format:'HH u i',
         formatSubmit:'HH:i',
-        min:[8,00],
-        max:[17,00],
+        min:[11,45],
+        max:[13,30],
     });
     reservatieForm.validate({
         errorPlacement: function errorPlacement(error, element) {
@@ -204,7 +204,7 @@ $(function () {
         }
     });
 
-    $('.datepicker').pickadate({
+    /*$('.datepicker').pickadate({
         monthsFull: ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'],
         weekdaysFull: ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'],
         weekdaysShort: ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
@@ -213,7 +213,7 @@ $(function () {
         close: 'sluit',
         format: 'd mmmm yyyy',
         formatSubmit: 'yyyy-mm-dd'
-    });
+    });*/
 
     $(".radio").change(changeCheck);
     changeCheck();
